@@ -1,0 +1,567 @@
+evasion
+accuracy added to perma stats
+
+pokemon database:
+number
+evolution data
+gender ratio
+abilities
+catch rate
+egg groups
+height n weight
+base experience yield
+ev yield
+shape
+footprint
+colour
+friendship
+levelling rate
+hatch timepokedex description
+locations?????*
+
+Moves: make seperate indexes for these
+natural moves
+tm moves
+breeding moves*
+tutoring moves
+sprites
+
+moves:
+move pp
+
+
+
+we can read the nature name and use it as a handle to refer back to the natures and get shit like flavours,
+stats will be recalled for now and name so that they are stored and it uses name to retrieve vars when its called later on and stored
+
+
+EV's are a range from 0-252
+but raw numbers are 0-65535
+
+max overall is 510
+
+EV max = 510
+
+ev_gain = random.randint(1,3)
+
+if EV_max <=0:
+pass
+EV_atk += ev_gian
+if EV_gain == 252:
+pass
+
+EV_max -= ev_gain
+
+
+saving pkmn data:
+
+moves
+abilitiy
+name
+number
+nickname
+ev's
+iv's
+level
+stats(final stats)
+nature(not stat stuff, just the values and flavour)
+type
+item carried
+
+creates an instance of an existing pokemon
+reads stats, and important info to that instance
+nickname, species, ev's iv's level, stats, nature, type, item
+loads party pokemon into an array
+
+how to kill an instance of a class
+how to remove indexes from a json
+
+
+
+
+
+
+
+
+
+MOVES: ======================================================
+
+additional tags that go onto the move database json.
+
+if the move cannot do any of these, set the value to fals
+
+change_weather: {weather: "Rainy", duration: 5(-1 could mean an indefinite one)} #includes clearing weather
+
+mod_stats: {mod_self: True/False
+
+crit ratio: int
+
+bind_moves(enemy cannot escape): {duration: int, damage: {damages: True, power:int}}
+
+status_conditions: {cause_status_conditions: True, status: (insert status),
+
+contact: True/False
+
+bypasses_protect: True/False
+
+targets_multiple: True/False
+
+pp: int
+
+heals: {target: self/target, heal_power:int} look into mechanics
+
+flinches: {likelihood: int}
+
+priority: {position: first/last} #work on this
+
+removes_item: True/False
+
+one_hit_ko: True/False
+
+recharge: True/False
+
+switch: True/False
+
+multi_strike: {number_of_strikes: randint}
+
+protection: True/False
+
+Recoil: {severity: int}
+
+
+
+
+
+
+
+extras that need work:
+snatch, magic coat(reflects status moves),mirror move, hidden power, secret power
+
+battle class needs a parameter for weather that can be given and cause an infinite weather condition
+
+	status list:
+		freeze
+		burn
+		paralysis
+        confusion
+        poison(need another tag somehwere saying if it is badly poisoned)
+        sleep
+
+
+        okok so make it check the move's index for its value and based on that print a statement
+
+optimize json variables
+
+
+take the stat, degree and target. execute a function that takes those as inputs
+
+make a temporary var that is implemented into all calculation formulas. so that way its calculated, but not saved into the json
+
+
+rewrite the mod stats code into the rest of the code stuffs
+make the battle code simpler by making each pokemons turns its own method
+
+
+
+
+
+
+moves.json has a few properties.
+
+what move group to execute and any additional info needed
+
+level*, stats*, item, gender, OT, id*, exp, nature*, met date, met location, met lvl
+ability, ev/iv*, moves*
+
+
+
+
+have a json with listed pokemon moves in their categories.
+**function that reads the move name, looks for it in said json then runs a certain function based
+on the move chosen
+
+move needs no parameters from battle other than context
+ex: how many times that move has been used, how many turns since a move was used, weather etc
+have those as vars in battle
+
+utilize them in moves
+
+moves:
+pound, basic
+karate chop, crit ratio, basic
+double slap , multi-hits
+comet punch, multi hits
+mega punch, basic
+pay day, specific
+fire punch, punch(basic atk stat mod)
+ice puncc, punch
+thunder punch, punch
+vise grip, basic
+guillotine, 1ko
+razor wind, 2nd turn move
+swords dance, basic stat mod
+cut, basic
+gust, basic
+wing attack, basic
+whirlwind*
+fly, 2 turn move
+bind, multi turn attacks
+slam, basic
+vine whip, basic
+stomp, flincher(maybe basics have a flinch chance?)
+double kik, multi hits
+mega kick, basic
+jump kick, jump kicks(specific? or add in basic with additonal property)
+rolling kick, flincher
+sand attack, basic stat mod
+headbutt, flincher
+horn attack, basic
+fury attack, multi hit
+horn drill, 1ko
+body slam, basic atk stat mod
+wrap, multi turn atk
+take down, recoil or basic with recoil property
+thrash, rampage
+double edge, recoil
+tail whip, basic stat mod
+poison sting, basic but status effect
+twineedle, multi hit and poison
+pin missle, multi hit
+leer, basic stat mod
+bite, flincher
+Roar, switchers
+sing, basic stat conditions
+supersonic, basic status cond
+sonic boom, set dmg
+disable, specific
+acid, basic atk stat mod
+ember, basic atk stat mod
+flamethrower, basic atk stat mod
+mist, prevents stat mods
+water gun, basic atk
+hydro pump, basic atk
+surf, basic atk
+ice beam, basic atk status cond
+blizzard, basic atk status cond
+psybeam, basic atk status cond
+bubble beam, basic atk stat mod
+aurora beam, basic atk stat mod
+hyper beam, cooldown
+peck, basic atk
+drill peck, basic atk
+submission, recoil
+low kick, flincher
+counter, specific
+seismic toss, level based dmg
+strength, basic atk
+absorb, hp steal
+mega drain, hp steal
+leech seed, gradual hp stealers
+growth, basic stat mods
+razor leaf, basic critratio
+solar beam, charge up
+poison powder, basic status cond
+stun spore, bsc status cond
+sleep powder, bsc status cond
+pwtal dance, multi turn attack, but rampage
+string shot, basic stat mod
+dragon rage, set damage
+fire spin, multi turn atk
+thundershock, basic atk status cond
+thunderbolt, bsc atk status cond
+thunderwave, status cond
+thunder, basic atk status cond
+rock throw, basic atk
+earthquake, basic atk
+fissure, 1ko
+dig, 2 turn atk
+toxic, status cond
+confusion, basic atk status cond
+psychic, bsc atk stat mod
+hypnosis, status cond
+meditate, stat mod
+agility, stat mod
+quick atk, priority
+rage, multi turn buildup
+teleport, specific
+night shade, level based
+mimic*
+screech, stat mod
+double team, stat mod
+recover, stat mod
+harden, stat mod
+minimize, stat mod
+smokescreen, stat mod
+confuse ray, status cond
+withdraw stat mod
+def curl, status mod
+barrier, stat mod
+light screen stat mod
+haze, stat mods
+reflect, stat mods
+focus energy, crit mods(stat mods?)
+bide, build up
+metronome, specific
+mirror move, specific
+self destruct, recoil
+egg bomb, basic
+lick, bsc atk status cond
+smog, bsc atk status mod
+sludge, bsc atk status mod
+bone club, flincher
+fire blast, bsc atk status mod
+waterfall, flincher
+clamp, multi turn atk
+swift, basic
+skull bash, charge, recoil, stat mod
+spike cannon, multi hit
+constrict, multi turn
+amnesia, stat mod
+kinesis, stat mod
+soft boiled, heal
+high jump kick, refer to jump kick
+glare, status mod
+dream eater, hp steal
+poison gas, status mod
+barrage, multi hit
+leech life, hp steal
+lovely kiss, status cond
+sky atk, charge flincher
+transform, specific
+bubble, bsc atk stat mod
+dizzy punch, bsc atk status cond
+spore, status cond
+flash, stat mod
+psywave, rng dmg
+splash, null
+acid armour, stat mod
+crabhammer, bsc atk
+explosion, recoil
+fury swipes, multi atk
+bonemerang, multi atk
+rest, status cond heal
+rock slide, flincher
+hyper fang, flincher
+sharpen, stat mod
+conversion, specific
+tri attack, bsc atk status cond
+super fang, percentage dmg
+slash, basic atk. crit
+substitute, specific
+struggle, recoil
+
+put all the move categories in the json
+
+#=========================DEFINITIONS=================================#
+
+basic(just deal damage. can have different types, class(physical/special), power n accuracy. but at the end of the day, just deal dmg)
+multi hits(hit 2-5 times per turn)
+1ko(1 hit ko)
+2 turn move/charge(hits on the 2nd turn)
+multi turn attack(damages the opponene tover a span of turns like bind etc)
+flincher(deals dmg and can finch)
+basic stat mod(modifies any stat like atk, sp atk, def, sp def, speed, accuracy/evasion)
+basic atk stat mod(basic attack and modifies a stat)
+recoil(deals recoil. including moves like explosion)
+basic atk status cond(attack and deals a status condition)
+status cond(deals a status condition)
+rampage(thrash or outrage. keep going consecutively)
+switchers(switches out u or opponent)
+set dmg(dragon rage etc. set amount
+lvl dmg(damage based on level)
+rng dmg(dmg based on rng)
+cooldown(requires a cooldown)
+hp steal(steals opp hp and gives some to user)
+gradual hp steal(same thing but like leech seed where its over time)
+recovery(heals)
+priority(has to go first or last)
+buildup(gets stronger or somn the more u use it consecutively)
+
+anything that dosent really fit into any of these can be marked as 'specific'
+
+
+
+
+
+make it so that it stores user data in a class then its specific stats in an init for easier
+variables storage
+
+function for exec moves. just returns someone lost. get it to not take user as input
+
+reads both user's hp and then if either is <=0, it equals 0 and returns that they lost
+
+checks if out and moving out
+move player
+
+
+if you are out but moving inward or stationary:
+	if not oncentrex and moving x or not oncentrey and moving y
+		move the player
+
+	otherwise:
+		update screen
+
+update screen
+
+
+
+
+need 4 possibilities. or 2 deciders. if 1 is true, its more likely to happen again. if another is
+chosen, its more likely to do that. implement npc tile movement.
+or keep it basic. have a delta time, and until that delta time runs out, move in that direction
+then randomly move somewhere else every few seconds.
+
+
+
+delta = 500 ms
+now = time.tome()
+if now-start_time >= delta:
+
+    x,y = int,int
+
+    x= random.randint(-1,1); y = random.randint(-1,1)
+    if x!=0: y==0 #something like this
+    self.last_x, self.last_y = x,y
+    start_time = time.time()
+
+else: update(self.last_x, self.last_y)
+
+
+
+
+
+
+delta = 0.25 #between 0.25-3. this is how long the npc will take to walk
+        now = time.time()
+        if now - self.start_time >= delta: #u broke out the loop now.
+            """
+            determine if u wanna move or nah
+            num = randint(0,1)
+            if num ==0: x = randint(-1,1)
+            if num == 1: y = randint(-1,1)
+            coords = checkif colided(x,y)
+            update(coords)
+            self.last_x, self.last_y = coords
+            start time = now
+            """
+            self.start_time = time.time(); print(f"time: {self.start_time}")
+        else:
+            """
+            coords = self.check_f_collided(last_x,last_y)
+            update(coords)
+            """
+            print("in the loop")
+        time.sleep(0.0133) #this represents 1/75
+
+
+
+
+
+def is_walking(self):
+    """
+    returns true. if this is true, execute walk as False
+    """
+    delta = 0.25
+    now = time.time()
+    if now - self.start >=delta:
+        return False
+
+    else:
+        return True
+
+def walk(x,y, is_walking:Bool):
+    if not is_walking:
+        x,y = self.last_x, self.last_y
+    coords = self.check_if_collided(x,y)
+    self.update(coords[0], self.coords[1])
+    self.start_time = time.time()
+    if not is_walking:
+        self.last_x, self.last_y = coords[0],coords[1]
+
+
+
+this needs to only happen for the player, so make these player variables only
+rework collision logic?
+
+
+
+make sure it only checks if the player is walking. make it player only
+
+also npc walk
+
+
+npc rotation at least
+
+only checking collisions before moving. needs to check while in the loop
+
+fix player spasms when npc moves offscreen
+npc dont move offscreen,
+
+player still spazes if on edge and npc move
+
+
+
+problems:
+player spazzes at the edges of the screen when npc is onscreen
+npc clipping through obstacles
+player spazzes when colliding with npc(animation resets n back)
+
+
+
+
+make animations independant of fps. get vsynce and make em animate off
+that
+
+
+checks if on edge before updating. just have that same logic
+in collision logic
+
+
+returns col_left, col_right, col_top, col_bottom
+
+if (self.rect.left<=back.rect.left or col_left) and input_x <0:
+
+in move(), x,y are directly passed in as well as col somehow
+maybe set them as self. variables that are switched on n off
+reset to False every collion check
+
+do the same for sprite
+
+
+try to do the, if colliding, self.pos = self.pos
+
+
+
+
+
+
+
+
+
+its in the walking algo..
+
+changes the player.counter somehow
+
+same for collisions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

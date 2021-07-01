@@ -1,0 +1,38 @@
+{
+  "name": "next",
+  "image": "./graphics/maps/next.png",
+
+  "gates": {
+    "gate 1": {
+      "id": 0,
+      "coords": {"x": 0, "y": 0},
+      "draw coords": [960, 540]
+    }
+  },
+
+  "NPC's": {
+    "hilda": {
+      "coords": {"x": 140, "y": -40},
+      "ai": "walking",
+      "image": "./graphics/sprites/overworld/female movement.png"
+    },
+    "hilbert": {
+      "coords": {"x": -60, "y":  -40},
+      "ai": "walking",
+      "image": "./graphics/sprites/overworld/player movement.png"
+    }
+  },
+
+  "Obstacles": {
+
+    "1": {
+      "coords": {"x": 40, "y": -140},
+      "image": "./graphics/sprites/overworld/grass.png"
+    },
+    "2": {
+      "coords": {"x": -160, "y": -140},
+      "image": "./graphics/sprites/overworld/grass.png"
+    }
+
+  }
+}

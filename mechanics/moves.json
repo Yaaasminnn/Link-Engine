@@ -1,0 +1,128 @@
+{
+  "Basic Moves": {
+    "Tackle": {
+      "Name": "Tackle",
+      "Power": 50,
+      "Accuracy": 100,
+      "Type": "Normal",
+      "Class": "Physical",
+      "Crit Ratio": 1.0
+    },
+    "Scratch": {
+      "Name": "Scratch",
+      "Power": 50,
+      "Accuracy": 100,
+      "Type": "Normal",
+      "Class": "Physical",
+      "Crit Ratio": 1.0
+    },
+    "Pound": {
+      "Name": "Pound",
+      "Power": 40,
+      "Accuracy": 100,
+      "Type": "Normal",
+      "Class": "Physical",
+      "Crit Ratio": 1.0
+    }
+  },
+
+  "Basic Stat Mod Moves": {
+    "Growl": {
+      "Name": "Growl",
+      "Type": "Normal",
+      "Class": "Status",
+      "Mod Stats": {
+        "Stat 1": {
+          "Stat": "Attack",
+          "Degree": 0.66,
+          "Target": "Target"
+        }
+      }
+    },
+    "Leer": {
+      "Name": "Leer",
+      "Type": "Normal",
+      "Class": "Status",
+      "Mod Stats": {
+        "Stat 1": {
+          "Stat": "Defence",
+          "Degree": 0.66,
+          "Target": "Target"
+        }
+      }
+    }
+  },
+
+  "Status Condition Moves": {
+  },
+
+  "1 Hit KO": {
+  },
+
+  "2 Turn Moves": {
+  },
+
+  "Lingering": {
+  },
+
+  "Clincher": {
+  },
+
+  "Basic Attack and Stat Mod": {
+
+  },
+
+  "Recoil Moves": {
+  },
+
+  "Basic Attack and Status Condition": {
+    "Ember": {
+      "Name": "Ember",
+      "Power": 50,
+      "Accuracy": 100,
+      "Type": "Fire",
+      "Class": "Special"
+    }
+  },
+
+  "Rampage": {
+  },
+
+  "Switchers": {
+  },
+
+  "Specific Damage": {
+  },
+
+  "HP Steal": {
+  },
+
+  "HP Recovery": {
+  },
+
+  "Priority": {
+  },
+
+  "Buildup": {
+  },
+
+  "Multi-hit Moves": {
+    "Double Slap": {
+      "Name": "Double Slap",
+      "Power": 15,
+      "Accuracy": 85,
+      "Power Points": 10,
+      "Min # of hits": 2,
+      "Max # of Hits": 5,
+      "Type": "Normal",
+      "Class": "Physical"
+    }
+  },
+
+  "Specific": {
+    "Sketch": {
+
+    }
+  }
+
+}

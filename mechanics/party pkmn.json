@@ -1,0 +1,218 @@
+{
+  "14678": {
+    "ID": 14678,
+    "Nickname": "Bulby boi",
+    "Species": "Bulbasaur",
+    "Level": 5,
+    "Nature": "Impish",
+    "EV's": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IV's": [
+      7,
+      26,
+      17,
+      14,
+      7,
+      21
+    ],
+    "Stats": [
+      19,
+      11,
+      11,
+      10,
+      11,
+      10
+    ],
+    "Moves": {
+      "Move 1": "Tackle",
+      "Move 2": "Growl",
+      "Move 3": "Vine Whip"
+    }
+  },
+  "33038": {
+    "ID": 33038,
+    "Nickname": "flamethrowmer",
+    "Species": "Charmander",
+    "Level": 5,
+    "Nature": "Sassy",
+    "EV's": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IV's": [
+      20,
+      8,
+      6,
+      17,
+      0,
+      2
+    ],
+    "Stats": [
+      19,
+      10,
+      9,
+      11,
+      11,
+      10
+    ],
+    "Moves": {
+      "Move 1": "Scratch",
+      "Move 2": "Growl",
+      "Move 3": "Ember"
+    }
+  },
+  "25563": {
+    "ID": 25563,
+    "Nickname": "Bulby boi",
+    "Species": "Bulbasaur",
+    "Level": 5,
+    "Nature": "Serious",
+    "EV's": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IV's": [
+      15,
+      15,
+      25,
+      9,
+      14,
+      7
+    ],
+    "Stats": [
+      20,
+      10,
+      11,
+      11,
+      12,
+      9
+    ],
+    "Moves": {
+      "Move 1": "Tackle",
+      "Move 2": "Growl",
+      "Move 3": "Vine Whip"
+    }
+  },
+  "18167": {
+    "ID": 18167,
+    "Nickname": "flamethrowmer",
+    "Species": "Charmander",
+    "Level": 5,
+    "Nature": "Serious",
+    "EV's": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IV's": [
+      18,
+      29,
+      16,
+      13,
+      24,
+      0
+    ],
+    "Stats": [
+      19,
+      11,
+      10,
+      11,
+      11,
+      11
+    ],
+    "Moves": {
+      "Move 1": "Scratch",
+      "Move 2": "Growl",
+      "Move 3": "Ember"
+    }
+  },
+  "86621": {
+    "ID": 86621,
+    "Nickname": "Bulby boi",
+    "Species": "Bulbasaur",
+    "Level": 5,
+    "Nature": "Calm",
+    "EV's": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IV's": [
+      8,
+      15,
+      11,
+      27,
+      3,
+      6
+    ],
+    "Stats": [
+      19,
+      9,
+      10,
+      12,
+      12,
+      9
+    ],
+    "Moves": {
+      "Move 1": "Tackle",
+      "Move 2": "Growl",
+      "Move 3": "Vine Whip"
+    }
+  },
+  "85430": {
+    "ID": 85430,
+    "Nickname": "flamethrowmer",
+    "Species": "Charmander",
+    "Level": 5,
+    "Nature": "Relaxed",
+    "EV's": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IV's": [
+      28,
+      22,
+      27,
+      25,
+      20,
+      6
+    ],
+    "Stats": [
+      20,
+      10,
+      11,
+      12,
+      11,
+      11
+    ],
+    "Moves": {
+      "Move 1": "Scratch",
+      "Move 2": "Growl",
+      "Move 3": "Ember"
+    }
+  }
+}

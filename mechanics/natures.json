@@ -1,0 +1,452 @@
+{
+  "Hardy": {
+    "Name": "Hardy",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Lonely": {
+    "Name": "Lonely",
+    "Stat Mods":{
+      "Attack Mod": 1.1,
+      "Defence Mod": 0.9,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 1,
+      "Sour": -1,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Brave": {
+    "Name": "Brave",
+    "Stat Mods":{
+      "Attack Mod": 1.1,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 0.9
+    },
+    "Flavours": {
+      "Spicy": 1,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": -1
+    }
+  },
+
+  "Adamant": {
+    "Name": "Adamant",
+    "Stat Mods":{
+      "Attack Mod": 1.1,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 0.9,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 1,
+      "Sour": 0,
+      "Dry": -1,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Naughty": {
+    "Name": "Naughty",
+    "Stat Mods":{
+      "Attack Mod": 1.1,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 0.9,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 1,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": -1,
+      "Sweet": 0
+    }
+  },
+
+  "Bold": {
+    "Name": "Bold",
+    "Stat Mods":{
+      "Attack Mod": 0.9,
+      "Defence Mod": 1.1,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": -1,
+      "Sour": 1,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Docile": {
+    "Name": "Docile",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Relaxed": {
+    "Name": "Relaxed",
+    "Stat Mods":{
+      "Attack Mod": 0.9,
+      "Defence Mod": 1.1,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": -1,
+      "Sour": 1,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Impish": {
+    "Name": "Impish",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.1,
+      "Special Attack Mod": 0.9,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 1,
+      "Dry": -1,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Lax": {
+    "Name": "Lax",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.1,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 0.9,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 1,
+      "Dry": 0,
+      "Bitter": -1,
+      "Sweet": 0
+    }
+  },
+
+  "Timid": {
+    "Name": "Timid",
+    "Stat Mods":{
+      "Attack Mod": 0.9,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.1
+    },
+    "Flavours": {
+      "Spicy": -1,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": 1
+    }
+  },
+
+  "Hasty": {
+    "Name": "Hasty",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 0.9,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.1
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": -1,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": 1
+    }
+  },
+
+  "Serious": {
+    "Name": "Serious",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Jolly": {
+    "Name": "Jolly",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 0.9,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.1
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": -1,
+      "Bitter": 0,
+      "Sweet": 1
+    }
+  },
+
+  "Naive": {
+    "Name": "Naive",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 0.9,
+      "Speed Mod": 1.1
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": -1,
+      "Sweet": 1
+    }
+  },
+
+  "Modest": {
+    "Name": "Modest",
+    "Stat Mods":{
+      "Attack Mod": 0.9,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.1,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": -1,
+      "Sour": 0,
+      "Dry": 1,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Mild": {
+    "Name": "Mild",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 0.9,
+      "Special Attack Mod": 1.1,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": -1,
+      "Dry": 1,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Quiet": {
+    "Name": "Quiet",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.1,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 0.9
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": 1,
+      "Bitter": 0,
+      "Sweet": -1
+    }
+  },
+
+  "Bashful": {
+    "Name": "Bashful",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  },
+
+  "Rash": {
+    "Name": "Rash",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.1,
+      "Special Defence Mod": 0.9,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": 1,
+      "Bitter": -1,
+      "Sweet": 0
+    }
+  },
+
+  "Calm": {
+    "Name": "Calm",
+    "Stat Mods":{
+      "Attack Mod": 0.9,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.1,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": -1,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": 1,
+      "Sweet": 0
+    }
+  },
+
+  "Gentle": {
+    "Name": "Gentle",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 0.9,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.1,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": -1,
+      "Dry": 0,
+      "Bitter": 1,
+      "Sweet": 0
+    }
+  },
+
+  "Sassy": {
+    "Name": "Sassy",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.1,
+      "Speed Mod": 0.9
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": 1,
+      "Sweet": -1
+    }
+  },
+
+  "Careful": {
+    "Name": "Careful",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 0.9,
+      "Special Defence Mod": 1.1,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": -1,
+      "Bitter": 1,
+      "Sweet": 0
+    }
+  },
+
+  "Quirky": {
+    "Name": "Quirky",
+    "Stat Mods":{
+      "Attack Mod": 1.0,
+      "Defence Mod": 1.0,
+      "Special Attack Mod": 1.0,
+      "Special Defence Mod": 1.0,
+      "Speed Mod": 1.0
+    },
+    "Flavours": {
+      "Spicy": 0,
+      "Sour": 0,
+      "Dry": 0,
+      "Bitter": 0,
+      "Sweet": 0
+    }
+  }
+
+}

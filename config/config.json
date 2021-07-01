@@ -1,0 +1,35 @@
+{
+  "base speed": 1,
+
+  "hitbox colours": {
+    "red": 0,
+    "green": 0,
+    "blue": 255
+  },
+
+  "draw HUD": 1,
+
+  "keybinds": {
+    "up": "Up",
+    "down": "Down",
+    "left": "Left",
+    "right": "Right",
+    "dash": "Shift",
+    "a": "A",
+    "b": "B",
+    "x": "X",
+    "y": "Y",
+    "exit": "Escape",
+    "debug menu": "F3",
+    "macros": {
+      "1": "Q",
+      "2": "W",
+      "3": "E",
+      "4": "R"
+    }
+  },
+  "text speed": 1,
+  "fullscreen": 1,
+  "animate": 1,
+  "background image": "firewatch2.jpg"
+}
