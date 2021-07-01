@@ -2,6 +2,7 @@ import pygame
 import sys
 from random import randint
 import time
+#hi
 
 #other scripts
 from config.config import load_config
