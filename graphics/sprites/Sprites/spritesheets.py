@@ -2,6 +2,14 @@ import pygame
 import json
 
 class Spritesheet:
+    """
+    Spritesheet class.
+
+    Handles creating spritesheets.
+
+    todo:
+        allow scaling of sprite images in a spritesheet
+    """
     def __init__(self, filename):
         self.filename = filename
         self.sprite_sheet = pygame.image.load(filename).convert()#loads image
@@ -13,7 +21,9 @@ class Spritesheet:
         self.size[0], self.size[1] = int(self.size[0]), int(self.size[1])
         self.sprite_sheet = pygame.transform.scale(self.sprite_sheet, self.size)
 
-        self.meta_data = self.filename.replace("png", "json")#replaces the png to json
+        self.dot = filename.rfind(".")
+        ext = filename[self.dot+1:]
+        self.meta_data = self.filename.replace(ext, "json")#replaces the png to json
         with open(self.meta_data) as f: #loads the json
             self.data = json.load(f)
 
@@ -49,6 +59,3 @@ class Spritesheet:
             frame = self.parse_sprite(f"{loop_count}.png", sprite)
             sprite_array.append(frame)
         return sprite_array
-
-    """make another function that loads the json index sprite called in parse_sprite()
-    then use that to read the number of indexes in there and parse that many sprites"""

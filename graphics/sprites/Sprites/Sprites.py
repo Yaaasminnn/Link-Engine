@@ -11,7 +11,7 @@ def move(x, y, is_player):
 
     Checks if the player is currently colliding with anything and then returns coordinates, then passes them into
     the different update functions. depending on is_player, it will either update the player or the background.
-    also animates any npc's at the end as well as the players animation counter.
+    also animates any npc's at the end as well as the players animation counter if animations are enabled.
 
     is called from Sprite.player_update() or Sprite.update_all().
     is_player is True if called from Sprite.player_update(). this will update the player
@@ -19,33 +19,30 @@ def move(x, y, is_player):
 
     Examples:
         is_player                                ||If the player is updated, move the player
-        >>> player_group.update(-x,-y)
+        >>> player_group.update(-coords[0],-coords[1])
 
         not is_player                            ||If the background is updated, move the background
-        update background elements
+        >>> background_group.update(coords[0], coords[1])
+        >>> npc_group.update(coords[0], coords[1])
+        >>> gate_group.update(coords[0], coords[1], True)
+        >>> obstacle_group.update(coords[0], coords[1], True)
 
-    todo:
-        there will be many many more tiles onscreen at a time, so figure out how to call all instances in a class
-        for animations.
     """
-    from main import player_group, background_group, npc_group, animate, gate_group, obstacle_group#, player
-    # checks if collided
-    for player in player_group:
-        player = player
+    from main import player_group, background_group, npc_group, animate, gate_group, obstacle_group
 
+    player = get_sprite_from_group(player_group) #gets the instance of the player
+
+    # checks if colliding with any of the obstacles or other tiles
     coords = player.check_for_collisions(x, y, obstacle_group, False)
     coords = player.check_for_collisions(coords[0], coords[1], npc_group, False)
 
     # updates the respective sprites
     if is_player:
-        for player in player_group:
-            player.update(-coords[0], -coords[1])
+        player.update(-coords[0], -coords[1])
     if not is_player:
         background_group.update(coords[0], coords[1])
         npc_group.update(coords[0], coords[1])
         gate_group.update(coords[0], coords[1], True)
-        """for obstacle in obstacles_list:
-            obstacle.update(coords[0], coords[1], True)"""
         obstacle_group.update(coords[0], coords[1], True)
 
     # animates any npc's that animate regardless of where the player is.
@@ -83,10 +80,9 @@ def get_sprite_from_group(sprite_group):
     player or backdrop.
 
     Examples:
-
         Need the player sprite to draw/animate on a new screen
 
-        Draw and maniulate the background on new screens
+        Draw and manipulate the background on new screens
     """
     for sprite in sprite_group:
         return sprite
@@ -96,7 +92,8 @@ class Static_Sprite(pygame.sprite.Sprite):
     The sprite class for all non-animated sprites.
 
     in the future, most sprites will be animated so this will only be used for the given backdrop and certain sprites
-    lacking an animation. this may or may not become obsolete.
+    lacking an animation. this will be used only on sprites that wont be animated. one example will be most gates or
+    buildings
     """
 
     def __init__(self, pos_x, pos_y, picture_path, scale=[1.0, 1.0]):
@@ -113,10 +110,10 @@ class Static_Sprite(pygame.sprite.Sprite):
             >> loads the sprite 50,50 at its default size
         """
         self.image = pygame.image.load(picture_path)  # loads the image
-        self.size = self.image.get_rect().size;
-        self.size = [self.size[0], self.size[1]]  # gets the size of the image and converts from tuple to array
-        self.size[0] *= scale[0];
-        self.size[1] *= scale[1]  # adjusts the scale depending on what size we want it to be
+
+        #gets the size of the image and converts from tuple to array
+        self.size = self.image.get_rect().size; self.size = [self.size[0], self.size[1]]
+        self.size[0] *= scale[0]; self.size[1] *= scale[1]  # adjusts the scale depending on what size we want it to be
         self.size[0], self.size[1] = int(self.size[0]), int(self.size[1])
         self.image = pygame.transform.scale(self.image, self.size)  # sets the image to the scale we want
 
@@ -125,7 +122,7 @@ class Static_Sprite(pygame.sprite.Sprite):
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.step = 0
-        self.last_x, self.last_y = 0, 0
+        self.last_x, self.last_y = 0, 0 #last direction moved.
 
     def update(self, input_x, input_y, is_obstacle=False):
         """
@@ -142,13 +139,15 @@ class Static_Sprite(pygame.sprite.Sprite):
                     (obstacle):
                         takes in x and y from inputs. then updates the x and y positions of the screen. then animates
                         the player walking and finally sets the image at the new given positions.
+                        Note: animations are processed in move()
 
                     (Backdrop):
                         takes in the x and y inputs and checks if they are on the edges of the screen. if so, they stay
                         at the same positions. if not, update the x and y positions of the screen. then animates the
                         player walking and finally sets the image at the new given positions
         """
-        from main import animate, sc_h, sc_w
+        from main import sc_h, sc_w
+
         # keeps it from hitting the edges
         if (self.rect.left <= 0) and input_x < 0 and not is_obstacle: self.pos_x = self.pos_x  # if it hits the edge of the screen, it stays on screen
         if (self.rect.right >= sc_w) and input_x > 0 and not is_obstacle: self.pos_x = self.pos_x
@@ -167,9 +166,16 @@ class Animated_Sprite(pygame.sprite.Sprite):
     includes animated tiles,(obstacles, water), npc's and the player.
     """
     def __init__(self, pos_x, pos_y, picture_path):
+        """
+        Initializes all the instance variables.
+
+        todo:
+            maybe add in scaling for animated sprites? that would be annoying though and only should be used for
+            tiles that are animated.
+        """
         super().__init__()
         self.sprite = Spritesheet(picture_path)
-        self.index = 0
+        self.index = 0 # index is which sprite on the spritesheet we are currently on
         self.sheet = self.sprite.create_sprite_array()
         self.step = 0
 
@@ -178,41 +184,10 @@ class Animated_Sprite(pygame.sprite.Sprite):
         self.rect.center = [pos_x,pos_y]
         self.pos_x = pos_x
         self.pos_y = pos_y
-        self.last_x, self.last_y = 0, 0
-        self.counter = 0
-        self.start_time = 0
-        self.col_left, self.col_right, self.col_top, self.col_bottom = False, False, False, False
-
-    #HELPER FUNCTIONS==================================================================================================#
-
-    #might get rid of these. meant for player tile-based movement, but are kinda broken
-
-    def is_walking(self):
-        """
-        returns true. if this is true, execute walk as False
-        """
-        delta = 0.25
-        now = time.time()
-        if now - self.start_time >= delta:
-            return False
-        return True
-
-    def walk2(self, x, y):
-        from main import player_group
-        for player in player_group: player = player
-        is_walking = player.is_walking() #cheks if the sprite is walking
-        print(is_walking)
-        if is_walking: #if they are in the loop, use the last x,y inputs as inputs
-            x,y = self.last_x, self.last_y
-
-        if x >0 and y>0:
-            self.pos_x +=x; self.pos_y += y
-
-            if not is_walking:
-                self.start_time = time.time()
-                player.last_x, player.last_y = x,y
-
-    #==================================================================================================================#
+        self.last_x, self.last_y = 0, 0 #last direction moved in. useful for animations
+        self.last_posx, self.last_posy = pos_x, pos_y #last positions
+        self.counter = 0 #used for animating every frame.
+        self.start_time = 0 #used for npc walking
 
     def update(self, input_x, input_y):
         """
@@ -221,13 +196,11 @@ class Animated_Sprite(pygame.sprite.Sprite):
                 Works the same way as the update function. but is meant for animated sprites that have animated sprites,
                 unlike the normal ones who's sprites are static. All sprites(except the player) in this class will be
                 able to go offscreen and hence, when they approach the edges, they continue to move as normal. they also
-                have a walking animation, but within this function, only the player is animated. npc's and animated
-                tiles are animated in their animation functions.
-
+                have a walking animation.
                 NPC's:
                     npc's are intended to not be able to pass through obstacles and have their own walking AI. they can
-                    also be moved off-screen. also cannot enter or block "exit areas" which let the player enter new
-                    areas. also executed through Animated_Sprite.npc_update(). the walking ai will be in npc_update()
+                    also be moved off-screen. also cannot enter or block gates which let the player enter new maps.
+                    also executed through Animated_Sprite.npc_update(). the walking ai will be in npc_update()
 
                     Example:
                         Gets inputs from npc_update() and then passes them into Animated_Sprite.update(). will ignore
@@ -237,7 +210,7 @@ class Animated_Sprite(pygame.sprite.Sprite):
 
                 Player:
                     The player cannot pass through obstacles and move around directly by user input. the player cannot
-                    move off-screen and is able to enter "exit areas"
+                    move off-screen and is able to enter gates.
 
                     Example:
                         Gets inputs from user input, they are inverted because when the screen is moving, the player
@@ -257,42 +230,45 @@ class Animated_Sprite(pygame.sprite.Sprite):
 
         """
         from main import background_group
-        backdrop = get_sprite_from_group(background_group)
+
+        backdrop = get_sprite_from_group(background_group) # gets our instance of the backdrop
+
         if (self.rect.left <= backdrop.rect.left) and input_x < 0 : self.pos_x = self.pos_x
         elif (self.rect.right >= backdrop.rect.right) and input_x > 0: self.pos_x = self.pos_x
         elif (self.rect.top <= backdrop.rect.top) and input_y < 0 : self.pos_y = self.pos_y
         elif (self.rect.bottom >= backdrop.rect.bottom) and input_y > 0: self.pos_y = self.pos_y
         else:
-            self.pos_x += input_x; self.pos_y += input_y
+            self.last_posx, self.last_posy = self.pos_x, self.last_posy #sets the last position
+            self.pos_x += input_x; self.pos_y += input_y # updates the current position
 
         #changes the hitbox to the new coordinates
         self.rect.center = [self.pos_x, self.pos_y]
 
     def walk(self,x,y, last_x, last_y):
         """
-        Controls the animations for animated tiles.
+        Controls the walking animations for animated tiles such as npc's or the player.
 
-        For players and npc's that typically will have 16-32 different images per spritesheet, it currently works fine,
-        but certain animated tiles will likely only have 2-4 hence this needs to be reworked for tiles with x amount of
-        images. also needs to be worked for non-walking tiles and renamed to animate unless a seperate animate function
-        is made.
+        A counter is set for animating over multiple frames. and every 1/4:counter_limit: amount of frames, it will
+        change the image rendered.
 
-        A counter is set for animating over multiple frames. and every x amount of frames, it will change the image
-        rendered.
         Checks the last x and y coordinates, if they are different from the current inputs, reset the counter. also,
-        only render the next image after x amount of frames. if a new image can be rendered, it checks the direction and
-        then sets the index to the proper direction the player is walking in, then cycles through the animations for
-        that direction. finally, it renders the new image.
+        only render the next image after 1/4:counter_limit: amount of frames. if a new image can be rendered, it checks
+        the direction and then sets the index to the proper direction the player is walking in, then cycles through the
+        animations for that direction. finally, it renders the new image.
 
         also, if the animated sprite is not moving, then it will reset the sprite image with the stationary image for
         that direction.
+
+        todo:
+            setting back to the stationary frame is not working properly
+            also does not properly switch directions.
+
         """
         from main import base_speed, counter_limit
 
         # incrementaly increases the counter which is used for walking animations
         self.counter += 1
         if self.counter == counter_limit: self.counter = 0
-        #print(f"{player.counter} {counter_limit}")
 
         if last_x != x or last_y != y: self.counter=0 #if you move in a new direction, reset the counter
         if self.counter % int(counter_limit/4) != 0: return #only runs if on 10th frame
@@ -302,30 +278,37 @@ class Animated_Sprite(pygame.sprite.Sprite):
             if self.index < 4 or self.index > 8: self.index = 4
             self.index = (self.index + 1) % (len(self.sheet) + 1)
             if self.index == 8: self.index = 4
+
         if x <-base_speed:
             if self.index < 20 or self.index > 24: self.index = 20
             self.index = (self.index + 1) % (len(self.sheet) + 1)
             if self.index == 24: self.index = 20
+
         if x >0 and x <= base_speed:
             if self.index < 8 or self.index > 12: self.index = 8
             self.index = (self.index + 1) % (len(self.sheet) + 1)
             if self.index == 12: self.index = 8
+
         if x > base_speed:
             if self.index < 24 or self.index > 28: self.index = 24
             self.index = (self.index + 1) % (len(self.sheet) + 1)
             if self.index == 28: self.index = 24
+
         if y <0 and y >=-base_speed:
             if self.index < 12 or self.index > 16: self.index = 12
             self.index = (self.index + 1) % (len(self.sheet) + 1)
             if self.index == 16: self.index = 12
+
         if y < -base_speed:
             if self.index < 28 or self.index > 32: self.index = 28
             self.index = (self.index + 1) % (len(self.sheet) + 1)
             if self.index == 32: self.index = 28
+
         if y >0 and y <= base_speed:
             if self.index > 4: self.index = 0
             self.index = (self.index + 1) % (len(self.sheet) + 1)
             if self.index == 4: self.index = 0
+
         if y > base_speed:
             if self.index < 16 or self.index > 20: self.index = 16
             self.index = (self.index + 1) % (len(self.sheet) + 1)
@@ -350,11 +333,15 @@ class Animated_Sprite(pygame.sprite.Sprite):
 
         meant to be a general purpose animation method. used for tiles such as grass, water, trees etc.
         Will cycle through the given animations it has in the spritesheet by changing the index to the next one every
-        x amount of frames.
+        x amount of frames determined by 1/4*counter_limit.
+
+        todo:
+            make variations of this that animate in different ways such as front-back, back-front, skip indexes etc.
+            not necessary, but could be useful.
         """
         from main import counter_limit
 
-        #incrementally increases the counter
+        #incrementally increases the counter which determines if we should animate it.
         self.counter += 1
         if self.counter == counter_limit: self.counter = 0
 
@@ -409,13 +396,16 @@ class Animated_Sprite(pygame.sprite.Sprite):
 
             chance = 1   || if chance == 1, choose a random number to determine if we should move in the x/y direction
             >>> x, y = 0, 0; x_or_y = randint(0,1)
+
+            todo:
+                make sure npc's dont also walk off the screen borders
         """
-        from main import base_speed, counter_limit, player_group, npc_group, obstacle_group
+        from main import base_speed, counter_limit, player_group, npc_group, obstacle_group, sc_h, sc_w
         delta = 0.25  # how long we walk for
         now = time.time()  # current time
 
         hit_box = self.rect
-        if hit_box.right <= 0 or hit_box.left >= 1920 or hit_box.bottom <= 0 or hit_box.top >= 1080: return  # dosent walk offscreen
+        if hit_box.right <= 0 or hit_box.left >= sc_w or hit_box.bottom <= 0 or hit_box.top >= sc_h: return  # dosent walk offscreen
 
         if now - self.start_time >= delta:  # runs if you are not currently moving
             chance = randint(1, 100)  # there is a 1 in 100 chance of moving and restarting the loop(reset to 10)
@@ -446,22 +436,22 @@ class Animated_Sprite(pygame.sprite.Sprite):
 
     def check_for_collisions(self, x, y, group, independenty_moving = False):
         """
-        checks if the given sprite has collided with any sprites onscreen.
+        checks if the given sprite has collided with the given group.
 
-        checks if the given sprite is colliding with any other sprites of the given groups, if so, set the input to 0,
+        checks if the given sprite is colliding with any other sprites of the given group, if so, set the input to 0,
         if it is moving in the same direction that is colliding with another sprite, set that input to 0. also, because
-        the player's inputs are inverted on the edges, player = False normally and when it is set to true, it looks to
-        see if the sprite is moving in the opposite direction to set it to 0.
+        the player's inputs are inverted on the edges, independantly_moving = False normally and when it is set to true,
+        it looks to see if the sprite is moving in the opposite direction to set it to 0.
 
-        by default collided = False and collision_tol = 2(from the config file). collision_tol is the closest sprites can be before being
-        considered collided and collided being set to True.
+        by default collided = 0 and collision_tol = 2(from the config file). collision_tol is the closest sprites
+        can be before being considered collided and collided being set to 1.
         if the given sprite is colliding with another, it will set the current inputs to 0 and return them.
 
         Examples:
-            collided, x=1,y=0          ||self is colliding with the wall, return x/y as 0
+            collided, x=base_speed,y=0          ||self is colliding with the wall, return x/y as 0
             :return [0,0]
 
-            not collided, x=1, y=0     ||self is not coliding with the wall, return x/y unchanged
+            not collided, x=base_speed, y=0     ||self is not coliding with the wall, return x/y unchanged
             :return [1,0]
         """
         from main import col_tol
@@ -514,24 +504,26 @@ class Window:
         offcenter, move the background. if the backdrop has not reached any edges of the screen, update the background.
 
         Examples:
-            backdrop.pos_x ==0 and x== -1         ||backdrop has reached an edge, and player is moving in that direction
+            backdrop.pos_x==0 and x==-base_speed  ||backdrop has reached an edge, and player is moving in that direction
             >>> player_update(x,y)
 
-            backdrop.pos_x == 200 and x== 1/-1        ||backdrop has not reached an edge and the player is moving around
+            backdrop.pos_x==200 and x==+/-base_speed  ||backdrop has not reached an edge and the player is moving around
             >>> update_all(x,y)
 
-            player.pos_x == 600 and x ==1/-1          ||off-set on the x axis(pos_x!=960) and moving on the x axis(x!=0)
+            player.pos_x == 600 and x==+/-base_speed  ||off-set on the x axis(pos_x!=960) and moving on the x axis(x!=0)
             >>> player_update(x,y)
 
-            player.pos_y == 300 and y == 1/-1         ||off-set on the y axis(pos_y!=540) and moving on the y axis(y!=0)
+            player.pos_y == 300 and y==+/-base_speed  ||off-set on the y axis(pos_y!=540) and moving on the y axis(y!=0)
             >>> player_update(x,y)
 
-            player.pos_x == 40 and y == 1/-1           ||offset on the x axis, but is moving on the y axis, screen moves
+            player.pos_x == 40 and y==+/-base_speed    ||offset on the x axis, but is moving on the y axis, screen moves
             >>> update_all(x,y)
         """
         from main import background_group, player_group, mid_x, mid_y, sc_h, sc_w, base_speed
-        player = get_sprite_from_group(player_group)
-        backdrop = get_sprite_from_group(background_group)
+
+        player = get_sprite_from_group(player_group) #gets the current player instance
+        backdrop = get_sprite_from_group(background_group) #gets the current backdrop instance
+
         #moves the player if the backdrop reaches an edge and are moving towards that edge, making the player off-center
         if (backdrop.rect.left >= 0 and x>0) or (backdrop.rect.right <= sc_w and x<0) or (backdrop.rect.top >= 0 and y>0) or (backdrop.rect.bottom <= sc_h and y<0):
             player_update(x, y)
@@ -607,10 +599,10 @@ class Window:
 
         Examples:
             Up arrow          ||an arrow key was pressed, set x and y to the corresponding direction
-            :return x=0,y=1:
+            :return x=0,y=base_speed:
 
             Up arrow + Shift  ||arrow key and shift was pressed, set x and y to the corresponding directions at 2x speed
-            :return x=0, y=2
+            :return x=0, y=run_speed
 
             No keys pressed   ||No keys were pressed. return x,y = 0,0
             :return x=0,y=0
@@ -666,9 +658,9 @@ class Window:
     @staticmethod
     def draw_hitboxes():
         """
-        draws hitboxes around each sprite
+        draws hitboxes around each sprite in each group
         """
-        from main import hitbox_clr, obstacle_group, player_group, npc_group, window
+        from main import hitbox_clr, obstacle_group, player_group, npc_group, window, gate_group
         for sprite in obstacle_group:  # draws a red hit box around each obstacle
             rect =sprite.rect
             linetop = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
@@ -692,6 +684,17 @@ class Window:
                                           (rect.right, rect.bottom), width=2)
 
         for sprite in npc_group:
+            rect = sprite.rect
+            linetop = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
+                                       (rect.right, rect.top), width=2)
+            lineleft = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
+                                        (rect.left, rect.bottom), width=2)
+            lineright = pygame.draw.line(window, hitbox_clr, (rect.right, rect.top),
+                                         (rect.right, rect.bottom), width=2)
+            linebottom = pygame.draw.line(window, hitbox_clr, (rect.left, rect.bottom),
+                                          (rect.right, rect.bottom), width=2)
+
+        for sprite in gate_group:
             rect = sprite.rect
             linetop = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
                                        (rect.right, rect.top), width=2)

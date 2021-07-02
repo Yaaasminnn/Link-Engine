@@ -1,13 +1,15 @@
 import keyboard
-import time
 
 class Key:
+    """
+    Class for all different types of keypresses and keystrokes.
+    """
     def __init__(self, key):
-        self.pressed = False
-        self.key = key
-        self.init_time = 0
-        self.now = 0
-        self.counter = 0
+        self.pressed = False #reports if the key is pressed or not
+        self.key = key #what key we are working with
+        self.init_time = 0 #the time you start pressing a key
+        self.now = 0 #current time
+        self.counter = 0 #the number of frames you have been holding a key down for
 
     def toggle(self):
         """
@@ -23,8 +25,10 @@ class Key:
 
     def hold(self):
         """
+        checks if you are holding down a key and continues executing a function so long as it is pressed.
 
-        :return:
+        todo:
+            work on this
         """
         from main import FPS
         if keyboard.is_pressed(self.key):

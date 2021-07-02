@@ -1,16 +1,11 @@
 import pygame
-import sys
-from random import randint
 import time
 
 #other scripts
 from config.config import load_config
 from graphics.maps.scripts.load_maps import load_map_data, load_tiles, is_at_gate
-from graphics.sprites.Sprites.spritesheets import Spritesheet
-from graphics.sprites.Sprites.Sprites import Animated_Sprite, Window, Static_Sprite
-from mechanics.Log import log
-from audio.speak import display_text
-from key_press import Key
+from graphics.sprites.Sprites.Sprites import Window, Static_Sprite
+from mechanics.key_press import Key
 
 #GLOBAL VARIABLES======================================================================================================#
 config = load_config() #loads the config file
@@ -87,27 +82,24 @@ gate_group.add(gayte)
 
 #PLAYER
 """
-todo: allow for gendered avatars and also load in players based off gates
+todo: allow for gendered avatars ina  config file
 """
 player_group = load_tiles((0,0),player_group, animated=True, is_player=True)
-"""player = Animated_Sprite(mid_x, mid_y, "graphics/sprites/overworld/player movement.png")
-player_group.add(player)"""
 
 #BACKDROP
 """
-todo: load in background based off gate pos
-
 backdrop is loaded in based on gate coordinates. player is always loaded in the middle of the screen
 """
 backdrop = Static_Sprite(backdrop_x, backdrop_y, map["image"])
 background_group.add(backdrop)
 
-#NPC'S
-"""
-Loads in all npc's.
 
-Reads the data from the metadata file
 """
+OTHER TILE GROUPS.
+
+Reads the data from the metadata file and loads in each group.
+"""
+#NPC'S
 NPCs = map["NPC's"]
 npc_group = load_tiles((backdrop_x, backdrop_y), npc_group, NPCs, animated=True)
 
@@ -117,6 +109,7 @@ obstacle_group = load_tiles((backdrop_x, backdrop_y), obstacle_group, obstacles)
 
 #Main Game loop========================================================================================================#
 frame_counter = 0
+map_change_init = 0
 while True:
     Window.exit_conditions() #checks exit conditions
 
@@ -127,7 +120,10 @@ while True:
 
     draw_hud = Window.toggle_hud()
 
-    new_map = is_at_gate()
+    now = time.time() #sets the current time
+    new_map = is_at_gate(now, map_change_init) #checks if at gate
+    #if at a gate, it changes the map. also sets an init time
+    if new_map is not None: name = new_map; map_change_init = time.time()
 
     #print(f"group:{npc_group}")
     #print(name, map)
