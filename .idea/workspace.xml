@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="Can now switch between maps in a 2 way fashion. not 1 way.&#10;&#10;Player is drawn ,animated and collision logic is accounted for more logically now that we are using the current instance of the player&#10;&#10;Cooldown for switching between maps and the player does not switch when standing in a gate.&#10;&#10;Rewrote comments to make more sense&#10;&#10;Removed all tile-based movement for the player as tile-based movement will not be used for this project.&#10;&#10;draws hitboxes around gates as well&#10;&#10;moved keypress.py into mechanics&#10;&#10;created grey maps for extra testing and to reduce the risk of seizures due to the other maps being quite bright and flashy.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="Can now switch between maps in a 2 way fashion. not 1 way.&#10;&#10;Player is drawn ,animated and collision logic is accounted for more logically now that we are using the current instance of the player&#10;&#10;Cooldown for switching between maps and the player does not switch when standing in a gate.&#10;&#10;Rewrote comments to make more sense&#10;&#10;Removed all tile-based movement for the player as tile-based movement will not be used for this project.&#10;&#10;draws hitboxes around gates as well&#10;&#10;moved keypress.py into mechanics&#10;&#10;created grey maps for extra testing and to reduce the risk of seizures due to the other maps being quite bright and flashy." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +19,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mechanics" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -80,6 +78,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Can now switch between maps in a 2 way fashion. not 1 way.&#10;&#10;Player is drawn ,animated and collision logic is accounted for more logically now that we are using the current instance of the player&#10;&#10;Cooldown for switching between maps and the player does not switch when standing in a gate.&#10;&#10;Rewrote comments to make more sense&#10;&#10;Removed all tile-based movement for the player as tile-based movement will not be used for this project.&#10;&#10;draws hitboxes around gates as well&#10;&#10;moved keypress.py into mechanics&#10;&#10;created grey maps for extra testing and to reduce the risk of seizures due to the other maps being quite bright and flashy." />
