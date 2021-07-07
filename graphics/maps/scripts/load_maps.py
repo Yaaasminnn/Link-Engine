@@ -57,7 +57,7 @@ def get_meta_files():
             meta_files.append(file)
     return meta_files
 
-def load_tiles(backdrop_coords, sprite_group,tiles = None, animated = False, is_player =False):
+def load_tiles(backdrop_coords, sprite_group,tiles = None, animated = False, is_player =False, id=False):
     """
     Function to load in instances of tiles from the metadata json.
 
@@ -101,6 +101,9 @@ def load_tiles(backdrop_coords, sprite_group,tiles = None, animated = False, is_
     from graphics.sprites.Sprites.Sprites import Animated_Sprite, Static_Sprite
 
     if is_player:
+        """
+            todo:load in players with an id
+        """
         from main import mid_x, mid_y
         new_tile = Animated_Sprite(mid_x, mid_y, "graphics/sprites/overworld/player movement.png")
         sprite_group.add(new_tile)
@@ -114,17 +117,38 @@ def load_tiles(backdrop_coords, sprite_group,tiles = None, animated = False, is_
 
         image = tile_data["image"] #image path
 
+        if id:
+            id = tile_data["id"]
+
+        #print(id)
+
         # if animated, creeate an animated sprite, if not a static sprite
         if animated:
-            new_tile = Animated_Sprite(x,y,image)
+            new_tile = Animated_Sprite(x,y,image, id=id)
         if not animated:
-            new_tile = Static_Sprite(x,y,image)
+            new_tile = Static_Sprite(x,y,image,id=id)
 
         sprite_group.add(new_tile) #adds the new sprite to the group
 
     return sprite_group
 
-def set_map(name):
+def get_gate_from_group(map,id):
+    """
+    Takes a gate id and returns the associated gate instance.
+
+    take in the map data from load_map_data(). gates = map[gates] and for every gate in gates, look if their id==id
+    if so, return that gate instance
+
+    todo: merge this with get_sprite_from_group()
+    """
+    gates = map["gates"]
+    for gate in gates:
+        gate = gates[gate]
+        if id == gate["id"]:
+            return gate
+
+
+def set_map(name, id):
     """
     Loads map metadata.
 
@@ -138,17 +162,22 @@ def set_map(name):
         maybe include backdrop groups as load_tiles()???
 
     """
-    from main import npc_group, obstacle_group, background_group, player_group
+    from main import npc_group, obstacle_group, background_group, player_group, gate_group
     from graphics.sprites.Sprites.Sprites import Static_Sprite, Animated_Sprite
 
     map_data = [] #array that we will return
     map = load_map_data(name)
-    gate = map["gates"]["gate 1"]; map_data.append(gate)
-    backdrop_x = gate["coords"]["x"] #coordinates of the backdrop
-    backdrop_y = gate["coords"]["y"]
 
-    backdrop = Static_Sprite(backdrop_x, backdrop_y, map["image"]); map_data.append(backdrop)
-    background_group.add(backdrop)
+    gate = get_gate_from_group(map, id)
+    print(gate)
+
+    backdrop_x = gate["bg coords"]["x"] #coordinates of the backdrop
+    backdrop_y = gate["bg coords"]["y"]
+
+    gates = map["gates"]
+    gate_group = load_tiles((backdrop_x,backdrop_y),gate_group, gates, id=True); map_data.append(gate_group)
+
+    backdrop = Static_Sprite(backdrop_x, backdrop_y, map["image"]); map_data.append(backdrop); background_group.add(backdrop)
 
     NPCs = map["NPC's"]
     npc_group = load_tiles((backdrop_x, backdrop_y), npc_group, NPCs, True); map_data.append(npc_group)
@@ -235,28 +264,30 @@ def is_at_gate(now, init):
     """
 
     from main import \
-        (gayte, col_tol,background_group, obstacle_group, npc_group, gate_group, player_group, map,gate, name)
+        (col_tol,background_group, obstacle_group, npc_group, gate_group, player_group, map, name)
 
     player = get_sprite_from_group(player_group)
-    print(player.last_posx, player.pos_x, player.last_posy, player.pos_y)
+    #print(player.last_posx, player.pos_x, player.last_posy, player.pos_y)
 
     if (player.last_posx == player.pos_x) and (player.last_posy == player.pos_y) or (now-init<1): return
 
-    coords_diff = return_gate_coords(player.rect, gayte.rect)
-    if (coords_diff[0] <=col_tol or coords_diff[1] <=col_tol) and (coords_diff[2]<=col_tol or coords_diff[3]<=col_tol):
+    for gate in gate_group:
+        coords_diff = return_gate_coords(player.rect, gate.rect)
+        if (coords_diff[0] <=col_tol or coords_diff[1] <=col_tol) and (coords_diff[2]<=col_tol or coords_diff[3]<=col_tol):
 
-        #kills all instances in all groups
-        npc_group = kill_group(npc_group)
-        obstacle_group = kill_group(obstacle_group)
-        gate_group = kill_group(gate_group)
-        player_group = kill_group(player_group)
-        background_group = kill_group(background_group)
+            #kills all instances in all groups
+            npc_group = kill_group(npc_group)
+            obstacle_group = kill_group(obstacle_group)
+            gate_group = kill_group(gate_group)
+            player_group = kill_group(player_group)
+            background_group = kill_group(background_group)
 
-        #pairs the new maps by thei id's
-        new_map = link_gates(gate["id"])
+            #pairs the new maps by their id's
+            new_map = link_gates(gate.id)
+            print(new_map)
 
-        #sets the name value to the new map name
-        name = new_map
-        #loads in the new map using that name
-        map = set_map(new_map)
-        return name #return the new name so we can switch again later
+            #sets the name value to the new map name
+            name = new_map
+            #loads in the new map using that name
+            map = set_map(new_map, gate.id)
+            return name #return the new name so we can switch again later

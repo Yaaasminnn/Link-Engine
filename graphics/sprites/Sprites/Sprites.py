@@ -96,7 +96,7 @@ class Static_Sprite(pygame.sprite.Sprite):
     buildings
     """
 
-    def __init__(self, pos_x, pos_y, picture_path, scale=[1.0, 1.0]):
+    def __init__(self, pos_x, pos_y, picture_path, scale=[1.0, 1.0], id= False):
         super().__init__()
         """
         In the init method, we load the image file and then we can scale it to a certain percentage of its original size
@@ -123,6 +123,9 @@ class Static_Sprite(pygame.sprite.Sprite):
         self.pos_y = pos_y
         self.step = 0
         self.last_x, self.last_y = 0, 0 #last direction moved.
+
+        self.id = None
+        if id is not False: self.id = id
 
     def update(self, input_x, input_y, is_obstacle=False):
         """
@@ -165,7 +168,7 @@ class Animated_Sprite(pygame.sprite.Sprite):
 
     includes animated tiles,(obstacles, water), npc's and the player.
     """
-    def __init__(self, pos_x, pos_y, picture_path):
+    def __init__(self, pos_x, pos_y, picture_path, id=False):
         """
         Initializes all the instance variables.
 
@@ -188,6 +191,9 @@ class Animated_Sprite(pygame.sprite.Sprite):
         self.last_posx, self.last_posy = pos_x, pos_y #last positions
         self.counter = 0 #used for animating every frame.
         self.start_time = 0 #used for npc walking
+
+        self.id = None
+        if id is not False:self.id = id
 
     def update(self, input_x, input_y):
         """

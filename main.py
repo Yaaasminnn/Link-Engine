@@ -75,10 +75,16 @@ gate_group = pygame.sprite.Group()
 map = load_map_data("twinleaf")
 name = map["name"]
 gate = map["gates"]["gate 1"]
-backdrop_x = gate["coords"]["x"]
-backdrop_y = gate["coords"]["y"]
-gayte = Static_Sprite(gate["draw coords"][0]+backdrop_x, gate["draw coords"][1]+backdrop_y, "Dump stuff/server-icon.jpg")
-gate_group.add(gayte)
+gates = map["gates"]
+backdrop_x = gate["bg coords"]["x"]
+backdrop_y = gate["bg coords"]["y"]
+
+
+#GATES
+"""
+loads all gates in
+"""
+gate_group = load_tiles((backdrop_x, backdrop_y), gate_group, gates, id=True)
 
 #PLAYER
 """
