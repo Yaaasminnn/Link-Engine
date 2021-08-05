@@ -1,0 +1,45 @@
+{
+  "name": "grey",
+  "image": "./graphics/maps/grey.jpg",
+
+  "gates": {
+    "gate 1": {
+      "id": 2,
+      "bg coords": {"x": -300, "y": 500},
+      "coords": {"x": 100, "y": 40},
+      "image": "Dump stuff/server-icon.jpg"
+    },
+    "gate 2": {
+      "id": 3,
+      "bg coords": {"x": 12, "y": 150},
+      "coords": {"x": 90, "y": 500},
+      "image": "Dump stuff/server-icon.jpg"
+    }
+  },
+
+  "NPC's": {
+    "hilda": {
+      "coords": {"x": 140, "y": -40},
+      "ai": "walking",
+      "image": "./graphics/sprites/overworld/female movement.png"
+    },
+    "hilbert": {
+      "coords": {"x": -60, "y":  -40},
+      "ai": "walking",
+      "image": "./graphics/sprites/overworld/player movement.png"
+    }
+  },
+
+  "Obstacles": {
+
+    "1": {
+      "coords": {"x": 40, "y": -140},
+      "image": "./graphics/sprites/overworld/grass.png"
+    },
+    "2": {
+      "coords": {"x": -160, "y": -140},
+      "image": "./graphics/sprites/overworld/grass.png"
+    }
+
+  }
+}

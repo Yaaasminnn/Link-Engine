@@ -1,0 +1,77 @@
+{
+	"//conversation": "convos are basically text boxes in big chunks. each line is an entry in here",
+	"conversation":{
+		"1": {
+			"speaker": "character",
+			"//speaker": "name of the character. this value will be used to find the voice and image of the corresponding character and display them",
+			"line": "once there were these rich fat cats: grunt, blunt, and cu- i cant remember the last one",
+			"//line": "the actual dialogue. stored as 1 line at a time. advised not to go above 200 characters"
+		},
+		"2": {
+			"speaker": "character",
+			"line": "hey there buddy chum pal friend buddy pal chum bud friend fella bruther amigo pal buddy friend chummy chum chum pal i don't mean to be rude my friend pal home slice bread slice dawg but i gotta warn ya"
+		},
+		"3":{
+			"speaker": "character",
+			"line": "Whats your name?",
+			"player_input": "prompt",
+			"//player_input": "prompt(with a given type), or choice (option1/option2). (this parameter will be optional)"
+		},
+		"4":{
+			"speaker": "character",
+			"line": "my name is character2!"
+		},
+		"5":{
+			"speaker": "character",
+			"line": "wow are you from around here?"
+		},
+		"6":{
+			"speaker": "character",
+			"line": "nope!"
+		},
+		"7":{
+			"speaker": "character",
+			"line": "haha me neither"
+		},
+		"8":{
+			"speaker": "character",
+			"line": "well this is awkward..."
+		},
+		"9":{
+			"speaker": "character",
+			"line": "..."
+		},
+		"10":{
+			"speaker": "character",
+			"line": "uhhhhh"
+		},
+		"11":{
+			"speaker": "character",
+			"line": "hey so, reader? why are you still reading this?"
+		},
+		"12":{
+			"speaker": "character",
+			"line": "helloooooo?"
+		},
+		"13":{
+			"speaker": "character",
+			"line": "get a life man"
+		},
+		"14":{
+			"speaker": "character",
+			"line": "*insert message here*"
+		},
+		"15":{
+			"speaker": "character",
+			"line": "running outta ideas"
+		},
+		"16":{
+			"speaker": "character",
+			"line": "script noises"
+		},
+		"17":{
+			"speaker": "character",
+			"line": "Eyy"
+		}
+	}
+}

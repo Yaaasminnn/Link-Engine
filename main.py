@@ -1,16 +1,12 @@
 import pygame
-import sys
-from random import randint
 import time
 
 #other scripts
 from config.config import load_config
 from graphics.maps.scripts.load_maps import load_map_data, load_tiles, is_at_gate
-from graphics.sprites.Sprites.spritesheets import Spritesheet
-from graphics.sprites.Sprites.Sprites import Animated_Sprite, Window, Static_Sprite
-from mechanics.Log import log
-from audio.speak import display_text
-from key_press import Key
+from graphics.sprites.Sprites.Sprites import Window, Static_Sprite
+from mechanics.key_press import Key
+from audio import dialogue_sys
 
 #GLOBAL VARIABLES======================================================================================================#
 config = load_config() #loads the config file
@@ -39,6 +35,10 @@ down = keybinds["down"]
 left = keybinds["left"]
 right = keybinds["right"]
 dash = keybinds["dash"]
+a = keybinds["a"]
+b = keybinds["b"]
+x = keybinds["x"]
+y = keybinds["y"]
 exit = keybinds["exit"]
 debug = Key(keybinds["debug menu"])
 #Macros: will be able to register items from the bag for use. AND ALSO, TO VIEW THE PC OR DAYCARE REMOTELY
@@ -57,7 +57,7 @@ clock = pygame.time.Clock()
 
 display = pygame.display.Info()
 sc_w, sc_h = display.current_w, display.current_h
-if config["fullscreen"] == 0: sc_w, sc_h =1025,760
+if config["fullscreen"] == 0: sc_w, sc_h =1920,1080
 mid_x,mid_y = sc_w/2, sc_h/2
 window = pygame.display.set_mode((sc_w, sc_h),pygame.RESIZABLE, pygame.SCALED)
 pygame.display.set_caption("Pokemon Link Engine") #caption
@@ -80,36 +80,40 @@ gate_group = pygame.sprite.Group()
 map = load_map_data("twinleaf")
 name = map["name"]
 gate = map["gates"]["gate 1"]
-backdrop_x = gate["coords"]["x"]
-backdrop_y = gate["coords"]["y"]
-gayte = Static_Sprite(gate["draw coords"][0]+backdrop_x, gate["draw coords"][1]+backdrop_y, "Dump stuff/server-icon.jpg")
-gate_group.add(gayte)
+gates = map["gates"]
+backdrop_x = gate["bg coords"]["x"]
+backdrop_y = gate["bg coords"]["y"]
+
+
+#GATES
+"""
+loads all gates in
+"""
+gate_group = load_tiles((backdrop_x, backdrop_y), gate_group, gates, id=True)
+#print(gate_group)
 
 #PLAYER
 """
-todo: allow for gendered avatars and also load in players based off gates
+todo: allow for gendered avatars ina  config file
 """
-player_group = load_tiles((0,0),player_group, animated=True, is_player=True)
-"""player = Animated_Sprite(mid_x, mid_y, "graphics/sprites/overworld/player movement.png")
-player_group.add(player)"""
+player_group = load_tiles((960,540), player_group, group_animated=True, is_player=True)
 
 #BACKDROP
 """
-todo: load in background based off gate pos
-
 backdrop is loaded in based on gate coordinates. player is always loaded in the middle of the screen
 """
 backdrop = Static_Sprite(backdrop_x, backdrop_y, map["image"])
 background_group.add(backdrop)
 
-#NPC'S
-"""
-Loads in all npc's.
 
-Reads the data from the metadata file
 """
+OTHER TILE GROUPS.
+
+Reads the data from the metadata file and loads in each group.
+"""
+#NPC'S
 NPCs = map["NPC's"]
-npc_group = load_tiles((backdrop_x, backdrop_y), npc_group, NPCs, animated=True)
+npc_group = load_tiles((backdrop_x, backdrop_y), npc_group, NPCs, group_animated=True)
 
 #TILES
 obstacles = map["Obstacles"]
@@ -117,6 +121,9 @@ obstacle_group = load_tiles((backdrop_x, backdrop_y), obstacle_group, obstacles)
 
 #Main Game loop========================================================================================================#
 frame_counter = 0
+map_change_init = 0
+prev  = 0
+i= 1
 while True:
     Window.exit_conditions() #checks exit conditions
 
@@ -125,14 +132,20 @@ while True:
     inputs = Window.get_inputs() #gets inputs
     x, y = inputs[0], inputs[1]
 
-    draw_hud = Window.toggle_hud()
+    draw_hud = Window.toggle_hud() #hud
 
-    new_map = is_at_gate()
+    now = time.time() #sets the current time
 
-    #print(f"group:{npc_group}")
-    #print(name, map)
+    new_map = is_at_gate(now, map_change_init) #checks if at gate
+
+    #if at a gate, it changes the map. also sets an init time
+    if new_map is not None: name = new_map; map_change_init = time.time()
+
+    dialogue_sys.show_lines() #draws dialogue
 
     Window.update_screen(x,y) #updates the screen
+
+    dialogue_sys.clear_lines() #clears the dialogue
 
     #fps incrementer. this helps with things that arent meant to be updated every frame
     frame_counter+=1

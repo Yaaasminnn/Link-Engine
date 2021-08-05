@@ -1,18 +1,6 @@
-import os
+import random
+import time
 
-dir = os.getcwd()
-print(dir)
-parent = os.path.dirname(dir)
-print(parent)
-dir = os.listdir(dir)
-
-files= []
-
-for file in dir:
-    dot = file.rfind(".")
-    ext = file[dot:]
-    print(ext)
-    if ext == ".json":
-        files.append(file)
-
-print(files)
+while True:
+    print(random.randint(-1000,1000), random.randint(0,128), random.randint(-1000,1000))
+    time.sleep(0.5)
