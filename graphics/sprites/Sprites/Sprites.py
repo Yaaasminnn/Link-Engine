@@ -530,15 +530,38 @@ class Window:
         player = get_sprite_from_group(player_group) #gets the current player instance
         backdrop = get_sprite_from_group(background_group) #gets the current backdrop instance
 
+        #simplifying the names for player positions and backdrop sides
+        pos_x = player.pos_x;pos_y = player.pos_y
+        brect = backdrop.rect; left= brect.left; right= brect.right; top= brect.top; bottom= brect.bottom
+
+        #print(backdrop.rect.left, backdrop.rect.right, backdrop.rect.top, backdrop.rect.bottom)
+
         #moves the player if the backdrop reaches an edge and are moving towards that edge, making the player off-center
-        if (backdrop.rect.left >= 0 and x>0) or (backdrop.rect.right <= sc_w and x<0) or (backdrop.rect.top >= 0 and y>0) or (backdrop.rect.bottom <= sc_h and y<0):
+        if (left >= 0 and x>0) or (right <= sc_w and x<0) or (top >= 0 and y>0) or (bottom <= sc_h and y<0):
             player_update(x, y)
             return
 
         #if the player is off-center on an axis, but is not moving towards the edge of the screen
-        if (backdrop.rect.left>=0 and x<=0) or (backdrop.rect.right<=sc_w and x>=0) or (backdrop.rect.top>=0 and y<=0) or (backdrop.rect.bottom<=sc_h and y>=0):
+        if (left>=0 and x<=0) or (right<=sc_w and x>=0) or (top>=0 and y<=0) or (bottom<=sc_h and y>=0):
+
             #if the player is off-center on one axis, move the player if they move along that axis
-            if (abs(player.pos_x-mid_x)>base_speed and x != 0) or (abs(player.pos_y-mid_y)>base_speed and y != 0):
+            if (abs(pos_x-mid_x)>base_speed and x != 0) or (abs(pos_y-mid_y)>base_speed and y != 0):
+
+                """
+                if the player is offcenter(on an edge) and is on the opposite edge of the backdrop, and the player is moving
+                in the opposite direction, move the screen
+                
+                EXAMPLE: 
+                player is on the left edge of screen, moving towards the left and is located on the right edge of the 
+                backdrop. if we moved the player here, they would go offscreen, hence we move the screen. this way,
+                the player stays on screen and can be recentered when they move back in the other direction
+                
+                todo:
+                    make this a fallback for whenev er ur on a edge without being on the edge of a map
+                """
+                if(pos_x<mid_x and right<=sc_w and left<0)or(pos_x>mid_x and left>=0 and right>sc_w)or(pos_y<mid_y and bottom<=sc_h and top>0)or(pos_y>mid_y and top>=0 and bottom>sc_h):
+                    update_all(x,y)
+                    return
                 player_update(x, y)
                 return
 
@@ -736,5 +759,5 @@ class Window:
         """
         from main import clock, window, text_x, text_y, font
         current_fps = int(clock.get_fps())
-        current_fps = font.render(f"FPS: {current_fps}", True, (0,0,0))
+        current_fps = font.render(f"FPS: {current_fps}", True, (255,255,255))
         window.blit(current_fps, (text_x,text_y))

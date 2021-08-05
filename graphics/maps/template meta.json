@@ -1,0 +1,34 @@
+{
+  "name": "template",
+  "//name comment": "name of the map. keep it the same as the image filename",
+
+  "image": "./graphics/maps/template.png",
+  "//image comment": "./file/path/of/backdrop.png",
+
+  "//coords comment": "all 'coords' are coordinates relative to the backdrop. backdrop is drawn at 'bg coords'",
+
+  "gates": {
+    "gate 1": {
+      "id": -1,
+      "bg coords": {"x": 0, "y": 0},
+      "coords": {"x":0, "y":0},
+      "image": "./Dump stuff/oof.png"
+    }
+  },
+
+  "NPC's": {
+    "npc": {
+      "coords": {"x": 50, "y": 100},
+      "ai": "static",
+      "//ai comment": "determines whether they walk or are stationary or rotate. choices, walk, static, rotate",
+      "image": "./graphics/sprites/overworld/player movement.png"
+    }
+  },
+
+  "Obstacles": {
+    "obstacle": {
+      "coords": {"x": 900, "y": 400},
+      "image": "./Dump stuff/despacito.png"
+    }
+  }
+}

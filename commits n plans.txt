@@ -1,0 +1,12 @@
+map metadata files are revamped
+-renamed variable names to be more intuitive
+-made a template meta file
+-made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)
+
+draws player at gate locations upon entering a new area instead of the middle
+-need to work on backdrop movement checking
+-otherwise the player was drawn at a distance from the gate
+
+added a dialogue system
+-plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)
+-made progress on audio, but linux audio drivers are problematic

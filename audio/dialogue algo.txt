@@ -1,0 +1,93 @@
+have a script
+with all text
+have conversations
+maybe instead each conversation is its own json. its easier
+all entries are numbered and if there are different paths of conversation they and all their trailing convos are labelled as #letter
+EX: 1,2,3,4a,4b,4c,5a,5b,5c. 
+if the branched entries end, then move onto the next numbered entry
+
+json:
+starts a dialogue prompt. dialogue = True?
+for each entry in conversation:
+display character and their image and play their talking sound every 0.1(set as ${talking_speed}) seconds also display ${line} as text.
+if player_input in entry:
+execute player_input
+player input can be either a prompt window(asks the name or something else) or can be a number of options
+
+{
+	"//conversation": "convos are basically text boxes in big chunks. each line is an entry in here"
+	"conversation":{
+		"1": {
+			"speaker": "character",
+			"//speaker": "name of the character. this value will be used to find the voice and image of the corresponding character and display them"
+			"line": "hello! nice to meet you!"
+			"//line": "the actual dialogue. stored as 1 line at a time"
+		}
+		"2": {
+			"speaker": "character",
+			"line": "my name is character!"
+		}
+		"3":{
+			"speaker": "character",
+			"line": "Whats your name?"
+			"player_input": "input"
+			"//player_input": "prompt(with a given type), option1/option2. (this parameter will be optional)"
+		}
+		"4":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"5":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"6":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"7":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"8":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"9":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"10":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"11":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"12":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"13":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"14":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"15":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"16":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+		"17":{
+			"speaker": "character",
+			"line": "hello! nice to meet you!"
+		}
+	}
+}

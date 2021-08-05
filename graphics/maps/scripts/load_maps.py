@@ -53,11 +53,11 @@ def get_meta_files():
     for file in path:
         dot = file.rfind(".")
         ext = file[dot:]
-        if ext == ".json":
+        if ext == ".json" and file != "template meta.jsom":
             meta_files.append(file)
     return meta_files
 
-def load_tiles(backdrop_coords, sprite_group,tiles = None, animated = False, is_player =False, id=False):
+def load_tiles(backdrop_coords, sprite_group, tiles = None, group_animated = False, is_player =False, id=False):
     """
     Function to load in instances of tiles from the metadata json.
 
@@ -79,7 +79,7 @@ def load_tiles(backdrop_coords, sprite_group,tiles = None, animated = False, is_
     :param backdrop_coords: the coordinates of the backdrop. a tuple
     :param tiles: the index of tiles from the meta json
     :param sprite_group: the given spritegroup
-    :param animated: determines if the created sprites will be animated or not
+    :param group_animated: determines if the created sprites will be animated or not
     :param is_player: determines if the sprite group consists of the player
     :return: tile_list, the list containing all instances
 
@@ -94,7 +94,7 @@ def load_tiles(backdrop_coords, sprite_group,tiles = None, animated = False, is_
         >>> load_tiles((500,500),npc_group, NPCs, True)
         here, the backdrop is at (500,500), so draw all npc's with their coordinates relative to (500,500)
 
-        >>> load_tiles((0,0), player_group, animated=True, is_player=True)
+        >>> load_tiles((0,0), player_group, group_animated=True, is_player=True)
         creates an instance of the player that is drawn on the centre of the screen in player_group
 
     """
@@ -105,7 +105,7 @@ def load_tiles(backdrop_coords, sprite_group,tiles = None, animated = False, is_
             todo:load in players with an id
         """
         from main import mid_x, mid_y
-        new_tile = Animated_Sprite(mid_x, mid_y, "graphics/sprites/overworld/player movement.png")
+        new_tile = Animated_Sprite(backdrop_coords[0], backdrop_coords[1], "graphics/sprites/overworld/player movement.png")
         sprite_group.add(new_tile)
         return sprite_group
 
@@ -120,12 +120,17 @@ def load_tiles(backdrop_coords, sprite_group,tiles = None, animated = False, is_
         if id:
             id = tile_data["id"]
 
-        #print(id)
-
         # if animated, creeate an animated sprite, if not a static sprite
-        if animated:
+        sprite_animated = True
+        if "ai" in tile_data:
+            if tile_data["ai"] == "walking": sprite_animated = True
+            if tile_data["ai"] == "static": sprite_animated = False
+            if tile_data["ai"] == "rotate": sprite_animated = True
+
+        if group_animated:
             new_tile = Animated_Sprite(x,y,image, id=id)
-        if not animated:
+
+        if not group_animated: #otherwise, make a static sprite
             new_tile = Static_Sprite(x,y,image,id=id)
 
         sprite_group.add(new_tile) #adds the new sprite to the group
@@ -146,7 +151,6 @@ def get_gate_from_group(map,id):
         gate = gates[gate]
         if id == gate["id"]:
             return gate
-
 
 def set_map(name, id):
     """
@@ -169,7 +173,7 @@ def set_map(name, id):
     map = load_map_data(name)
 
     gate = get_gate_from_group(map, id)
-    print(gate)
+    #print(gate)
 
     backdrop_x = gate["bg coords"]["x"] #coordinates of the backdrop
     backdrop_y = gate["bg coords"]["y"]
@@ -180,11 +184,16 @@ def set_map(name, id):
     backdrop = Static_Sprite(backdrop_x, backdrop_y, map["image"]); map_data.append(backdrop); background_group.add(backdrop)
 
     NPCs = map["NPC's"]
-    npc_group = load_tiles((backdrop_x, backdrop_y), npc_group, NPCs, True); map_data.append(npc_group)
-    obstacles = map["Obstacles"]
-    obstacle_group = load_tiles((backdrop_x, backdrop_y), obstacle_group, obstacles); map_data.append(obstacle_group)
+    npc_group = load_tiles((backdrop_x, backdrop_y), sprite_group=npc_group, tiles=NPCs, group_animated=True); map_data.append(npc_group)
 
-    player_group = load_tiles((0,0), player_group, animated=True, is_player=True)
+    obstacles = map["Obstacles"]
+    obstacle_group = load_tiles((backdrop_x, backdrop_y), sprite_group=obstacle_group, tiles=obstacles); map_data.append(obstacle_group)
+
+    coords = [];
+    coords.append(gate["coords"]["x"]+backdrop_x);
+    coords.append(gate["coords"]["y"]+backdrop_y)
+    print(coords)
+    player_group = load_tiles((coords[0],coords[1]), player_group, group_animated=True, is_player=True)
 
     return map_data
 
@@ -269,9 +278,10 @@ def is_at_gate(now, init):
     player = get_sprite_from_group(player_group)
     #print(player.last_posx, player.pos_x, player.last_posy, player.pos_y)
 
-    if (player.last_posx == player.pos_x) and (player.last_posy == player.pos_y) or (now-init<1): return
+    #if (player.last_posx == player.pos_x) and (player.last_posy == player.pos_y) or (now-init<1): return
 
     for gate in gate_group:
+
         coords_diff = return_gate_coords(player.rect, gate.rect)
         if (coords_diff[0] <=col_tol or coords_diff[1] <=col_tol) and (coords_diff[2]<=col_tol or coords_diff[3]<=col_tol):
 
@@ -284,7 +294,7 @@ def is_at_gate(now, init):
 
             #pairs the new maps by their id's
             new_map = link_gates(gate.id)
-            print(new_map)
+            #print(new_map)
 
             #sets the name value to the new map name
             name = new_map
