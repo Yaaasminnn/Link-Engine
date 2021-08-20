@@ -30,7 +30,7 @@ class Key:
         todo:
             work on this
         """
-        from main import FPS
+        from utils.system.sys_info import FPS
         if keyboard.is_pressed(self.key):
             self.counter+=1
             if self.counter == FPS: self.counter = 0;return True

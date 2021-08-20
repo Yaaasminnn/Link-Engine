@@ -13,6 +13,7 @@ import time
 import keyboard
 import sys
 import pygame
+from utils.json_utils import load_json
 
 #GLOBAL VARIABLES======================================================================================================#
 line1 = ""  # empty string for line 1
@@ -30,9 +31,6 @@ x2,y2 = 100,900
 font_size = 32
 font = pygame.font.Font(pygame.font.get_default_font(),font_size)
 
-box_choice = 3
-textbox = pygame.image.load(f"./audio/dialogue/textboxes/textbox{box_choice}.png")
-
 def exit_cond():
     """
     Exit conditions.
@@ -45,11 +43,6 @@ def exit_cond():
             sys.exit()
 
 #FUNCTIONS=============================================================================================================#
-
-def json_reader(file):
-    with open(f"{file}", "r") as file_data:
-        file_data = json.load(file_data)
-    return file_data
 
 def show_line1(line1, message):
     global line_limit
@@ -85,9 +78,9 @@ def line_checker(dialogue):
 
 #MAIN STUFF============================================================================================================#
 
-conversation = json_reader("./audio/conversation.json"); conversation = conversation["conversation"] #loads in the convo
-
 def show_lines():
+    from main import user, conversation
+    textbox = user.textbox
     global prev, line1,line2, line1_chckr
     globvars = globals()
 
@@ -114,12 +107,13 @@ def show_lines():
 
 def clear_lines():
     global i,line1,line2
-    from main import a
+    from main import user, conversation
+    select = user.select
 
     dialogue = conversation[str(i)]; message = dialogue["line"]
     # WHAT TO DO WHEN ITS DONE PRINTING THE MESSAGE
     if line1 + line2 == message:
-        if keyboard.is_pressed(a):
+        if keyboard.is_pressed(select):
             line1, line2 = "", ""  # resets lines to empty strings
             #print(f"{i}/{len(conversation)}")
             i += 1

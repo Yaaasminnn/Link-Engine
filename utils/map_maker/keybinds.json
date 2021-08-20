@@ -1,0 +1,21 @@
+{
+  "keybinds": {
+    "up": "Up",
+    "down": "Down",
+    "left": "Left",
+    "right": "Right",
+    "dash": "Shift",
+    "select": "a",
+    "cancel": "b",
+    "menu": "x",
+    "registered item": "y",
+    "exit": "Escape",
+    "debug menu": "F3",
+    "macros": {
+      "1": "q",
+      "2": "w",
+      "3": "e",
+      "4": "r"
+    }
+  }
+}

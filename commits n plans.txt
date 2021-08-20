@@ -1,12 +1,145 @@
-map metadata files are revamped
--renamed variable names to be more intuitive
--made a template meta file
--made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)
+DIALOGUE:
+    achieved:
+    -allowed custom textboxes to be added. user can choose what textbox to choose from by changing their userdata json
 
-draws player at gate locations upon entering a new area instead of the middle
--need to work on backdrop movement checking
--otherwise the player was drawn at a distance from the gate
+    to-do:
+    -allow custom text font, size and colours
+    -linux drivers needa be fixed so i can work on sound and audio
 
-added a dialogue system
--plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)
--made progress on audio, but linux audio drivers are problematic
+MOVEMENT:
+    achieved:
+    -nuthin
+
+    to-do:
+    -player can still move off-screen if not centered. fix this. work on backdrop movement checking
+    -player can be loaded into a map in any position(only when not changing maps. but allow the modularity of possibility of such)
+
+ORGANIZATION:
+    achieved:
+    -massive file restructures i shall show below
+    -got started on a map maker to make map making simpler and easier by being visual
+    -decentralized main.py
+        -basically, not all globals are in main, this means that any script that wants to use a certain var dosent need to retrieve it from main, but instead, from a script(s) meant to store certain variables
+        -sys_info.py keeps track of system hardware
+        -load_userdata.py keeps track of all data that is based on the save file (keybinds, textboxes, speed etc)
+
+    -made a utils directory to keep track of common, basic and/or general functions or methods that are often used. most can and will be used across many projects
+        -json_utils.py for reading and updating jsons easily
+        -pygame_utils.py for pygame methods (exit, create window etc)
+        -file_utils.py general reading and writing files (may or may not keep. if i keep i merge with json utils)
+        -directories.py mostly for getting the project directory, but may come in handy in the future
+        -key_press.py for more keystrokes like toggling or holding keys.
+        -Log.py for print statements that also display a datetime object for logging stuff
+        -monitor.py as a system resource monitor (ram, cpu etc etc)
+
+    to-do:
+    -maybe give certain scripts and variables default values but can be modified if you create aconfig file?
+    -give HUD elements(fps, mem usage etc) fixed positions that can be modified by a config file
+    -finish organization
+        -map dataclass needs to be finished, rework how maps are linked, generated and deleted, not to mention imports
+        -finish decenteralizing main
+        -still need to move around files here and there. eventually will once the code that needs to be modified has been modified
+
+FONTS:
+    achieved:
+    -added a fonts folder
+
+    to-do:
+    -add more fonts
+    -allow custom fonts
+
+MENU'S:
+    achieved:
+    -got an idea on how to create menu's
+        -have a number of variables representing menu's titlescreens etc that can be switched on or off respectively. based on those, it will display different things on screen
+
+    to-do:
+    -actually implement this. will do it after im done organizing and decentralizing main
+
+MAP MAKER:
+    achieved:
+    -made a basic map maker
+        -loads in a specific image and can move around it
+
+    -is decentralized and has a globvars.py
+
+    to-do:
+    -actually be able to put tiles onto it and store those to a json
+    -add in dialogue and everything. might not be able to add other functionality though
+    -use the system's file manager to allow the user to search for the image they want
+
+OTHER ISSUES/SOLUTIONS
+    compiling:
+        -problem:
+            -how to compile main.py?
+            -most compilers dont work or triggers many anti-virus software
+        -solutions:
+            -have a c/c++ or java file run main.py
+                pros:
+                    -the application is technically compiled
+                cons:
+                    -this would require the game to install python and several libraries. not ideal and requires internet
+
+            -find a better python compiler
+
+    save data:
+        -problem:
+            -how do i save data and progress especially if its not autosaved
+        -solution:
+            -have a save_data.json for each save file. (research more)
+
+
+
+
+FILE STRUCTURE:
+        main.py
+
+        audio:
+            sound effects:
+                moves:
+                battlecries:
+                other:
+            voices:
+            music:
+
+        graphics:
+            maps:
+                map:
+                    map.png
+                    map metadata.json
+            sprites:
+                ow tiles:(overworld tiles)
+                    sprite.png
+                    sprite.json
+                battle:(battle sprites)
+            textures:
+                textboxes:
+                    textbox0
+                    textbox1
+                    textboxetc
+
+        users:(save files)
+            loona:(example user)
+                pokemon:
+                    pc pokemon
+                    party pokemon
+                user data
+                save data
+                config
+
+        mechanics:(mechanics specific to this game)
+            data:
+                pokemon data
+                moves data
+                natures data
+            dialogue
+            battle
+            graphics
+
+        utils:(meant for utilities, functions and basic, generalized things i may rely on)
+            json_utils.py
+            log.py
+            keypress.py
+             system:
+                 sys_info.py
+             etc

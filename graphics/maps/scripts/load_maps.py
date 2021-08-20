@@ -2,6 +2,52 @@ import json
 import time
 import os
 from graphics.sprites.Sprites.Sprites import get_sprite_from_group
+from utils.json_utils import load_json, update_json
+import pygame
+from graphics.sprites.Sprites.Sprites import Static_Sprite, Animated_Sprite
+
+class Map:
+    """
+    Data class for map data.
+
+    todo:
+        Wont be used yet. doing so needs a handful of changes to how maps are generated, switched and deleted.
+        needs to be object-oriented. also, all imports of the sprite groups would need to import the instance of this
+        dataclass similar to what user did. also, background_group and backdrop need to be configured.
+    """
+
+    def __init__(self, name):
+        self.name = name
+        self.data = load_map_data(self.name)
+        self.gates = self.data["gates"]; self.gate = self.gates["gate 1"]
+        self.NPCs = self.data["NPC's"]
+        self.obstacles = self.data["Obstacles"]
+        self.backdrop_x, self.backdrop_y = self.gate["bg coords"]["x"], self.gate["bg coords"]["x"]
+
+        #Sprite Groups
+
+        #maybe make these part of the instance?
+        player_group = pygame.sprite.Group()  # player sprite and player stuff
+        background_group = pygame.sprite.Group()  # background group
+        obstacle_group = pygame.sprite.Group()  # obstacle groups
+        npc_group = pygame.sprite.Group()  # npc and moving obstacle group
+        passthrough_group = pygame.sprite.Group()  # all tiles that can be passed through
+        gate_group = pygame.sprite.Group()  # gates group
+
+        #GATES  || loads all gates in
+        self.gate_group = load_tiles((self.backdrop_x, self.backdrop_y), gate_group, self.gates, id=True)
+
+        #PLAYER   || loads the player in
+        self.player_group = load_tiles((960, 540), player_group, group_animated=True, is_player=True)
+
+        #BACKDROP   || loads in the backdrop based on pre-set coordinates
+        self.backdrop = Static_Sprite(self.backdrop_x, self.backdrop_y, self.data["image"])
+        background_group.add(self.backdrop)
+
+        self.npc_group = load_tiles((self.backdrop_x, self.backdrop_y), npc_group, self.NPCs, group_animated=True)
+
+        self.obstacle_group = load_tiles((self.backdrop_x, self.backdrop_y), obstacle_group, self.obstacles)
+
 
 def load_map_data(map: str):
     """
@@ -31,8 +77,7 @@ def load_map_data(map: str):
     if ".json" not in map: # adds in ".json" if not already in map
         map +=".json"
     path+= map # adds on the parent directory
-    with open(f"{path}", "r") as map_data: #opens the folder
-        map_data=json.load(map_data)
+    map_data = load_json(path)
     return map_data
 
 def get_meta_files():
@@ -104,7 +149,7 @@ def load_tiles(backdrop_coords, sprite_group, tiles = None, group_animated = Fal
         """
             todo:load in players with an id
         """
-        from main import mid_x, mid_y
+        from utils.system.sys_info import mid_x, mid_y
         new_tile = Animated_Sprite(backdrop_coords[0], backdrop_coords[1], "graphics/sprites/overworld/player movement.png")
         sprite_group.add(new_tile)
         return sprite_group
@@ -273,7 +318,8 @@ def is_at_gate(now, init):
     """
 
     from main import \
-        (col_tol,background_group, obstacle_group, npc_group, gate_group, player_group, map, name)
+        (user,background_group, obstacle_group, npc_group, gate_group, player_group, map, name)
+    col_tol = user.col_tol
 
     player = get_sprite_from_group(player_group)
     #print(player.last_posx, player.pos_x, player.last_posy, player.pos_y)

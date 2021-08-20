@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="modified testing stuffs.py to better search directories&#10;&#10;also added a logs text file. might come in handy&#10;&#10;map metadata files are revamped&#10;-renamed variable names to be more intuitive&#10;-made a template meta file&#10;-made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)&#10;&#10;draws player at gate locations upon entering a new area instead of the middle&#10;-need to work on backdrop movement checking&#10;-otherwise the player was drawn at a distance from the gate&#10;&#10;added a dialogue system&#10;-plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)&#10;-made progress on audio, but linux audio drivers are problematic" />
+    <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="modified testing stuffs.py to better search directories&#10;&#10;also added a logs text file. might come in handy&#10;&#10;map metadata files are revamped&#10;-renamed variable names to be more intuitive&#10;-made a template meta file&#10;-made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)&#10;&#10;draws player at gate locations upon entering a new area instead of the middle&#10;-need to work on backdrop movement checking&#10;-otherwise the player was drawn at a distance from the gate&#10;&#10;added a dialogue system&#10;-plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)&#10;-made progress on audio, but linux audio drivers are problematic">
+      <change afterPath="$PROJECT_DIR$/Dump stuff/test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mechanics/load_userdata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/directories.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/file_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/json_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/map_maker/globvars.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/map_maker/keybinds.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/map_maker/map_maker.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/monitor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/pygame_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/system/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/system/sys_info.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/system/sys_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dump stuff/testing stuffs.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/testing stuffs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/dialogue_sys.py" beforeDir="false" afterPath="$PROJECT_DIR$/audio/dialogue_sys.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commits n plans.txt" beforeDir="false" afterPath="$PROJECT_DIR$/commits n plans.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/fonts/fonts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/users/loona/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/maps/scripts/load_maps.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/maps/scripts/load_maps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/sprites/Sprites/Sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/sprites/Sprites/Sprites.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/sprites/Sprites/spritesheets.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/sprites/Sprites/spritesheets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mechanics/Log.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mechanics/key_press.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/key_press.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,25 +54,27 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Games n stuff/Productivity/Projects/Programming/testing stuff, concepts n other/python stuff/mahdi.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/system" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/users/loona" />
+      <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/audio/dialogue/textboxes" />
       <recent name="$PROJECT_DIR$/graphics/sprites/textures/textboxes" />
       <recent name="F:\Python Projects\Pokemon-Link-Engine\audio\voices" />
-      <recent name="$PROJECT_DIR$/graphics/maps" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/audio/dialogue" />
-      <recent name="$PROJECT_DIR$/audio" />
-      <recent name="F:\Python Projects\Pokemon-Link-Engine\audio\voices" />
+      <recent name="$PROJECT_DIR$/utils/system" />
+      <recent name="$PROJECT_DIR$/utils" />
+      <recent name="$PROJECT_DIR$/utils/map_maker" />
       <recent name="$PROJECT_DIR$/mechanics" />
+      <recent name="$PROJECT_DIR$/users/loona/pokemon" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
-    <configuration name="dialogue_sys" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.run">
+    <configuration name="directories" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Pokemon-Link-Engine" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -52,11 +82,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/audio" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/audio/dialogue_sys.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/directories.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -107,6 +137,48 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="map_maker" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Pokemon-Link-Engine" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/map_maker/map_maker.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="monitor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Pokemon-Link-Engine" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/monitor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="run" type="PythonConfigurationType" factoryName="Python">
       <module name="Pokemon-Link-Engine" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -128,7 +200,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="speak" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="sys_info" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Pokemon-Link-Engine" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -136,11 +208,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/audio" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mechanics/system/sys info" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/audio/speak.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mechanics/system/sys info/sys_info.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,39 +242,23 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Doctests in Sprites" type="tests" factoryName="Doctests" temporary="true" nameIsGenerated="true">
-      <module name="Pokemon-Link-Engine" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/graphics/sprites/Sprites" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphics/sprites/Sprites/Sprites.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.main1" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.run" />
-      <item itemvalue="Python.dialogue_sys" />
-      <item itemvalue="Python.speak" />
+      <item itemvalue="Python.directories" />
+      <item itemvalue="Python.map_maker" />
+      <item itemvalue="Python.monitor" />
+      <item itemvalue="Python.sys_info" />
       <item itemvalue="Python.testing stuffs" />
-      <item itemvalue="Python tests.Doctests in Sprites" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dialogue_sys" />
         <item itemvalue="Python.testing stuffs" />
-        <item itemvalue="Python.speak" />
-        <item itemvalue="Python tests.Doctests in Sprites" />
+        <item itemvalue="Python.map_maker" />
+        <item itemvalue="Python.sys_info" />
+        <item itemvalue="Python.directories" />
+        <item itemvalue="Python.monitor" />
       </list>
     </recent_temporary>
   </component>
