@@ -2,33 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="modified testing stuffs.py to better search directories&#10;&#10;also added a logs text file. might come in handy&#10;&#10;map metadata files are revamped&#10;-renamed variable names to be more intuitive&#10;-made a template meta file&#10;-made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)&#10;&#10;draws player at gate locations upon entering a new area instead of the middle&#10;-need to work on backdrop movement checking&#10;-otherwise the player was drawn at a distance from the gate&#10;&#10;added a dialogue system&#10;-plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)&#10;-made progress on audio, but linux audio drivers are problematic">
-      <change afterPath="$PROJECT_DIR$/Dump stuff/test.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mechanics/load_userdata.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/directories.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/file_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/json_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/map_maker/globvars.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/map_maker/keybinds.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/map_maker/map_maker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/monitor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/pygame_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/system/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/system/sys_info.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/system/sys_info.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dump stuff/testing stuffs.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/testing stuffs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/dialogue_sys.py" beforeDir="false" afterPath="$PROJECT_DIR$/audio/dialogue_sys.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commits n plans.txt" beforeDir="false" afterPath="$PROJECT_DIR$/commits n plans.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/fonts/fonts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/users/loona/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/graphics/maps/scripts/load_maps.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/maps/scripts/load_maps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphics/sprites/Sprites/Sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/sprites/Sprites/Sprites.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/sprites/Sprites/spritesheets.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/sprites/Sprites/spritesheets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mechanics/Log.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Log.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mechanics/key_press.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/key_press.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/key_press.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/key_press.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/map_maker/globvars.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/map_maker/globvars.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/map_maker/keybinds.json" beforeDir="false" afterPath="$PROJECT_DIR$/utils/map_maker/keybinds.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/map_maker/map_maker.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/map_maker/map_maker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/pygame_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/pygame_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +37,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils/system" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -73,7 +56,7 @@
       <recent name="$PROJECT_DIR$/users/loona/pokemon" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.run">
+  <component name="RunManager" selected="Python.map_maker">
     <configuration name="directories" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Pokemon-Link-Engine" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -254,8 +237,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.testing stuffs" />
         <item itemvalue="Python.map_maker" />
+        <item itemvalue="Python.testing stuffs" />
         <item itemvalue="Python.sys_info" />
         <item itemvalue="Python.directories" />
         <item itemvalue="Python.monitor" />

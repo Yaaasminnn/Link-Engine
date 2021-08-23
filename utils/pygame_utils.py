@@ -8,6 +8,16 @@ pygame.init()
 clock = pygame.time.Clock()
 font = pygame.font.SysFont("Arial", 32)
 
+#MOUSE=================================================================================================================#
+mouse = pygame.mouse
+
+class Colours:
+    red = (255,0,0)
+    green = (0,255,0)
+    blue = (0,0,255)
+    black = (0,0,0)
+    white = (255,255,255)
+
 def create_window(x,y, resizable=True, fullscreen=False, icon=None, caption=None):
     """
     Creates a window.
@@ -69,17 +79,16 @@ def get_img():
     img = input("Type in the directory of the image you want")
     return img
 
-def show_fps(window, font = font, rounded = True):
-    x,y = 10, 10
+def show_fps(window, coords=(10,10), font = font, rounded = True):
     if rounded: fps = int(clock.get_fps())
     if not rounded: fps = round(clock.get_fps(), 4)
-    fps = font.render(f"FPS: {fps}", True, (255,255,255))
-    window.blit(fps, (x, y))
 
-def show_memory(pid, window, x=10, y=40, font=font):
+    render_text(f"FPS: {fps}", window, coords)
+
+def show_memory(pid, window, coords=(10,40), font=font):
     mem_usage = memory_info(pid)
-    mem_usage = font.render(f"Memory Usage: {mem_usage} Mib", True, (255,255,255))
-    window.blit(mem_usage,(x, y+20))
+
+    render_text(f"Memory Usage: {mem_usage} Mib", window, coords)
 
 def draw_hitboxes(sprite_group, window, colour, width=2):
     """
@@ -97,3 +106,7 @@ def draw_hitboxes(sprite_group, window, colour, width=2):
         lineleft = pygame.draw.line(window, colour, (left, top), (left, bottom), width=2)
         lineright = pygame.draw.line(window, colour, (right, top), (right, bottom), width=2)
         linebottom = pygame.draw.line(window, colour, (left, bottom), (right, bottom), width=2)
+
+def render_text(text, window, coords, colour=Colours.white, font = font):
+    message = font.render(f"{text}", True, colour)
+    window.blit(message, (coords))

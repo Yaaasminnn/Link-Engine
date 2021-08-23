@@ -32,8 +32,7 @@ class Key:
         """
         from utils.system.sys_info import FPS
         if keyboard.is_pressed(self.key):
-            self.counter+=1
+            if self.counter != FPS: self.counter+=1; return self.counter
             if self.counter == FPS: self.counter = 0;return True
-            if self.counter == 75: self.counter = 0
             print(self.counter)
         return False

@@ -31,7 +31,8 @@ def move(x, y, is_player):
         >>> obstacle_group.update(coords[0], coords[1], True)
 
     """
-    from main import player_group, background_group, npc_group, user, gate_group, obstacle_group
+    from main import user
+    from graphics.maps.scripts.load_maps import player_group, background_group, npc_group, gate_group, obstacle_group
     animate = user.animate
 
     player = get_sprite_from_group(player_group) #gets the instance of the player
@@ -238,7 +239,7 @@ class Animated_Sprite(pygame.sprite.Sprite):
                         itself. finally, it sets the image at the new given coordinates.
 
         """
-        from main import background_group
+        from graphics.maps.scripts.load_maps import background_group
 
         backdrop = get_sprite_from_group(background_group) # gets our instance of the backdrop
 
@@ -410,7 +411,8 @@ class Animated_Sprite(pygame.sprite.Sprite):
             todo:
                 make sure npc's dont also walk off the screen borders
         """
-        from main import user, player_group, npc_group, obstacle_group
+        from main import user
+        from graphics.maps.scripts.load_maps import player_group, npc_group, obstacle_group
         from utils.system.sys_info import sc_h, sc_w
         base_speed = user.base_speed
         delta = 0.25  # how long we walk for
@@ -532,7 +534,8 @@ class Window:
             >>> update_all(x,y)
         """
         from utils.system.sys_info import sc_h,sc_w, mid_y, mid_x
-        from main import background_group, player_group, user
+        from main import user
+        from graphics.maps.scripts.load_maps import background_group, player_group
 
         base_speed = user.base_speed
 
@@ -622,7 +625,8 @@ class Window:
 
         Also currently draws hitboxes
         """
-        from main import user, background_group, obstacle_group, player_group, npc_group, window,gate_group
+        from main import user, window
+        from graphics.maps.scripts.load_maps import background_group, obstacle_group, npc_group, gate_group, player_group
         draw_hud = user.draw_hud
         background_group.draw(window)
         obstacle_group.draw(window)
@@ -709,7 +713,8 @@ class Window:
         todo:
             make this cleaner by adding in a function that creates hitboxes
         """
-        from main import user, obstacle_group, player_group, npc_group, window, gate_group
+        from main import user, window
+        from graphics.maps.scripts.load_maps import obstacle_group, npc_group, player_group, gate_group
         hitbox_clr = user.hitbox_colour
 
         draw_hitboxes(obstacle_group, window, colour=hitbox_clr) #draws hitboxes for all sprites in obstacle_group()

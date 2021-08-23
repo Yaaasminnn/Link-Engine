@@ -10,12 +10,6 @@
     "menu": "x",
     "registered item": "y",
     "exit": "Escape",
-    "debug menu": "F3",
-    "macros": {
-      "1": "q",
-      "2": "w",
-      "3": "e",
-      "4": "r"
-    }
+    "debug menu": "F3"
   }
 }
