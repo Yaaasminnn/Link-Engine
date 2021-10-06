@@ -1,8 +1,0 @@
-Canada
-Gold: 5
-Silver: 5
-Bronze: 7
-Japan
-Gold: 2
-Silver: 5
-Bronze: 8

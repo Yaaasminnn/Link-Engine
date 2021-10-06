@@ -1,0 +1,76 @@
+{
+  "Bulbasaur": {
+      "Name": "Bulbasaur",
+
+      "Base Stats": {
+        "Hit Points": 45,
+        "Attack": 49,
+        "Defence":  49,
+        "Special Attack":  65,
+        "Special Defence": 65,
+        "Speed": 45
+      },
+
+      "Moveset": {
+
+        "Move 1": {"Name": "Tackle", "Level": 1},
+        "Move 2": {"Name": "Growl", "Level": 1},
+        "Move 3": {"Name": "Vine Whip", "Level": 3},
+        "Move 4": {"Name": "Growth", "Level": 6},
+        "Move 5": {"Name": "Leech Seed", "Level": 9},
+        "Move 6": {"Name": "Razor Leaf", "Level": 12},
+        "Move 7": {"Name": "Poison Powder", "Level": 15},
+        "Move 8": {"Name": "Sleep Powder", "Level": 15},
+        "Move 9": {"Name": "Seed Bomb", "Level": 18},
+        "Move 10": {"Name": "Take Down", "Level": 21},
+        "Move 11": {"Name": "Sweet Scent", "Level": 24},
+        "Move 12": {"Name": "Synthesis", "Level": 27},
+        "Move 13": {"Name": "Worry Seed", "Level": 30},
+        "Move 14": {"Name": "Double-Edge", "Level": 33},
+        "Move 15": {"Name": "Solar Beam", "Level": 36}
+      },
+
+      "Types": {
+        "Type 1": "Grass",
+        "Type 2": "Poison"
+      },
+      "gender ratio": 87.5
+
+    },
+  "Charmander": {
+    "Name": "Charmander",
+
+    "Base Stats": {
+      "Hit Points": 39,
+      "Attack": 52,
+      "Defence": 43,
+      "Special Attack":  60,
+      "Special Defence": 50,
+      "Speed": 65
+    },
+
+    "Moveset": {
+
+      "Move 1": {"Name": "Scratch", "Level": 1},
+      "Move 2": {"Name": "Growl", "Level": 1},
+      "Move 3": {"Name": "Ember", "Level": 4},
+      "Move 4": {"Name": "Smokescreen", "Level": 8},
+      "Move 5": {"Name": "Dragon Breath", "Level": 12},
+      "Move 6": {"Name": "Fire Fang", "Level": 17},
+      "Move 7": {"Name": "Slash", "Level": 20},
+      "Move 8": {"Name": "Flamethrower", "Level": 24},
+      "Move 9": {"Name": "Scary Face", "Level": 28},
+      "Move 10": {"Name": "Fire Spin", "Level": 32},
+      "Move 11": {"Name": "Inferno", "Level": 36},
+      "Move 12": {"Name": "Flare Blitz", "Level": 40}
+    },
+
+    "Types": {
+      "Type 1": "Fire",
+      "Type 2": ""
+    },
+    "gender ratio": 87.5
+
+  }
+
+}

@@ -747,16 +747,15 @@ class Window:
         Shows the current fps.
         """
         from main import window, text_x, text_y
-        from utils.pygame_utils import clock
-        from fonts.fonts import arial
+        from utils.pygame_utils import clock, Fonts
         current_fps = int(clock.get_fps())
-        current_fps = arial.render(f"FPS: {current_fps}", True, (255,255,255))
+        current_fps = Fonts.dp_32.render(f"FPS: {current_fps}", True, (255,255,255))
         window.blit(current_fps, (text_x,text_y))
 
     @staticmethod
     def show_memory():
         from main import pid, window, text_x, text_y
-        from fonts.fonts import arial
+        from utils.pygame_utils import Fonts
         mem_usage = memory_info(pid)
-        mem_usage = arial.render(f"Memory Usage: {mem_usage} Mib", True, (255,255,255))
+        mem_usage = Fonts.dp_32.render(f"Memory Usage: {mem_usage} Mib", True, (255,255,255))
         window.blit(mem_usage,(text_x, text_y+20))

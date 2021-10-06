@@ -5,11 +5,9 @@
     "left": "Left",
     "right": "Right",
     "dash": "Shift",
-    "select": "a",
-    "cancel": "b",
-    "menu": "x",
-    "registered item": "y",
+    "save": "s",
     "exit": "Escape",
-    "debug menu": "F3"
+    "debug menu": "F3",
+    "delete": "Delete"
   }
 }

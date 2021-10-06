@@ -5,7 +5,7 @@
   "gates": {
     "gate 1": {
       "id": 1,
-      "bg coords": {"x": -300, "y": 500},
+      "bg coords": {"x": -140, "y": 500},
       "coords": {"x":1100, "y":40},
       "image": "Dump stuff/server-icon.jpg"
     },

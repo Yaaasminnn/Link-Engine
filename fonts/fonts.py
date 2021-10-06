@@ -1,6 +1,17 @@
 import pygame
+import os
+from utils.directories import get_project_dir
 
-arial = pygame.font.SysFont("Arial", 32)
+#arial = pygame.font.SysFont("Arial", 32)
+get_project_dir()
+
+class fonts:
+    pass
+    #default = pygame.font.SysFont("Arial", 32)
+
+    #dp fonts
+    print(os.curdir)
+    dp_32 = pygame.font.Font("./fonts/pkmndp.ttf", 32)
 
 
 def get_font(source, size):

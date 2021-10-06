@@ -36,6 +36,7 @@ prev = 0 #previous time. called when
 pid = os.getpid() #gets the process id of main so we can monitor its resource usage (RAM, CPU usage etc)
 while True:
     exit_conditions(user.exit)
+    now = time.time()  # sets the current time
 
     Window.draw_to_screen() #draws all sprite groups to the screen
 
@@ -43,8 +44,6 @@ while True:
     x, y = inputs[0], inputs[1]
 
     user.draw_hud = Window.toggle_hud() #hud
-
-    now = time.time() #sets the current time
 
     new_map = is_at_gate(now, map_change_init) #checks if at gate
 
