@@ -15,3 +15,6 @@ def get_project_dir():
     problem: may not be foolproof. need a surefire way to get the project dir no matter where the file is located
     """
     os.chdir(sys.path[1])
+    return sys.path[1]
+
+def get_user_dir(user, game_dir): return f"./users/{user}"

@@ -1,5 +1,70 @@
 {
-  "Bulbasaur": {
+
+  "0": {
+
+    "Number": 0,
+
+    "Name": "ďĦƸȣȜФ change this to missingno or somn",
+
+    "Base Stats": {
+        "Hit Points": 45,
+        "Attack": 49,
+        "Defence":  49,
+        "Special Attack":  65,
+        "Special Defence": 65,
+        "Speed": 45
+      },
+
+    "Abilities": {"normal0": "Overgrow", "normal1": "", "hidden": "Chlorophyll"},
+
+    "Moveset": {
+
+        "Move 1": {"Name": "Tackle", "Level": 1},
+        "Move 2": {"Name": "Growl", "Level": 1},
+        "Move 3": {"Name": "Vine Whip", "Level": 3},
+        "Move 4": {"Name": "Growth", "Level": 6},
+        "Move 5": {"Name": "Leech Seed", "Level": 9},
+        "Move 6": {"Name": "Razor Leaf", "Level": 12},
+        "Move 7": {"Name": "Poison Powder", "Level": 15},
+        "Move 8": {"Name": "Sleep Powder", "Level": 15},
+        "Move 9": {"Name": "Seed Bomb", "Level": 18},
+        "Move 10": {"Name": "Take Down", "Level": 21},
+        "Move 11": {"Name": "Sweet Scent", "Level": 24},
+        "Move 12": {"Name": "Synthesis", "Level": 27},
+        "Move 13": {"Name": "Worry Seed", "Level": 30},
+        "Move 14": {"Name": "Double-Edge", "Level": 33},
+        "Move 15": {"Name": "Solar Beam", "Level": 36}
+      },
+
+    "Types": {"Type 1": "Normal", "Type 2": ""},
+
+    "//Evolutions": "the index/key is the number of the evolved pokemon and the value is the level it can evolve",
+    "Evolutions": {"-1": 0,"-2": 10},
+
+    "gender ratio": 0,
+
+    "Catch Rate": 45,
+
+    "Height": {"metric": "0.7", "imperial": "2'04\""},
+
+    "Weight": {"metric": "6.9", "imperial": "15.2"},
+
+    "Egg Groups": ["Monster", "Grass"],
+
+    "Levelling Rate": "Medium Slow",
+
+    "Hatch Time": [5140, 5396],
+
+    "Base Friendship": 70,
+
+    "Base EXP Yield": 64
+
+  },
+
+  "1": {
+
+      "Number": 1,
+
       "Name": "Bulbasaur",
 
       "Base Stats": {
@@ -10,6 +75,8 @@
         "Special Defence": 65,
         "Speed": 45
       },
+
+      "Abilities": {"normal0": "Overgrow", "normal1": "", "hidden": "Chlorophyll"},
 
       "Moveset": {
 
@@ -30,14 +97,34 @@
         "Move 15": {"Name": "Solar Beam", "Level": 36}
       },
 
-      "Types": {
-        "Type 1": "Grass",
-        "Type 2": "Poison"
-      },
-      "gender ratio": 87.5
+      "Types": {"Type 1": "Grass", "Type 2": "Poison"},
+
+      "Evolutions": {"2": 16, "3": 32},
+
+      "gender ratio": 87.5,
+
+      "Catch Rate": 45,
+
+      "Height": {"metric": "0.7", "imperial": "2'04\""},
+
+      "Weight": {"metric": "6.9", "imperial": "15.2"},
+
+      "Egg Groups": ["Monster", "Grass"],
+
+      "Levelling Rate": "Medium Slow",
+
+      "Hatch Time": [5140, 5396],
+
+      "Base Friendship": 70,
+
+      "Base EXP Yield": 64
 
     },
-  "Charmander": {
+
+  "4": {
+
+    "Number": 4,
+
     "Name": "Charmander",
 
     "Base Stats": {
@@ -48,6 +135,8 @@
       "Special Defence": 50,
       "Speed": 65
     },
+
+    "Abilities": {"normal0": "Blaze", "normal1": "", "hidden": "Solar Power"},
 
     "Moveset": {
 
@@ -65,11 +154,27 @@
       "Move 12": {"Name": "Flare Blitz", "Level": 40}
     },
 
-    "Types": {
-      "Type 1": "Fire",
-      "Type 2": ""
-    },
-    "gender ratio": 87.5
+    "Types": {"Type 1": "Fire", "Type 2": ""},
+
+    "Evolutions": {"5": 16, "6": 36},
+
+    "gender ratio": 87.5,
+
+    "Catch Rate": 45,
+
+    "Height": {"metric": "0.6", "imperial": "2'00\""},
+
+    "Weight": {"metric": "8.5", "imperial": "18.7"},
+
+    "Egg Groups": ["Monster", "Dragon"],
+
+    "Levelling Rate": "Medium Slow",
+
+    "Hatch Time": [5140, 5396],
+
+    "Base Friendship": 70,
+
+    "Base EXP Yield": 65
 
   }
 

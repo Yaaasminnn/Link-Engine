@@ -31,9 +31,9 @@ def move(x, y, is_player):
         >>> obstacle_group.update(coords[0], coords[1], True)
 
     """
-    from main import user
+    from main import conf
     from graphics.maps.scripts.load_maps import player_group, background_group, npc_group, gate_group, obstacle_group
-    animate = user.animate
+    animate = conf.animate
 
     player = get_sprite_from_group(player_group) #gets the instance of the player
 
@@ -274,8 +274,8 @@ class Animated_Sprite(pygame.sprite.Sprite):
             also does not properly switch directions.
 
         """
-        from main import user, counter_limit
-        base_speed = user.base_speed
+        from main import conf, counter_limit
+        base_speed = conf.base_speed
 
         # incrementaly increases the counter which is used for walking animations
         self.counter += 1
@@ -411,10 +411,10 @@ class Animated_Sprite(pygame.sprite.Sprite):
             todo:
                 make sure npc's dont also walk off the screen borders
         """
-        from main import user
+        from main import conf
         from graphics.maps.scripts.load_maps import player_group, npc_group, obstacle_group
         from utils.system.sys_info import sc_h, sc_w
-        base_speed = user.base_speed
+        base_speed = conf.base_speed
         delta = 0.25  # how long we walk for
         now = time.time()  # current time
 
@@ -468,8 +468,8 @@ class Animated_Sprite(pygame.sprite.Sprite):
             not collided, x=base_speed, y=0     ||self is not coliding with the wall, return x/y unchanged
             :return [1,0]
         """
-        from main import user
-        col_tol = user.col_tol #how close the sprites can get before colliding
+        from main import conf
+        col_tol = conf.col_tol #how close the sprites can get before colliding
 
         #checks if a sprite is colliding with any obstacles
         for sprite in group:
@@ -534,10 +534,10 @@ class Window:
             >>> update_all(x,y)
         """
         from utils.system.sys_info import sc_h,sc_w, mid_y, mid_x
-        from main import user
+        from main import conf
         from graphics.maps.scripts.load_maps import background_group, player_group
 
-        base_speed = user.base_speed
+        base_speed = conf.base_speed
 
         player = get_sprite_from_group(player_group) #gets the current player instance
         backdrop = get_sprite_from_group(background_group) #gets the current backdrop instance
@@ -611,8 +611,8 @@ class Window:
             make it exit if holding enter for a period of time.
         """
 
-        from main import user
-        exit = user.exit
+        from main import conf
+        exit = conf.exit
         for event in pygame.event.get():
             if event.type == pygame.QUIT or keyboard.is_pressed(exit):
                 pygame.quit()
@@ -625,9 +625,9 @@ class Window:
 
         Also currently draws hitboxes
         """
-        from main import user, window
+        from main import conf, window
         from graphics.maps.scripts.load_maps import background_group, obstacle_group, npc_group, gate_group, player_group
-        draw_hud = user.draw_hud
+        draw_hud = conf.draw_hud
         background_group.draw(window)
         obstacle_group.draw(window)
         player_group.draw(window)
@@ -653,10 +653,10 @@ class Window:
             No keys pressed   ||No keys were pressed. return x,y = 0,0
             :return x=0,y=0
         """
-        from main import user
+        from main import conf
         from utils.system.sys_info import FPS, TARGET_FPS
-        base_speed = user.base_speed; run_speed = user.run_speed
-        up=user.up; down=user.down; right=user.right; left=user.left; dash=user.dash;
+        base_speed = conf.base_speed; run_speed = conf.run_speed
+        up=conf.up; down=conf.down; right=conf.right; left=conf.left; dash=conf.dash;
         win_active = pygame.display.get_active()
         x,y = 0,0 #checks if an input is given
         inputs = []
@@ -698,12 +698,12 @@ class Window:
         todo:
             add a delay onto keypresses in general
         """
-        from main import user
-        debug = user.debug; draw_hud = user.draw_hud
+        from main import conf
+        debug = conf.debug; draw_hud = conf.draw_hud
         if debug.toggle():
-            if user.draw_hud ==1: user.draw_hud =0
-            elif user.draw_hud ==0: user.draw_hud =1
-        return user.draw_hud
+            if conf.draw_hud ==1: conf.draw_hud =0
+            elif conf.draw_hud ==0: conf.draw_hud =1
+        return conf.draw_hud
 
     @staticmethod
     def draw_hitboxes():
@@ -713,9 +713,9 @@ class Window:
         todo:
             make this cleaner by adding in a function that creates hitboxes
         """
-        from main import user, window
+        from main import conf, window
         from graphics.maps.scripts.load_maps import obstacle_group, npc_group, player_group, gate_group
-        hitbox_clr = user.hitbox_colour
+        hitbox_clr = conf.hitbox_colour
 
         draw_hitboxes(obstacle_group, window, colour=hitbox_clr) #draws hitboxes for all sprites in obstacle_group()
         draw_hitboxes(player_group, window, colour=hitbox_clr) #draws hitboxes for the player

@@ -79,8 +79,8 @@ def line_checker(dialogue):
 #MAIN STUFF============================================================================================================#
 
 def show_lines():
-    from main import user, conversation
-    textbox = user.textbox
+    from main import conf, conversation
+    textbox = conf.textbox
     global prev, line1,line2, line1_chckr
     globvars = globals()
 
@@ -107,8 +107,8 @@ def show_lines():
 
 def clear_lines():
     global i,line1,line2
-    from main import user, conversation
-    select = user.select
+    from main import conf, conversation
+    select = conf.select
 
     dialogue = conversation[str(i)]; message = dialogue["line"]
     # WHAT TO DO WHEN ITS DONE PRINTING THE MESSAGE

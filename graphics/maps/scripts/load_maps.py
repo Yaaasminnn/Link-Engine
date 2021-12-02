@@ -336,8 +336,8 @@ def is_at_gate(now, init):
         load maps based on id's. confirm this
     """
     global obstacle_group, npc_group, player_group, gate_group, background_group
-    from main import user, current_map
-    col_tol = user.col_tol
+    from main import conf, current_map
+    col_tol = conf.col_tol
 
     player = get_sprite_from_group(player_group)
     #print(player.last_posx, player.pos_x, player.last_posy, player.pos_y)

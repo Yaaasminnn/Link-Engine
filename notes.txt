@@ -1,0 +1,48 @@
+for evolutions some attributes are set to properties.
+name(assuming they have no nickname)
+types
+base stats
+stats
+species?
+
+setup a file in utils called globvars.json or somn and its used to store global vars
+this way we dont call upon all of main when we done need to. have all files just load in data from globvars instead
+of main. these globvars are generated on start and can be modified. this may reduce ram usage
+
+finish the properties stuff and make an evolution function that changes a pokemon's species(and the properties)
+into those of the given pokemon. allows any poke# but defaults to the ones in the species json
+called through p.evolve()
+
+LE pokemon statistics:
+total dmg dealt/taken
+total battles
+total distance walked
+
+level up:
+increment level
+look at pokedex data to see if it learns new moves/evolves
+
+save data in json. everything is in the map files but is toggled to true/false whether we use it or nah
+
+make a new pokemon type called "???" with properties:
+    no resistances or super effectives mutually, no immunities at all
+
+
+different difficulties with diff AI: (per user)
+easy
+    less thorough algo
+    also used by wild pokemon
+normal
+    non-AI conventional Algorithm
+    normal trainer
+hard
+    trained ML/NN
+    used by significant battles
+experimental
+    ML/neural networks that learn as u fight
+    only used in the post game battle tower thing(marathon)
+
+also: regardless of difficulty(except easy), important battles will have slightly smarter ai
+
+
+move npc's around on command(so we can make cutscenes)

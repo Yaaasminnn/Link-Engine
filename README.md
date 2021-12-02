@@ -1,2 +1,2 @@
 # Pokemon Link Engine
- Fanmade pokemon-based game engine built from scratch
+ Fanmade pokemon-based game engine built from scratch in Python

@@ -1,5 +1,7 @@
 from utils.json_utils import load_json, update_json
+from exp_formulas import *
 import random
+from main import user, user_home, game_dir
 
 def load_pokemon_database():
     return load_json(".pokedex.json", "r")
@@ -13,7 +15,7 @@ class Pokemon:
 
             Here, we store the nature's name and stat mods(atk, def, spatk, spdef, speed)
             """
-            natures = load_json("./natures.json","r")
+            natures = load_json("mechanics/natures.json","r")
             nat_info = self.calc_nature_data(nature, natures)
             self.name = nat_info[0]
             self.attack = nat_info[1]
@@ -48,7 +50,7 @@ class Pokemon:
             nat_info = []
 
             if nature is None: nature = self.choose_nature(natures)
-            nature = nature; nat_info.append(nature)
+            nat_info.append(nature)
             nature = natures[nature]
 
             stat_mods = nature["Stat Mods"]
@@ -189,7 +191,7 @@ class Pokemon:
                 self.moves.append(name)
 
     def __init__(self,
-                 species:str, level:int, nickname:str=None, gender:str=None, id:int=None,
+                 species:int, level:int, exp:int=0,nickname:str=None, gender:str=None, id:int=0,
                  EV:list[int]=None, IV:list[int]=None, nature=None, friendship:int=0, status_condition:str=None,
                  stats:list[int]=None, current_hp:int=None,recalculate:bool=False, moves:list[str]=None, item:str=None,
                  og_trainer:str=None, date_caught:str=None, catch_location:str=None,
@@ -197,17 +199,24 @@ class Pokemon:
         """
         Creates an instance of a pokemon.
         this can be used to generate any pokemon, whether its wild, predetermined or an existing pokemon
+
+        caught poke's have an id from 10k-99999
+        wild pkmn have an id from 1000-9999     maybe determines shiny n stuff?
+        foe teams may have an id from 100-999
+        make an id generator method
+
         todo:
             natures, moves, ev's and iv's may need to be un-selfed or have a value it returns somehow. prob not
             work on shinies/pokerus
         """
 
-        pkmn_db = load_json("./pokedex.json", "r") #loads in all the pokemon in the database
-        self.species = pkmn_db[species] #loads in all the data on the species
+        pkmn_db = load_json("mechanics/pokedex.json", "r") #loads in all the pokemon in the database
+        self.species = pkmn_db[str(species)] #loads in all the data on the species
 
         # sets the basic info
-        self.name = self.set_name(species, nickname)
+        self.name = self.set_name(species=self.species["Name"], nickname=nickname)
         self.level = level
+        self.exp = self.set_exp(exp)
         self.determine_types()
         self.nature = Pokemon.Nature(nature)
         self.EV = Pokemon.EV(EV)
@@ -219,7 +228,7 @@ class Pokemon:
         self.gen_base_stats()
         self.calculate_stats(stats, recalculate)
         self.calc_current_hp(current_hp)
-        self.moves = Pokemon.Moves(self.species["Moveset"], moves, self.level)
+        self.Moves = Pokemon.Moves(self.species["Moveset"], moves, self.level)
         self.item = item
         self.catch_location = catch_location
 
@@ -252,6 +261,8 @@ class Pokemon:
     def set_name(self, species, nickname):
         """
         sets the pokemon's name. if it has a nickname, we set that as its name, otherwise it is given its species name.
+
+        could be reused as the change nickname function
         """
         if nickname is None: return species
         return nickname
@@ -315,7 +326,7 @@ class Pokemon:
         if current_hp < 0: current_hp = 0; self.status_cond = "fainted"
         self.current_hp = round(current_hp)
 
-    def save_pkmn(self):
+    def save(self):
         """
         Saves a wild pokemon.
 
@@ -345,10 +356,10 @@ class Pokemon:
             new_mem["Pokerus"] = self.pokerus
             new_mem["Catch Location"] = self.catch_location #current location
             new_mem["Date Caught"] = self.date_caught #datetime object
-            new_mem["Moves"] = self.moves  # might have to be a dictionary?
+            new_mem["Moves"] = self.Moves.moves  # might have to be a dictionary?
 
-        pc_pkmn = load_json("./pc pkmn.json")
-        party_pkmn = load_json("./party pkmn.json")
+        pc_pkmn = load_json(f"{user_home}/pokemon/pc pkmn.json")
+        party_pkmn = load_json(f"{user_home}/pokemon/party pkmn.json")
 
         # assigns a unique id for each pokemon
         while True:
@@ -357,19 +368,76 @@ class Pokemon:
             self.id = random.randint(10000, 99999)
             if self.id not in pc_pkmn and self.id not in party_pkmn: break
 
-        if len(party_pkmn) < 6:
+        if len(party_pkmn) < 6: # if the party isnt full, we add it to the party
             new_mem = party_pkmn[self.id] = {}
             save_data(self,new_mem)
-            update_json("party pkmn.json", party_pkmn)
+            update_json(f"{user_home}/pokemon/party pkmn.json", party_pkmn)
 
-        else:
+        else: # otherwise, we dump it into the pc
             new_mem = pc_pkmn[self.id] = {}
             save_data(self, new_mem)
-            update_json("pc pkmn.json", pc_pkmn)
+            update_json(f"{user_home}/pokemon/pc pkmn.json", pc_pkmn)
 
         return
 
+    def level_up(self):
+        """
+        Levels up a pokemon.
+
+        Is triggered by EXP milestones. Increments the p.level by 1 and then runs a check to evolve or to learn a new
+        move. if it can learn a new move, we make it the 4th move(index 3). if it can evolve, we move its stats and data
+        and spawn its evolution pokemon.
+
+        todo:
+            research pokemon EXP requirements n stuff
+                based on egg field group? then we list egg group in pokedex and determine the next level based on group
+
+        """
+        #get current level
+        level = self.level
+        pass
+
+    def gain_exp(self, exp):
+        """
+        Gain EXP.
+
+        Simply adds the given exp to the pokemon's exp. it also checks the pokemon's level and EXP levelling rate to see
+        if the pokemon will level up or not. if so, we call the self.level_up() function.
+
+        todo:
+            change this to use a while loop instead of recursion?
+        """
+        def can_level_up():
+            """
+            Checks if a pokemon can level up and if so, runs the level up function and recurses
+            """
+            # checks the pokemon's level and its levelling rate
+            level = self.level
+            rate = self.species["Levelling Rate"]
+
+            required_exp = calc_exp(rate, level) # calculates the EXP required to move to the next level
+
+            #if it has more or the exact amount of exp needed to level up, we level up. if we have more, we check if it
+            # can level up again with recursion
+            if self.exp >= required_exp:
+                self.level_up()
+                if self.exp > required_exp:
+                    can_level_up()
+
+        self.exp+=exp # add the given exp
+        can_level_up() # checks if it can level up
+
+    def set_exp(self, exp:int):
+        """
+        Sets the amount of EXP a pokemon has.
+
+        Meant for generated, usually wild, pokemon. we take the pokemon's level and its Levelling rate to determine its
+        EXP.
+        """
+        pass
+
     def __str__(self):
+        id = f" with ID: {self.id}"
         shiny = ""
         level = f"Level {self.level}, "
         name = f"{self.species['Name']} "
@@ -384,7 +452,7 @@ class Pokemon:
         if self.shiny: shiny = "shiny "
         if self.status_cond is None: status_cond = ""
 
-        return status_cond + nature + level + shiny + name + nickname + hp
+        return status_cond + nature + level + shiny + name + nickname + hp + id
 
 class Party:
     """
@@ -416,8 +484,12 @@ class Party:
         """
         pass
 
+    def list_party(self):
+        for p in self.party:
+            print(p)
+
 class Battle:
-    def __init__(self, team1, team2, team3=None, num_active:int=1):
+    def __init__(self, team1, team2, team3=None, max_active:int=1, wild=True):
         """
         creates a battle instance. each team will be an array consisting of several pokemon instances.
         maybe support up to 3 teams?
@@ -433,30 +505,40 @@ class Battle:
             execute. looks for move in database and executes based on its properties.(could do this when we choose priority.)
         """
 
-        self.num_active = num_active #how many pokemon per team can be active at once
+        self.wild = wild # determines if this is a wild battle or not
+        self.max_active = max_active #how many pokemon per team can be active at once
         self.team1 = team1
         self.team2 = team2
-        self.teams = [self.team1, self.team2]
+
+        self.teams = [self.team1, self.team2] #contains the teams and their actives. used to determine team-active specifics
         if team3 is not None: #if we have a 3rd team in a ffa, add em in
             self.team3 = team3
             self.teams.append(self.team3)
 
-        self.actives = [] #all the active pokemon
+        self.assign_teams()
+        self.actives = [] #all the active pokemon. grouped by team but cannot identify which team
         self.turn = 0 #what turn we are on
-        self.make_active()
+        self.gen_actives()
+        self.get_actions()
 
-        for p in self.teams[0].actives: #prints em
-            print(str(p))
+        """for p in self.team1.party: # prints all pokemon in a party
+            print(p)"""
 
-        self.team1.actives[1].active = False;self.team1.actives.pop(1) #removes 1
-        for p in self.teams[0].actives:  # prints em
-            print(str(p))
-        self.turn+=1
-        self.make_active()
-        for p in self.teams[0].actives:  # prints em
-            print(str(p))
+        """for p in self.team1.actives:
+            print(p)
 
+        print("\n")
+        self.team1.actives[0].active = False; self.team1.actives.pop(0)
 
+        for p in self.team1.actives:
+            print(p)
+
+        print("\n")
+
+        self.turn+=1; self.gen_actives()
+
+        for p in self.team1.actives:
+            print(p)"""
 
     def __str__(self):
         """
@@ -464,7 +546,16 @@ class Battle:
         party1:
         party2:
         """
-        message = "Battle instance. "
+        message = f"Battle instance with {len(self.teams)} teams:\n"
+        for team in self.teams:
+            message += f"{str(team)}\n"
+
+        return message
+
+    def assign_teams(self):
+        for index, team in enumerate(self.teams):
+            for p in team.party:
+                p.team = index
 
     def check_alive(self, team, return_sum=False):
         sum = 0
@@ -477,12 +568,28 @@ class Battle:
         if return_sum: return sum
         return alive
 
-    def find_actives(self, team):
+    def fainted(self):
+        """
+        Procedure when a pokemon has fainted.
+
+        Removes them from both actives
+        how to determine which team their on?
+        """
+
+    def add_actives(self, team):
+        """
+        adds a pokemon to team.actives.
+
+        make it only add 1 pokemon per call.
+        """
         for p in team.party:
             if p.active == False:
+                p.active = True
                 team.actives.append(p)
+                self.actives.append(p)
+                return
 
-    def make_active(self):
+    def gen_actives(self):
         """
         Make all active pokemon.
 
@@ -496,17 +603,26 @@ class Battle:
         if self.turn == 0: # runs on initialization
             for team in self.teams:
                 team.actives = []
-                for i in range(self.num_active):
+                for i in range(self.max_active):
                     try:
                         team.party[i].active = True
-                        team.actives.append(team.party[i])
-                    except IndexError: pass
-                self.actives.append(team.actives)
+                        team.actives.append(team.party[i]) #adds them to the team actives
+                        self.actives.append(team.party[i])  # adds this team to total actives
+                    except IndexError: pass #teams might have less pokemon than required
             return
 
         # otherwise, this is run at the end of a round to see if the maximum number of pokemon are active
         for team in self.teams:
-            if len(team.actives) < self.num_active:
+            num_active = len(team.actives) #number of currently active pokemon
+            max_active = self.max_active # number of pokemon that are supposed to be active
+            num_alive = self.check_alive(team, return_sum=True) #number of pokemon in the team that are alive
+            if num_active < max_active:
+                availiable = num_alive - num_active
+                needed = max_active-num_active
+                for i in range(min(needed, availiable)):
+                    self.add_actives(team)
+
+            """if len(team.actives) < self.max_active:
                 num_alive = self.check_alive(team, return_sum=True)
 
                 if num_alive == len(team.actives): print("These are the only ones alive. cant add another") #if there are no other availiable pokemon
@@ -515,15 +631,162 @@ class Battle:
                     print("We need a new one")
                     pkmn_needed = num_alive-len(team.actives)
                     for i in range(pkmn_needed):
-                        self.find_actives(team)
+                        self.add_actives(team) # adds as many pokemon to actives as possible
                     #add a function that gets the next pokemon that isnt active
 
-            else:print("we clear")
+            else:print("we clear")"""
 
-b = Pokemon("Bulbasaur", 5, nickname="Bulby", shiny=True, moves=["Flare Blitz"])
-c= Pokemon("Charmander", 5, nickname="flamethrowmer")
+    def clear_actives(self):
+        """
+        Clears all active pokemon.
 
-party = Party(b,c)
-party2 = Party(c,b)
+        To be called at the end of the battle. this clears self.actives and it also clears every team.active
+        """
+
+    def list_actives(self, team):
+        """
+        prints the active pokemon
+        """
+        for p in team.actives:
+            print(p)
+
+    def get_actions(self):
+        """
+        For every active pokemon, gets their actions.
+
+        looks through all pokemon in self.actives and assigns an attribute of self.action
+        Recursion?
+        """
+        for pokemon in self.actives: pokemon.action = self.choose_action(pokemon)
+
+    def choose_action(self, pokemon):
+        """
+        Gets the action of a pokemon.
+
+        Can choose between 1 of 4 choices: fight, switch pokemon, use an item or run.
+        Each choice prompts another function asking for another choice, except for run.
+        If fight, we execute choose_move()
+        If pokemon, we execute view_pokemon();  they will also be able to view the info on each pokemon as well
+        If item, we exec choose_item()
+        If run, we exec try_run()
+
+        Returns an array [action, action_priority]
+        """
+        selection = int(input(f"What will {pokemon.name} do?"))
+
+        if selection==1: # they choose to battle
+            return self.choose_move(pokemon)
+        elif selection==2: # they choose to switch/view pokemon
+            return self.switch_pokemon(pokemon)
+        elif selection==3: # they choose to use an item
+            pass
+        elif selection>=4: # they attempt to run
+            return self.try_run(pokemon)
+
+    def choose_move(self, pokemon):
+        """
+        Chooses a move for the pokemon.
+
+        :return [{"fight":move}, priority]:
+
+        todo:
+            when we add in moves to the database, we search for the move in the database and use that for priority
+            should this be part of the pokemon class?
+        """
+        move = int(input(f"Enter 1-4 to choose the respective move. {pokemon.Moves.moves}"))
+        priority = 1
+        try: selected = pokemon.Moves.moves[move]
+        except: selected = pokemon.Moves.moves[0]
+        return [{"fight":selected}, priority]
+
+    def order_actions(self):
+        """
+        orders the actions based on action priority and each pokemon's speed.
+
+        Takes in self.actives and from there we look at pokemon.action to view the priority of the move, we sort it from
+        there and make it a temporary list. after, we check for any pokemon who's priorities are tied.(both have 2 priority)
+        and then order based on each individual pokemon's speed. assign each pokemon another property called order
+        """
+        #sort the entire array
+        self.actives.sort(key=lambda x: x.action[1], reverse=False)
+
+        #find indexes where priority is 2, 1 or -1, and sort pokemon into their respective list
+        top, mid, bot = [],[],[]
+        for active in self.actives:
+            if active.action[1] == 2: top.append(active)
+            if active.action[1] == 1: mid.append(active)
+            if active.action[1] == -1: bot.append(active)
+
+        for priority_list in [top, mid, bot]:  # sort em by speed
+            priority_list.sort(key=lambda x: x.speed, reverse=True)
+
+        self.actives = top+mid+bot # merge em
+        for p in self.actives:
+            print(f"poke: {p}, speed: {p.speed}, priority: {p.action[1]}")
+
+
+    def switch_pokemon(self, pokemon):
+        """
+        Displays all party members and allows the option to switch pokemon.
+
+        We find the pokemon's party using the self.team attribute all pokemon are given on initialization.
+        Using that, we list all pokemon in the respective team using Party.list_party().
+
+        From here, we allow the user to select which pokemon they would like to switch with. so long as the selected
+        pokemon hasnt fainted or isnt the currently active pokemon.
+        """
+        priority = 2
+        team = self.teams[pokemon.team]
+        while True:
+            try:
+                team.list_party()
+                selected = int(input(f"Choose a pokemon to switch to\nCurrently active is {pokemon}"))
+                if (pokemon != team.party[selected]) and (team.party[selected].status_cond != "fainted"): print(f"you chose {team.party[selected]}"); break #lets you switch to a pokemon so long as it in healthy and a different one
+            except IndexError: pass
+
+        return [{"switch":selected},priority]
+
+    def try_run(self, pokemon):
+        """
+        Attemps to run.
+
+        Checks all pokemon that are not on the same team(different self.team values) and checks if any of them are faster.
+        """
+        if self.wild==False: return #figure this out. ideally they can return back to selecting an action
+        faster = False
+        for index, team in enumerate(self.teams):
+            if index==pokemon.team: continue
+            for p in team.actives:
+                if p.speed >= pokemon.speed: faster = True;break
+        if not faster:
+            pass # exit the battle. call the ending func
+        if faster:
+            pass #roll the random function
+
+a = Pokemon(1, 10, nickname="test")
+b = Pokemon(1, 5, nickname="Bulby", shiny=True, moves=["Flare Blitz"])
+c = Pokemon(4, 5, nickname="flamethrowmer")
+d = Pokemon(4, 1, nickname="sdf")
+e=Pokemon(4, 15, nickname="1")
+
+a.save()
+#party = Party(a,b)
+#party2 = Party(c,d)
+#party3 = Party(e)
 #print(party.active)
-Battle(party, party2, num_active=3)
+#battle = Battle(party, party2, max_active=1)
+#print(battle)
+
+#battle.order_actions()
+
+"""
+print("\n\n\n\n\n")
+for team in battle.teams:
+    battle.list_actives(team)
+    print("\n")
+    for p in team.party:
+        print(p)#; break
+    print("\n")
+for p in battle.actives:
+    print(p.action)#"""
+

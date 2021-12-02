@@ -1,5 +1,7 @@
 import datetime
 
+#add in ansi colour codes
+
 def log(*message):
     """
     Logs messages by printing them and giving us the datetime.
