@@ -4,7 +4,7 @@ import random
 from main import user, user_home, game_dir
 
 def load_pokemon_database():
-    return load_json(".pokedex.json", "r")
+    return load_json("mechanics/pokedex.json", "r")
 
 class Pokemon:
 
@@ -225,8 +225,9 @@ class Pokemon:
         self.status_cond = status_condition
         self.pokerus = self.has_pokerus(has_pokerus)
         self.shiny = self.is_shiny(shiny)
-        self.gen_base_stats()
-        self.calculate_stats(stats, recalculate)
+        #self.gen_base_stats()
+        #self.calculate_stats(stats, recalculate)
+        #get the status mods for each stat
         self.calc_current_hp(current_hp)
         self.Moves = Pokemon.Moves(self.species["Moveset"], moves, self.level)
         self.item = item
@@ -275,54 +276,92 @@ class Pokemon:
         if pokerus: return True
         #otherwise determine by chance
 
-    def calculate_stats(self, stats:list[int], recalculate:bool=False):
+    @property
+    def stats(self):
         """
         returns the stats of the pokemon.
 
-        by default is meant to calculate the stats, but can also just read the given stats if they are valid.
-        we only dont recalculate when we load in the party or pokemon
-        allow for stat mods that are default 1 but can be modified and recalculated per turn?
+        Calculates the stats of a pokemon based on its IV's, EV's, level and base stats.
+        todo:
+            allow for stat mods that are default 1 but can be modified and recalculated per turn?
         """
-        if stats is not None and len(stats) == 6 and not recalculate:
-            self.hp = stats[0]
-            self.attack = stats[1]
-            self.defence = stats[2]
-            self.sp_attack = stats[3]
-            self.sp_defence = stats[4]
-            self.speed = stats[5]
-            return
         # determine the stats here now by calculation
-        self.hp = int(((((2*self.base_hp) + self.IV.hp + (self.EV.hp/4)) * self.level)/100) + self.level + 10)
-        self.attack = int((((((2*self.base_attack) + self.IV.attack + (self.EV.attack/4)) * self.level)/100) + 5) * self.nature.attack)
-        self.defence = int((((((2 * self.base_defence) + self.IV.defence + (self.EV.defence / 4)) * self.level)/100) + 5) * self.nature.defence)
-        self.sp_attack = int((((((2 * self.base_sp_attack) + self.IV.sp_attack + (self.EV.sp_attack / 4)) * self.level)/100) + 5) * self.nature.sp_attack)
-        self.sp_defence = int((((((2 * self.base_sp_defence) + self.IV.sp_defence + (self.EV.sp_defence / 4)) * self.level)/100) + 5) * self.nature.sp_defence)
-        self.speed = int((((((2 * self.base_speed) + self.IV.speed + (self.EV.speed / 4)) * self.level)/100) + 5) * self.nature.speed)
-        return
+        hp = int(((((2*self.base_stats[0]) + self.IV.hp + (self.EV.hp/4)) * self.level)/100) + self.level + 10)
+        attack = int((((((2*self.base_stats[1]) + self.IV.attack + (self.EV.attack/4)) * self.level)/100) + 5) * self.nature.attack)
+        defence = int((((((2 * self.base_stats[2]) + self.IV.defence + (self.EV.defence / 4)) * self.level)/100) + 5) * self.nature.defence)
+        sp_attack = int((((((2 * self.base_stats[3]) + self.IV.sp_attack + (self.EV.sp_attack / 4)) * self.level)/100) + 5) * self.nature.sp_attack)
+        sp_defence = int((((((2 * self.base_stats[4]) + self.IV.sp_defence + (self.EV.sp_defence / 4)) * self.level)/100) + 5) * self.nature.sp_defence)
+        speed = int((((((2 * self.base_stats[5]) + self.IV.speed + (self.EV.speed / 4)) * self.level)/100) + 5) * self.nature.speed)
+        return [hp, attack, defence, sp_attack, sp_defence, speed]
 
-    def gen_base_stats(self):
+    @stats.setter
+    def stats(self, stats:list[int]=(None, None, None, None, None, None)):
+        for i, stat in enumerate(stats):
+            if stat is None or stat <1: continue
+            self.stats[i] = stat
+
+    @property
+    def base_stats(self):
         """
-        Determines the base stats.
+        Determines the pokemon's base stats.
 
-        this is based on the base stats of all pokemon contained in pokedex.json
+        retrieves the base stats from the pokemon's species index in pokedex.json.
         """
         base_stats = self.species["Base Stats"]
 
-        self.base_hp = base_stats["Hit Points"]
-        self.base_attack = base_stats["Attack"]
-        self.base_defence = base_stats["Defence"]
-        self.base_sp_attack = base_stats["Special Attack"]
-        self.base_sp_defence = base_stats["Special Defence"]
-        self.base_speed = base_stats["Speed"]
+        #self.base_hp = base_stats["Hit Points"]
+        #self.base_attack = base_stats["Attack"]
+        #self.base_defence = base_stats["Defence"]
+        #self.base_sp_attack = base_stats["Special Attack"]
+        #self.base_sp_defence = base_stats["Special Defence"]
+        #self.base_speed = base_stats["Speed"]
+
+        return [base_stats["Hit Points"], base_stats["Attack"], base_stats["Defence"],
+                base_stats["Special Attack"], base_stats["Special Defence"], base_stats["Speed"]]
+    @base_stats.setter
+    def base_stats(self, stats:list[int]=(None, None, None, None, None, None)):
+        """
+        Modifies the base stats individually.
+        """
+        for i, stat in enumerate(stats):
+            if stat is None or stat <1: continue
+            self.base_stats[i] = stat
+
+    def evolve(self, num=None):
+        """
+        Evolves a pokemon into another.
+
+        By default it checks the pokemon's level and its species entry in the pokedex to see which pokemon
+        to evolve into. only does so if you meet the level requirements. If a pokemon is given mnaually by num, it
+        ignores the level requirement.
+        Afterward it recalculates the stats.
+        todo:
+            check what moves we can learn after evolution
+
+        Called whenever we level up.
+        """
+        pkmn_db = load_pokemon_database() # loads in the database
+
+        if num is not None: self.species = pkmn_db[str(num)]
+
+        elif num is None:
+            for evolution in self.species["Evolutions"]:
+                if self.level >= evolution["level"]: self.species = pkmn_db[str(evolution["id"])]
+                else: continue
+
+        # Check if it can learn moves
 
     def calc_current_hp(self, current_hp):
         """
         recalculate current hp.
 
         used if a pokemon does not generate with a full health bar.
+
+        todo:
+            set the current hp to full after an evolution
         """
-        if current_hp is None: current_hp = self.hp
-        if current_hp > self.hp: current_hp = self.hp
+        if current_hp is None: current_hp = self.stats[0]
+        if current_hp > self.stats[0]: current_hp = self.stats[0]
         if current_hp < 0: current_hp = 0; self.status_cond = "fainted"
         self.current_hp = round(current_hp)
 
@@ -349,7 +388,7 @@ class Pokemon:
             new_mem["IV's"] = [self.IV.hp, self.IV.attack, self.IV.defence, self.IV.sp_attack, self.IV.sp_defence,
                                self.IV.speed]
             new_mem["Friendship"] = self.friendship
-            new_mem["Stats"] = [self.hp, self.attack, self.defence, self.sp_attack, self.sp_defence, self.speed]
+            new_mem["Stats"] = self.stats
             new_mem["Item"] = self.item
             new_mem["OT"] = self.OT #this will be the player name
             new_mem["Shiny"] = self.shiny
@@ -443,7 +482,7 @@ class Pokemon:
         name = f"{self.species['Name']} "
         nickname = ""
         current_hp = f"{self.current_hp}"
-        total_hp = f"{self.hp}"
+        total_hp = f"{self.stats[0]}"
         hp = f"at {current_hp}/{total_hp} hp"
         status_cond = f"{self.status_cond}, "
         nature = f"{self.nature.name}, "
@@ -763,13 +802,20 @@ class Battle:
         if faster:
             pass #roll the random function
 
-a = Pokemon(1, 10, nickname="test")
-b = Pokemon(1, 5, nickname="Bulby", shiny=True, moves=["Flare Blitz"])
-c = Pokemon(4, 5, nickname="flamethrowmer")
-d = Pokemon(4, 1, nickname="sdf")
-e=Pokemon(4, 15, nickname="1")
+a = Pokemon(species=1, level=16, nickname="test") #loads in a charmander
+b = Pokemon(species=1, level=5, nickname="Bulby", shiny=True, moves=["Flare Blitz"])
+c = Pokemon(species=4, level=5, nickname="flamethrowmer")
+d = Pokemon(species=4, level=1, nickname="sdf")
+e=Pokemon(species=4, level=15, nickname="1")
 
-a.save()
+print(a)
+print(f"Base stats: {a.base_stats}")
+print(f"Stats: {a.stats}")
+print("Evolving!")
+a.evolve()
+print(a)
+print(f"Base stats: {a.base_stats}")
+print(f"Stats: {a.stats}")
 #party = Party(a,b)
 #party2 = Party(c,d)
 #party3 = Party(e)

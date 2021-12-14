@@ -274,6 +274,7 @@ def link_gates(id):
     """
     from main import current_map #gets the name of the current map
     name = current_map.name
+    print(name)
     meta_files = get_meta_files() #loads in all the meta data files
     for file in meta_files:
         map = load_map_data(file)

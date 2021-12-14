@@ -13,7 +13,7 @@ game_dir = get_project_dir()
 user = "loona"
 user_home = get_user_dir(user, game_dir)
 conf = User_Config(user)
-current_map = Map("twinleaf")
+current_map = Map("twinleaf")#; print(current_map)
 pid = os.getpid() #gets the process id of main so we can monitor its resource usage (RAM, CPU usage etc)
 Game_Running = True #so long as the application is running
 Intro = False #the intro screen
@@ -34,34 +34,33 @@ window = create_window(sc_w, sc_h, resizable=True, icon="Dump stuff/server-icon.
 
 text_x, text_y = 10,10 #make these diff depending on which text. each text will have locations to load em from a json config
 
-if __name__ == '__main__':
+#Main Game loop========================================================================================================#
+frame_counter = 0 #keeps track of the frames. used for sprite animations
+map_change_init = 0 #time when the map is changed. used for time delays between map changes.
+prev = 0 #previous time. called when
+while True:
+    exit_conditions(conf.exit)
+    now = time.time()  # sets the current time
 
-    #Main Game loop========================================================================================================#
-    frame_counter = 0 #keeps track of the frames. used for sprite animations
-    map_change_init = 0 #time when the map is changed. used for time delays between map changes.
-    prev = 0 #previous time. called when
-    while True:
-        exit_conditions(conf.exit)
-        now = time.time()  # sets the current time
+    Window.draw_to_screen() #draws all sprite groups to the screen
 
-        Window.draw_to_screen() #draws all sprite groups to the screen
+    inputs = Window.get_inputs() #gets inputs
+    x, y = inputs[0], inputs[1]
 
-        inputs = Window.get_inputs() #gets inputs
-        x, y = inputs[0], inputs[1]
+    conf.draw_hud = Window.toggle_hud() #hud
 
-        conf.draw_hud = Window.toggle_hud() #hud
+    new_map = is_at_gate(now, map_change_init) #checks if at gate
+    #print(new_map)
 
-        new_map = is_at_gate(now, map_change_init) #checks if at gate
+    #if at a gate, it changes the map. also sets an init time
+    if new_map is not None: print(new_map);current_map = new_map; map_change_init = time.time()
 
-        #if at a gate, it changes the map. also sets an init time
-        if new_map is not None: current_map = new_map; map_change_init = time.time()
+    dialogue_sys.show_lines() #draws dialogue
 
-        dialogue_sys.show_lines() #draws dialogue
+    Window.update_screen(x, y) #updates the screen
 
-        Window.update_screen(x, y) #updates the screen
+    dialogue_sys.clear_lines() #clears the dialogue
 
-        dialogue_sys.clear_lines() #clears the dialogue
-
-        #fps incrementer. this helps with things that arent meant to be updated every frame
-        frame_counter+=1
-        if frame_counter == 75: frame_counter=0
+    #fps incrementer. this helps with things that arent meant to be updated every frame
+    frame_counter+=1
+    if frame_counter == 75: frame_counter=0

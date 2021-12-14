@@ -81,25 +81,30 @@
       "Moveset": {
 
         "Move 1": {"Name": "Tackle", "Level": 1},
-        "Move 2": {"Name": "Growl", "Level": 1},
-        "Move 3": {"Name": "Vine Whip", "Level": 3},
-        "Move 4": {"Name": "Growth", "Level": 6},
-        "Move 5": {"Name": "Leech Seed", "Level": 9},
-        "Move 6": {"Name": "Razor Leaf", "Level": 12},
-        "Move 7": {"Name": "Poison Powder", "Level": 15},
-        "Move 8": {"Name": "Sleep Powder", "Level": 15},
-        "Move 9": {"Name": "Seed Bomb", "Level": 18},
-        "Move 10": {"Name": "Take Down", "Level": 21},
-        "Move 11": {"Name": "Sweet Scent", "Level": 24},
-        "Move 12": {"Name": "Synthesis", "Level": 27},
-        "Move 13": {"Name": "Worry Seed", "Level": 30},
-        "Move 14": {"Name": "Double-Edge", "Level": 33},
-        "Move 15": {"Name": "Solar Beam", "Level": 36}
+        "Move 2": {"Name": "Growl", "Level": 3},
+        "Move 3": {"Name": "Leech Seed", "Level": 7},
+        "Move 4": {"Name": "Vine Whip", "Level": 9},
+        "Move 5": {"Name": "Poison Powder", "Level": 13},
+        "Move 6": {"Name": "Sleep Powder", "Level": 13},
+        "Move 7": {"Name": "Take Down", "Level": 15},
+        "Move 8": {"Name": "Razor Leaf", "Level": 19},
+        "Move 9": {"Name": "Sweet Scent", "Level": 21},
+        "Move 10": {"Name": "Growth", "Level": 25},
+        "Move 11": {"Name": "Double-Edge", "Level": 27},
+        "Move 12": {"Name": "Worry Seed", "Level": 31},
+        "Move 13": {"Name": "Synthesis", "Level": 33},
+        "Move 14": {"Name": "Seed Bomb", "Level": 37}
       },
 
       "Types": {"Type 1": "Grass", "Type 2": "Poison"},
 
-      "Evolutions": {"2": 16, "3": 32},
+      "Evolutions": [{
+        "id": 2,
+        "level": 16
+      },{
+        "id": 3,
+        "level": 32
+      }],
 
       "gender ratio": 87.5,
 
@@ -118,6 +123,69 @@
       "Base Friendship": 70,
 
       "Base EXP Yield": 64
+
+    },
+  "2": {
+
+      "Number": 2,
+
+      "Name": "Ivysaur",
+
+      "Base Stats": {
+        "Hit Points": 60,
+        "Attack": 62,
+        "Defence":  63,
+        "Special Attack":  80,
+        "Special Defence": 80,
+        "Speed": 60
+      },
+
+      "Abilities": {"normal0": "Overgrow", "normal1": "", "hidden": "Chlorophyll"},
+
+      "Moveset": {
+
+        "Move 1": {"Name": "Tackle", "Level": 1},
+        "Move 2": {"Name": "Growl", "Level": 1},
+        "Move 3": {"Name": "Leech Seed", "Level": 1},
+        "Move 4": {"Name": "Growl", "Level": 3},
+        "Move 5": {"Name": "Leech Seed", "Level": 7},
+        "Move 6": {"Name": "Vine Whip", "Level": 9},
+        "Move 7": {"Name": "Poison Powder", "Level": 13},
+        "Move 8": {"Name": "Sleep Powder", "Level": 13},
+        "Move 9": {"Name": "Take Down", "Level": 15},
+        "Move 10": {"Name": "Razor Leaf", "Level": 20},
+        "Move 11": {"Name": "Sweet Scent", "Level": 23},
+        "Move 12": {"Name": "Growth", "Level": 28},
+        "Move 13": {"Name": "Double-Edge", "Level": 31},
+        "Move 14": {"Name": "Worry Seed", "Level": 36},
+        "Move 15": {"Name": "Synthesis", "Level": 39},
+        "Move 16": {"Name": "SolarBeam", "Level": 44}
+      },
+
+      "Types": {"Type 1": "Grass", "Type 2": "Poison"},
+
+      "Evolutions": [{
+        "id": 3,
+        "level": 32
+      }],
+
+      "gender ratio": 87.5,
+
+      "Catch Rate": 45,
+
+      "Height": {"metric": "1.0", "imperial": "3'03\""},
+
+      "Weight": {"metric": "13.0", "imperial": "28.7"},
+
+      "Egg Groups": ["Monster", "Grass"],
+
+      "Levelling Rate": "Medium Slow",
+
+      "Hatch Time": [5140, 5396],
+
+      "Base Friendship": 70,
+
+      "Base EXP Yield": 142
 
     },
 
@@ -156,7 +224,13 @@
 
     "Types": {"Type 1": "Fire", "Type 2": ""},
 
-    "Evolutions": {"5": 16, "6": 36},
+    "Evolutions": [{
+        "id": 5,
+        "level": 16
+      },{
+        "id": 6,
+        "level": 36
+      }],
 
     "gender ratio": 87.5,
 

@@ -77,9 +77,9 @@ message = "hey there buddy chum pal friend buddy pal chum bud friend fella bruth
 
 #MAIN GAME LOOP
 displayed = ""
-mixer.init()
-mixer.music.load("./voices/sans.wav")
-mixer.music.set_volume(0.4)
+pygame.init()
+pygame.mixer.music.load("./voices/sans.wav")
+pygame.mixer.music.set_volume(0.4)
 #mixer.music.play()
 while True:
     exit_cond() #checks for exit conditions every frame
