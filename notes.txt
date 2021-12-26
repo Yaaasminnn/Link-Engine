@@ -1,17 +1,6 @@
-for evolutions some attributes are set to properties.
-name(assuming they have no nickname)
-types
-base stats
-stats
-species?
-
 setup a file in utils called globvars.json or somn and its used to store global vars
 this way we dont call upon all of main when we done need to. have all files just load in data from globvars instead
 of main. these globvars are generated on start and can be modified. this may reduce ram usage
-
-finish the properties stuff and make an evolution function that changes a pokemon's species(and the properties)
-into those of the given pokemon. allows any poke# but defaults to the ones in the species json
-called through p.evolve()
 
 LE pokemon statistics:
 total dmg dealt/taken
@@ -47,10 +36,6 @@ also: regardless of difficulty(except easy), important battles will have slightl
 
 move npc's around on command(so we can make cutscenes)
 
-program evolution
-  set the stats as a property that we recalculate
-    can take in status mods and apply them. but are reset
-
 if you have indexes in an array that dont really have names, just use an array
 refactor that later?
 consider refactoring: Types
@@ -67,13 +52,40 @@ Todo:
 properties are dependant on attributes and are changed. anything dependant on
 an attribute should be a property if it must be updated in real time
 
-  *base_stats -> property (species)
-  *stats -> property(base stats, status mods, level, IV/EV's)
   level -> property? (based on EXP, think of this later)
   current_hp -> property (based on base_stats)
-  status cond ->property(based on current_hp[fainted], )
+  name -> property (based on species but only if nickname is none)
+  EV -> property (based on each EV?)
 
 on level up: check moves to learn
 on evolution: check moves to learn
 
 make a window manager of sorts
+
+
+stat conds:
+  (PERSISTENT. DEFINED IN POKEMON CLASS AND CAN EXIST OUTSIDE OF BATTLE)
+  para
+  burn
+  freeze
+  poisoned
+  sleeping
+  fainted
+
+  * confused
+  * infatuated
+  * Trapped
+  * Cursed
+  * temp. defined only in the battle class and can stack ontop of persistent conds
+
+
+
+
+
+some kind of defining language we set in a file.
+can be used for conditions for many things
+cutscenes, evolutions,
+that mc guy's vid
+
+todo.txt file of everything
+try to rewrite some utils in c/c++ for faster execution?

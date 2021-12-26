@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="modified testing stuffs.py to better search directories&#10;&#10;also added a logs text file. might come in handy&#10;&#10;map metadata files are revamped&#10;-renamed variable names to be more intuitive&#10;-made a template meta file&#10;-made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)&#10;&#10;draws player at gate locations upon entering a new area instead of the middle&#10;-need to work on backdrop movement checking&#10;-otherwise the player was drawn at a distance from the gate&#10;&#10;added a dialogue system&#10;-plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)&#10;-made progress on audio, but linux audio drivers are problematic">
-      <change afterPath="$PROJECT_DIR$/globvars.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Pokemon-Link-Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Pokemon-Link-Engine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio/speak.py" beforeDir="false" afterPath="$PROJECT_DIR$/audio/speak.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/maps/scripts/load_maps.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/maps/scripts/load_maps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/globvars.py" beforeDir="false" afterPath="$PROJECT_DIR$/globvars.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mechanics/exp_formulas.py" beforeDir="false" afterPath="$PROJECT_DIR$/mechanics/exp_formulas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mechanics/pokedex.json" beforeDir="false" afterPath="$PROJECT_DIR$/mechanics/pokedex.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mechanics/testing stuffs.py" beforeDir="false" afterPath="$PROJECT_DIR$/mechanics/testing stuffs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/loona/pokemon/party pkmn.json" beforeDir="false" afterPath="$PROJECT_DIR$/users/loona/pokemon/party pkmn.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/loona/pokemon/pc pkmn.json" beforeDir="false" afterPath="$PROJECT_DIR$/users/loona/pokemon/pc pkmn.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +53,7 @@
       <recent name="$PROJECT_DIR$/users/loona/pokemon" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.run">
+  <component name="RunManager" selected="Python.testing stuffs">
     <configuration name="battle" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Pokemon-Link-Engine" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -295,7 +289,11 @@
       <workItem from="1638260364819" duration="782000" />
       <workItem from="1638340755812" duration="4532000" />
       <workItem from="1639459016989" duration="10032000" />
-      <workItem from="1639505347436" duration="3035000" />
+      <workItem from="1639505347436" duration="11109000" />
+      <workItem from="1639548904876" duration="717000" />
+      <workItem from="1639707523968" duration="1573000" />
+      <workItem from="1640473605592" duration="11429000" />
+      <workItem from="1640494070399" duration="1102000" />
     </task>
     <task id="LOCAL-00001" summary="Can now switch between maps in a 2 way fashion. not 1 way.&#10;&#10;Player is drawn ,animated and collision logic is accounted for more logically now that we are using the current instance of the player&#10;&#10;Cooldown for switching between maps and the player does not switch when standing in a gate.&#10;&#10;Rewrote comments to make more sense&#10;&#10;Removed all tile-based movement for the player as tile-based movement will not be used for this project.&#10;&#10;draws hitboxes around gates as well&#10;&#10;moved keypress.py into mechanics&#10;&#10;created grey maps for extra testing and to reduce the risk of seizures due to the other maps being quite bright and flashy.">
       <created>1625191456360</created>
@@ -343,7 +341,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="modified testing stuffs.py to better search directories&#10;&#10;also added a logs text file. might come in handy&#10;&#10;map metadata files are revamped&#10;-renamed variable names to be more intuitive&#10;-made a template meta file&#10;-made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)&#10;&#10;draws player at gate locations upon entering a new area instead of the middle&#10;-need to work on backdrop movement checking&#10;-otherwise the player was drawn at a distance from the gate&#10;&#10;added a dialogue system&#10;-plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)&#10;-made progress on audio, but linux audio drivers are problematic" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/main_py$testing_stuffs.coverage" NAME="testing stuffs Coverage Results" MODIFIED="1639468498100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mechanics" />
+    <SUITE FILE_PATH="coverage/main_py$testing_stuffs.coverage" NAME="testing stuffs Coverage Results" MODIFIED="1640495134922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mechanics" />
     <SUITE FILE_PATH="coverage/main_py$speak.coverage" NAME="speak Coverage Results" MODIFIED="1639459668147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/audio" />
     <SUITE FILE_PATH="coverage/main_py$run.coverage" NAME="run Coverage Results" MODIFIED="1639507237971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

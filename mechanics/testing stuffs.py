@@ -1,7 +1,9 @@
 from utils.json_utils import load_json, update_json
 from exp_formulas import *
 import random
-from main import user, user_home, game_dir
+#from main import user, user_home, game_dir
+from utils.directories import get_project_dir
+get_project_dir()
 
 def load_pokemon_database():
     return load_json("mechanics/pokedex.json", "r")
@@ -190,10 +192,27 @@ class Pokemon:
                     self.moves.pop(0)
                 self.moves.append(name)
 
+        def add_new_move(self, move):
+            """
+            adds a new move on.
+
+            todo:
+                if the length is equal to 4, we ask the user if they want to remove a move
+            """
+            if len(self.moves)==4:
+                removed = int(input(f"Pokemon would like to learn {move}! "
+                                    f"What move would you like to remove? select 1-4 for move choice or 0 to not learn it\n"
+                                    f"{self.moves}"))
+                if removed ==0: return
+                self.moves[removed-1] = move
+                return
+
+            self.moves.append(move)
+
     def __init__(self,
-                 species:int, level:int, exp:int=0,nickname:str=None, gender:str=None, id:int=0,
-                 EV:list[int]=None, IV:list[int]=None, nature=None, friendship:int=0, status_condition:str=None,
-                 stats:list[int]=None, current_hp:int=None,recalculate:bool=False, moves:list[str]=None, item:str=None,
+                 species:int, level:int, exp:int=None, nickname:str=None, gender:str=None, id:int=0,
+                 EV:list[int]=None, IV:list[int]=None, nature=None, friendship:int=0, status_code:int=0,
+                 current_hp:int=None, moves:list[str]=None, item:str=None,
                  og_trainer:str=None, date_caught:str=None, catch_location:str=None,
                  has_pokerus:bool=None, shiny:bool=None):
         """
@@ -216,20 +235,17 @@ class Pokemon:
         # sets the basic info
         self.name = self.set_name(species=self.species["Name"], nickname=nickname)
         self.level = level
-        self.exp = self.set_exp(exp)
-        self.determine_types()
+        self.set_exp(exp)
         self.nature = Pokemon.Nature(nature)
         self.EV = Pokemon.EV(EV)
         self.IV = Pokemon.IV(IV)
         self.gender = self.determine_gender(gender)
-        self.status_cond = status_condition
+        self.status_code = status_code
         self.pokerus = self.has_pokerus(has_pokerus)
         self.shiny = self.is_shiny(shiny)
-        #self.gen_base_stats()
-        #self.calculate_stats(stats, recalculate)
-        #get the status mods for each stat
-        self.calc_current_hp(current_hp)
-        self.Moves = Pokemon.Moves(self.species["Moveset"], moves, self.level)
+        self.stat_stages = [0,0,0,0,0]
+        self.calc_current_hp(current_hp) # work on this
+        self.Moves = Pokemon.Moves(self.species["Moveset"], moves, self.level) # maybe set moves to ID's as well
         self.item = item
         self.catch_location = catch_location
 
@@ -253,12 +269,6 @@ class Pokemon:
         if rand_float <= male_ratio: return "male"
         else: return "female"
 
-    def determine_types(self):
-        types = self.species["Types"]
-        self.type1 = types["Type 1"]
-        if types["Type 2"] == "": self.type2 = None
-        else: self.type2 = types["Type 2"]
-
     def set_name(self, species, nickname):
         """
         sets the pokemon's name. if it has a nickname, we set that as its name, otherwise it is given its species name.
@@ -277,28 +287,50 @@ class Pokemon:
         #otherwise determine by chance
 
     @property
-    def stats(self):
+    def status_condition(self):
         """
-        returns the stats of the pokemon.
+        Determines the status condition based on the given status code ranged from [0,6] inclusively.
 
-        Calculates the stats of a pokemon based on its IV's, EV's, level and base stats.
+        we use codes to easily select a status condition opposed to typing out the wrong string accidentally.
+        additionally, its easier, simpler and more intuitive to correct those codes than if they were strings.
+        """
+        if self.status_code >6 or self.status_code <0: self.status_code = 0
+
+        if self.status_code == 0: return "Healthy"
+        elif self.status_code == 1: return "Paralyzed"
+        elif self.status_code == 2: return "Burned"
+        elif self.status_code == 3: return "Frozen"
+        elif self.status_code == 4: return "Poisoned"
+        elif self.status_code == 5: return "Asleep"
+        elif self.status_code == 6: return "Fainted"
+
+    @property
+    def types(self):
+        """
+        Determines the pokemon's types based on its species
+        """
+        types = self.species["Types"]
+        return types
+
+    @property
+    def stat_mods(self):
+        """
+        Sets the stat modifications based on self.stat_stages
+
+        Sets the statmods as stages ranging from [-6,6] inclusively. we then run a lookup table to determine the value
+        of those stat mods
+
         todo:
-            allow for stat mods that are default 1 but can be modified and recalculated per turn?
+            move statmods to battle
+            have a checker when moves are used that checks if the stat mods are out of range
         """
-        # determine the stats here now by calculation
-        hp = int(((((2*self.base_stats[0]) + self.IV.hp + (self.EV.hp/4)) * self.level)/100) + self.level + 10)
-        attack = int((((((2*self.base_stats[1]) + self.IV.attack + (self.EV.attack/4)) * self.level)/100) + 5) * self.nature.attack)
-        defence = int((((((2 * self.base_stats[2]) + self.IV.defence + (self.EV.defence / 4)) * self.level)/100) + 5) * self.nature.defence)
-        sp_attack = int((((((2 * self.base_stats[3]) + self.IV.sp_attack + (self.EV.sp_attack / 4)) * self.level)/100) + 5) * self.nature.sp_attack)
-        sp_defence = int((((((2 * self.base_stats[4]) + self.IV.sp_defence + (self.EV.sp_defence / 4)) * self.level)/100) + 5) * self.nature.sp_defence)
-        speed = int((((((2 * self.base_stats[5]) + self.IV.speed + (self.EV.speed / 4)) * self.level)/100) + 5) * self.nature.speed)
-        return [hp, attack, defence, sp_attack, sp_defence, speed]
-
-    @stats.setter
-    def stats(self, stats:list[int]=(None, None, None, None, None, None)):
-        for i, stat in enumerate(stats):
-            if stat is None or stat <1: continue
-            self.stats[i] = stat
+        stat_mods =[]
+        for stage in self.stat_stages:
+            if stage >6: stage =6
+            if stage <-6: stage =-6
+            if stage >=0: stat_mods.append((0.5*abs(int(stage)))+1)
+            elif stage <0: stat_mods.append(1/((0.5*abs(int(stage)))+1))
+        return stat_mods
 
     @property
     def base_stats(self):
@@ -309,23 +341,46 @@ class Pokemon:
         """
         base_stats = self.species["Base Stats"]
 
-        #self.base_hp = base_stats["Hit Points"]
-        #self.base_attack = base_stats["Attack"]
-        #self.base_defence = base_stats["Defence"]
-        #self.base_sp_attack = base_stats["Special Attack"]
-        #self.base_sp_defence = base_stats["Special Defence"]
-        #self.base_speed = base_stats["Speed"]
-
         return [base_stats["Hit Points"], base_stats["Attack"], base_stats["Defence"],
                 base_stats["Special Attack"], base_stats["Special Defence"], base_stats["Speed"]]
+
     @base_stats.setter
-    def base_stats(self, stats:list[int]=(None, None, None, None, None, None)):
+    def base_stats(self, stats: list[int] = (None, None, None, None, None, None)):
         """
         Modifies the base stats individually.
         """
         for i, stat in enumerate(stats):
-            if stat is None or stat <1: continue
+            if stat is None or stat < 1: continue
             self.base_stats[i] = stat
+
+    @property
+    def stats(self):
+        """
+        returns the stats of the pokemon.
+
+        Calculates the stats of a pokemon based on its IV's, EV's, level and base stats.
+        todo:
+            allow for stat mods that are default 1 but can be modified and recalculated per turn?
+        """
+        hp = int(((((2*self.base_stats[0]) + self.IV.hp + (self.EV.hp/4)) * self.level)/100) + self.level + 10)
+        attack = int(self.stat_mods[0]*((((((2*self.base_stats[1]) + self.IV.attack + (self.EV.attack/4)) * self.level)/100) + 5) * self.nature.attack))
+        defence = int(self.stat_mods[1]*((((((2 * self.base_stats[2]) + self.IV.defence + (self.EV.defence / 4)) * self.level)/100) + 5) * self.nature.defence))
+        sp_attack = int(self.stat_mods[2]*((((((2 * self.base_stats[3]) + self.IV.sp_attack + (self.EV.sp_attack / 4)) * self.level)/100) + 5) * self.nature.sp_attack))
+        sp_defence = int(self.stat_mods[3]*((((((2 * self.base_stats[4]) + self.IV.sp_defence + (self.EV.sp_defence / 4)) * self.level)/100) + 5) * self.nature.sp_defence))
+        speed = int(self.stat_mods[4]*((((((2 * self.base_stats[5]) + self.IV.speed + (self.EV.speed / 4)) * self.level)/100) + 5) * self.nature.speed))
+        return [hp, attack, defence, sp_attack, sp_defence, speed]
+
+    @stats.setter
+    def stats(self, stats:list[int]=(None, None, None, None, None, None)):
+        """
+        Modifies the stats individually
+
+        issue: since stats calculates the stats everytime it updates, this method wont work especially since each stat
+        is not its own attribute.  fixable by making them attributes, but we dont need to manually change the stats
+        """
+        for i, stat in enumerate(stats):
+            if stat is None or stat <1: continue
+            self.stats[i] = stat
 
     def evolve(self, num=None):
         """
@@ -362,7 +417,7 @@ class Pokemon:
         """
         if current_hp is None: current_hp = self.stats[0]
         if current_hp > self.stats[0]: current_hp = self.stats[0]
-        if current_hp < 0: current_hp = 0; self.status_cond = "fainted"
+        if current_hp < 0: current_hp = 0; self.status_code = 0
         self.current_hp = round(current_hp)
 
     def save(self):
@@ -419,6 +474,48 @@ class Pokemon:
 
         return
 
+    def set_exp(self, exp:int):
+        """
+        Sets the amount of EXP a pokemon has.
+
+        Meant for generated, usually wild, pokemon. we take the pokemon's level and its Levelling rate to determine its
+        EXP.
+
+        todo:
+            this shouldnt even be a function wtf
+        """
+        if exp == None:
+            rate = self.species["Levelling Rate"]
+            exp = calc_exp(rate, self.level)
+        self.exp = exp
+
+
+    def gain_exp(self, exp_gained):
+        """
+        Gain EXP.
+
+        Simply adds the given exp to the pokemon's exp. it also checks the pokemon's level and EXP levelling rate to see
+        if the pokemon will level up or not. if so, we call the self.level_up() function.
+
+        todo:
+            change this to use a while loop instead of recursion?
+        """
+
+        self.exp+=exp_gained # add the given exp
+        #print(self.exp)
+        self.can_level_up() # checks if it can level up
+
+    def can_level_up(self):
+        """
+        Checks if a pokemon can level up.
+
+        Uses its levelling rate and then checks if its experience is greater than whats required to level up.
+        if so, level it up.
+        """
+        rate = self.species["Levelling Rate"]
+        while self.exp >= calc_exp(rate, self.level + 1) and self.level <100:
+            self.level_up()
+
     def level_up(self):
         """
         Levels up a pokemon.
@@ -433,47 +530,14 @@ class Pokemon:
 
         """
         #get current level
-        level = self.level
-        pass
+        self.level+=1
 
-    def gain_exp(self, exp):
-        """
-        Gain EXP.
-
-        Simply adds the given exp to the pokemon's exp. it also checks the pokemon's level and EXP levelling rate to see
-        if the pokemon will level up or not. if so, we call the self.level_up() function.
-
-        todo:
-            change this to use a while loop instead of recursion?
-        """
-        def can_level_up():
-            """
-            Checks if a pokemon can level up and if so, runs the level up function and recurses
-            """
-            # checks the pokemon's level and its levelling rate
-            level = self.level
-            rate = self.species["Levelling Rate"]
-
-            required_exp = calc_exp(rate, level) # calculates the EXP required to move to the next level
-
-            #if it has more or the exact amount of exp needed to level up, we level up. if we have more, we check if it
-            # can level up again with recursion
-            if self.exp >= required_exp:
-                self.level_up()
-                if self.exp > required_exp:
-                    can_level_up()
-
-        self.exp+=exp # add the given exp
-        can_level_up() # checks if it can level up
-
-    def set_exp(self, exp:int):
-        """
-        Sets the amount of EXP a pokemon has.
-
-        Meant for generated, usually wild, pokemon. we take the pokemon's level and its Levelling rate to determine its
-        EXP.
-        """
-        pass
+        # check if it can learn a new move
+        # we check for evolutions after a battle.
+        moveset = self.species["Moveset"]
+        for move in moveset:
+            if self.level == moveset[move]["Level"]:
+                self.Moves.add_new_move(moveset[move]["Name"])
 
     def __str__(self):
         id = f" with ID: {self.id}"
@@ -484,12 +548,12 @@ class Pokemon:
         current_hp = f"{self.current_hp}"
         total_hp = f"{self.stats[0]}"
         hp = f"at {current_hp}/{total_hp} hp"
-        status_cond = f"{self.status_cond}, "
+        status_cond = f"{self.status_condition}, "
         nature = f"{self.nature.name}, "
 
         if self.name != self.species["Name"]: nickname = f"named '{self.name}' "
         if self.shiny: shiny = "shiny "
-        if self.status_cond is None: status_cond = ""
+        if self.status_code is None: status_cond = ""
 
         return status_cond + nature + level + shiny + name + nickname + hp + id
 
@@ -499,6 +563,9 @@ class Party:
 
     on init, it will take info of the user's pokemon(from ram or a json) and for each pokemon,
     it initializes the pokemon class.
+
+    todo:
+        maybe make a seperate memebers property based on each pokemon in the party
     """
 
     def __init__(self, *pokemon):
@@ -600,7 +667,7 @@ class Battle:
         sum = 0
         alive = []
         for pokemon in team.party:
-            if pokemon.status_cond != "fainted" or pokemon.current_hp >0:
+            if pokemon.status_code != "fainted" or pokemon.current_hp >0:
                 if return_sum: sum +=1
                 alive.append(pokemon)
 
@@ -780,7 +847,7 @@ class Battle:
             try:
                 team.list_party()
                 selected = int(input(f"Choose a pokemon to switch to\nCurrently active is {pokemon}"))
-                if (pokemon != team.party[selected]) and (team.party[selected].status_cond != "fainted"): print(f"you chose {team.party[selected]}"); break #lets you switch to a pokemon so long as it in healthy and a different one
+                if (pokemon != team.party[selected]) and (team.party[selected].status_code != "fainted"): print(f"you chose {team.party[selected]}"); break #lets you switch to a pokemon so long as it in healthy and a different one
             except IndexError: pass
 
         return [{"switch":selected},priority]
@@ -802,26 +869,38 @@ class Battle:
         if faster:
             pass #roll the random function
 
-a = Pokemon(species=1, level=16, nickname="test") #loads in a charmander
-b = Pokemon(species=1, level=5, nickname="Bulby", shiny=True, moves=["Flare Blitz"])
-c = Pokemon(species=4, level=5, nickname="flamethrowmer")
-d = Pokemon(species=4, level=1, nickname="sdf")
-e=Pokemon(species=4, level=15, nickname="1")
+a = Pokemon(species=1, level=5, nickname="test", status_code=2) #loads in a charmander
+#b = Pokemon(species=1, level=5, nickname="Bulby", shiny=True, moves=["Flare Blitz"])
+#c = Pokemon(species=4, level=5, nickname="flamethrowmer")
+#d = Pokemon(species=4, level=1, nickname="sdf")
+#e=Pokemon(species=4, level=15, nickname="1")
 
+print(a.exp, a.level)
+a.gain_exp(500000)
+print(a.exp, a.level, a.Moves.moves)
+
+
+
+
+"""
 print(a)
+print(a.types)
 print(f"Base stats: {a.base_stats}")
 print(f"Stats: {a.stats}")
+#a.stats = (0,0,0,12,0,2)
+#print(f"Stats: {a.stats}")
+
 print("Evolving!")
 a.evolve()
 print(a)
 print(f"Base stats: {a.base_stats}")
 print(f"Stats: {a.stats}")
-#party = Party(a,b)
-#party2 = Party(c,d)
+party = Party(a,b)
+party2 = Party(c,d)
 #party3 = Party(e)
-#print(party.active)
-#battle = Battle(party, party2, max_active=1)
-#print(battle)
+print(party)
+battle = Battle(party, party2, max_active=1)
+print(battle)"""
 
 #battle.order_actions()
 
