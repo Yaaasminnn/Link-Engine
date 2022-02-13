@@ -88,4 +88,3 @@ cutscenes, evolutions,
 that mc guy's vid
 
 todo.txt file of everything
-try to rewrite some utils in c/c++ for faster execution?

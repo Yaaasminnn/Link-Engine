@@ -1,0 +1,51 @@
+battle mechanics:
+  type weaknesses and logic
+  try to program as many moves as possible.
+    group them into basic types and have type variations from there
+  same thing with abilities
+
+database:
+  keep track of all pokemon
+    add in pokedex descriptions and locations? (locations could be in each region?)
+  keep track of moves
+  abilities
+  etc
+  use pokeapi.
+  make a script or few that compiles an entire pokedex, filters out what we dont need
+    mostly dont need stuff from other versions
+    keep stuff for gen 4/5
+
+overworld:
+  revamp and make it less jank.
+    be able to move npc's at will.
+    tile based movement
+    enter portals properly.
+    dont move offscreen accidentally
+
+plot:
+  keep a list of player achievements/data that we can reference when an event happens.
+  events are listed in a json. 
+  how to use jsons to run a function?
+    store each event as a string as well as player achievements. the json stores an achievement conditions and if those conditions are true, we send the event string to the event trigger. the event trigger runs every frame to see if we triggered any events.
+    ex:
+    events: {
+      event1:{
+        conditions:{gym_badges: 1, talked_to_rival:true, position: [0,0]}
+        event: program_name_to_execute
+      }
+    }
+
+    based on the strings in event, we can execute a python file of the same name containing all the functionality of the event (moving an npc to a location, giving this dialogue etc etc, giving the player X)
+    events are also used when the player does something(talk to npc, but sets the value to of talked_to_npc = true)
+
+dialogue:
+  sequential ig
+  dialogue function that puts text on-screen.
+  choices, giving a prompt.
+    maybe set a variable to true/false based on the player input and using that to determine somn
+
+player data:
+  inventory: we can have a simple function that modifies the player inventory, combine that with the display text function and were set.
+
+map design:
+  map maker, forget about the dialogue. we can make the text based stuff manual, this is just graphical.

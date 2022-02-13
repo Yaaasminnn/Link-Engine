@@ -5,11 +5,12 @@ Currently consists of loading and updating json files
 """
 import json
 
-
-def load_json(file_path, operation="r"):
-    with open(file_path, operation) as file:
-        data = json.load(file)
-    return data
+def load_json(file_path):
+    """
+    Loads in a json file.
+    """
+    with open(file_path, "r") as file:
+        return json.load(file)
 
 def update_json(file_path, file_data, operation="w"):
     """
@@ -31,4 +32,12 @@ def update_json(file_path, file_data, operation="w"):
         allow for all types of writing operations
     """
     with open(file_path, operation) as file:
-        json.dump(file_data, file)
+        file.write(json.dumps(file_data, indent=4, sort_keys=False))
+
+def create_json(file_path):
+    """
+    Creates a json file.
+    """
+    with open(file_path, "w") as file:
+        a={}
+        json.dump(a, file)

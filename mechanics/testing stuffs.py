@@ -4,9 +4,10 @@ import random
 #from main import user, user_home, game_dir
 from utils.directories import get_project_dir
 get_project_dir()
+user_home = "./users/loona"
 
 def load_pokemon_database():
-    return load_json("mechanics/pokedex.json", "r")
+    return load_json("mechanics/pokedex.json")
 
 class Pokemon:
 
@@ -17,7 +18,7 @@ class Pokemon:
 
             Here, we store the nature's name and stat mods(atk, def, spatk, spdef, speed)
             """
-            natures = load_json("mechanics/natures.json","r")
+            natures = load_json("mechanics/natures.json")
             nat_info = self.calc_nature_data(nature, natures)
             self.name = nat_info[0]
             self.attack = nat_info[1]
@@ -200,7 +201,7 @@ class Pokemon:
                 if the length is equal to 4, we ask the user if they want to remove a move
             """
             if len(self.moves)==4:
-                removed = int(input(f"Pokemon would like to learn {move}! "
+                removed = int(input(f"Pokemon would like to learn {move}! \n"
                                     f"What move would you like to remove? select 1-4 for move choice or 0 to not learn it\n"
                                     f"{self.moves}"))
                 if removed ==0: return
@@ -229,7 +230,7 @@ class Pokemon:
             work on shinies/pokerus
         """
 
-        pkmn_db = load_json("mechanics/pokedex.json", "r") #loads in all the pokemon in the database
+        pkmn_db = load_json("mechanics/pokedex.json") #loads in all the pokemon in the database
         self.species = pkmn_db[str(species)] #loads in all the data on the species
 
         # sets the basic info
@@ -401,7 +402,9 @@ class Pokemon:
 
         elif num is None:
             for evolution in self.species["Evolutions"]:
-                if self.level >= evolution["level"]: self.species = pkmn_db[str(evolution["id"])]
+                if self.level >= evolution["level"]:
+                    self.species = pkmn_db[str(evolution["id"])]
+                    print(f"Wow! {self.name} has evolved into a {self.species['Name']}")
                 else: continue
 
         # Check if it can learn moves
@@ -537,7 +540,12 @@ class Pokemon:
         moveset = self.species["Moveset"]
         for move in moveset:
             if self.level == moveset[move]["Level"]:
+                print(f"LeveL: {self.level}")
                 self.Moves.add_new_move(moveset[move]["Name"])
+
+        # this will only be after battles
+        self.evolve()
+
 
     def __str__(self):
         id = f" with ID: {self.id}"
@@ -874,12 +882,7 @@ a = Pokemon(species=1, level=5, nickname="test", status_code=2) #loads in a char
 #c = Pokemon(species=4, level=5, nickname="flamethrowmer")
 #d = Pokemon(species=4, level=1, nickname="sdf")
 #e=Pokemon(species=4, level=15, nickname="1")
-
-print(a.exp, a.level)
-a.gain_exp(500000)
-print(a.exp, a.level, a.Moves.moves)
-
-
+a.save()
 
 
 """
