@@ -1,0 +1,48 @@
+Pokemon:
+    abilities: the abilities the pokemon has
+        name: name
+        is_hidden: is it hidden
+        slot: 1st 2nd or 3rd ability
+    id: number
+    name: name
+    base experience: base experience yield
+    height: height in decimeters
+    is_default: is this the default form
+    order: order in the regional dex
+    weight: in hectograms
+    species: more detailed other info
+    sprites: sprites
+    forms: all the forms the pokemon can take on
+    game indices: index of the pokemon in each version
+    held_items: list of items the pokemon could be holding when encountered. (map files)
+    location_area_encounters: list of areas this pokemon can be found (map files)
+    moves: all moves the pokemon can learn and how
+    past types: past types this pokeon may have had
+    stats: the stats of this pokemon
+    types: list o types the pokemon has
+        slot: 1st/2nd
+        type: the type
+
+
+REMOVE:
+    order(unless we gon use a regional/national dex)
+    game indices(except gen 5)
+    held items
+    location area encounters
+    past types
+    sprites(except animated gen 5 and default)
+
+todo:
+    research all the different categories and categorize
+
+Hierarchy:
+    Pokemon:
+        species
+        evolution
+    Moves
+    Types
+    Items:
+        berries
+    maps:
+        location area encounters
+            items
