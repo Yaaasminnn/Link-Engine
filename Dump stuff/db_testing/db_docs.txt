@@ -1,0 +1,119 @@
+Pokemon::Pokemon:
+    *abilities: the abilities the pokemon has
+        name: name
+        is_hidden: is it hidden
+        slot: 1st 2nd or 3rd ability
+    id: number
+    name: name
+    base experience: base experience yield
+    height: height in decimeters
+    is_default: is this the default form
+    order: order in the regional dex
+    weight: in hectograms
+    *species: the species of this pokemon
+    *sprites: sprites
+    *forms: all the forms the pokemon can take on
+    *game indices: index of the pokemon in each version
+    held_items: list of items the pokemon could be holding when encountered. (map files)
+    location_area_encounters: list of areas this pokemon can be found (map files)
+    *moves: all moves the pokemon can learn and how
+    past types: past types this pokeon may have had
+    *stats: the stats of this pokemon
+    *types: list o types the pokemon has
+        slot: 1st/2nd
+        type: the type
+
+Pokemon::Species:
+        id: id number (remove)
+        name: name of this pokemon
+        order: slight diff order of the pokedex number
+        gender rate: chance of pokemon being female where gender rate/8 =percentage
+        capture rate: 0-255. how easy it is to capture
+        base_happiness: 0-255 happiness when caught with a normal pokeball. higher, happier
+        is_baby: whether the pokemon is a baby pokemon or not
+        is_legendary:
+        is_mythical:
+        hatch counter: (x+1)*255 is how many steps to take to hatch the egg normally. (range?)
+        has_gender_differences:
+        forms_switchable: whether or not this pokemon has forms and can switch between them
+        *growth rate: rate the pkmn gains levels
+        *pokedex numbers: all the dfferent numbers the pokemon has in different pokedexes
+        *egg groups: the egg groups this pokemon belongs to
+        *color: the colour this pokemon is
+        *shape: the shape
+        *evolves_from_species: what species the pokemon evolves from
+        *evolution chain: the evolution train
+        *habitat: the habitat this pokemon can be found in
+        *generation: what generation this pokemon was introduced in
+        *names: all the names this pokemon has in different languages
+        *pal_park_encounters: list of encounters with this pokemon in pal park
+        *flavour text entries: all the flavour text pokedex entries
+        *form descriptions: descriptions of forms this pokemon takes on
+        *genera: the genus of this pokemon in diff langs, the seed pokemon
+        *varieties: list of pokemon that exist in this species
+
+Pokemon::Colours:
+    id: colour int id. (black, blue, etc)
+    name
+    names: name in diff langs
+    pokemon species: all the different species that are this colour
+
+Pokemon::Stats:
+    id: id num (1-6) from hp-speed
+    name: name of the stat
+    game_index: same as id but (1hp, 2atk, 3def,4spd,5spatk,6spdef)
+    is_battle_only: does the stat only exist in battle? always seems to be false
+    *affecting moves: all the moves that affect this stat
+        increase: moves that increase
+            change
+            move
+        decrease: vice versa
+    *affecting natures: same but natures
+        increase:
+        decrease:
+    *characteristics: list of characteristics on a pkmn when its highest stat is this stat
+    *move_damage_class: physical or special? speed n hp are null
+    *names: names of this pokemon in diff langs
+
+Pokemon::Types:
+    id: the id of this type(1-18)
+    name:
+    *damage relations:
+        double_damage_from
+        double_damage_to
+        half_damage_from
+        half_damage_to
+        no_damage_from
+        no_damage_to
+    *past_damage_relations:
+    *game_indices: id-1?
+    *generation: what generation the type was introduced in
+    *move_damage_classes: class of damage inflicted by this type, gen3-
+    *names: names of this type in diff langs
+    *pokemon: list of pokemon with this type
+    *moves: moves of this type
+
+Pokemon::Genders:
+    id: 1/2 female/male
+    name: name of the gender
+    *pkmn_species_details: list of species that can have this gender and how likely
+    *required for evolution: list of pokemon that require this gender to evolve into them
+
+Pokemon::Growth Rates:
+    id: id of the growth rates starting from 1
+    name: name of the growth rate
+    formula: formula used
+    *descriptions: names of this growth rate in other langs
+    *levels: list of levels and the exp needed to reach that level
+    *pkmn_species: all the pokemon of this rate
+
+Pokemon::Natures:
+    id: id
+    name:
+    *decreased stat: what stat it decreases
+    *in_stat: what it increases
+    *hates_flavour: what flavour the pokemon hates
+    *like_flavour: what flavour the pokemon likes
+    *pokeathlon_stat_changes: list of pokeathlon stats this nature affects n how muhc
+    *move_battle_style_preferences: battle styles and how likely the pkmn will use them in battle palace or battle tent
+    *names: names in diff langs

@@ -1,29 +1,3 @@
-Pokemon:
-    abilities: the abilities the pokemon has
-        name: name
-        is_hidden: is it hidden
-        slot: 1st 2nd or 3rd ability
-    id: number
-    name: name
-    base experience: base experience yield
-    height: height in decimeters
-    is_default: is this the default form
-    order: order in the regional dex
-    weight: in hectograms
-    species: more detailed other info
-    sprites: sprites
-    forms: all the forms the pokemon can take on
-    game indices: index of the pokemon in each version
-    held_items: list of items the pokemon could be holding when encountered. (map files)
-    location_area_encounters: list of areas this pokemon can be found (map files)
-    moves: all moves the pokemon can learn and how
-    past types: past types this pokeon may have had
-    stats: the stats of this pokemon
-    types: list o types the pokemon has
-        slot: 1st/2nd
-        type: the type
-
-
 REMOVE:
     order(unless we gon use a regional/national dex)
     game indices(except gen 5)
@@ -32,8 +6,60 @@ REMOVE:
     past types
     sprites(except animated gen 5 and default)
 
-todo:
-    research all the different categories and categorize
+RESEARCH:
+    pokemon that have different forms and defaults. rotom, kyurem and castform. ditto?
+    baby pokemon?
+
+CONTENTS:
+BERRIES
+    BERRIES
+    BERRY FIRMNESS
+    BERRY FLAVOURS
+ENCOUNTERS
+    METHODS
+    CONDITIONS
+    CONDITION VALUES
+EVOLUTION
+    CHAINS
+    TRIGGERS
+ITEMS
+    ITEM
+    ATTRIBUTES
+    CATEGORIES
+    FLING EFFECTS
+    POCKETS
+LOCATIONS? (FOR REFERENCE FOR OUR OWN DB STRUCTURE?)
+    AREAS
+    PAL PARK AREAS
+    REGIONS
+MACHINES
+    MACHINES
+MOVES
+    MOVES
+    AILMENTS
+    BATTLE STYLES
+    CATEGORIES
+    DAMAGE CLASSES
+    LEARN METHODS
+    TARGETS
+POKEMON
+    ABILITIES
+    CHARACTERISTICS
+    EGG GROUPS
+   *GENDERS
+   *GROWTH RATES
+   *NATURES
+    POKEATHLON STATS
+   *POKEMON
+    PKMN LOCATION AREAS
+   *PKMN COLOURS
+    PKMN FORMS
+    PKMN HABITATS
+    PKMN SHAPES
+   *PKMN SPECIES
+   *STATS
+   *TYPES
+
 
 Hierarchy:
     Pokemon:
@@ -46,3 +72,8 @@ Hierarchy:
     maps:
         location area encounters
             items
+
+todo:
+    a lot of this database will be loaded in memory always, so test out the ram usage
+    excludes: pokedex
+    make sure to only load it in when necessary
