@@ -1,25 +1,36 @@
+- = redundant
+* = named api resource
+() after a name indicate: resource_type/basic_type;         ex: (Item/String) where items are an api reference, (/..) means we incorporate the reference into the parent reference. (api) means its an api call
+_ used for map stuff
++ more time to research
+
 Pokemon::Pokemon:
     *abilities: the abilities the pokemon has
-        name: name
-        is_hidden: is it hidden
-        slot: 1st 2nd or 3rd ability
-    id: number
-    name: name
-    base experience: base experience yield
-    height: height in decimeters
-    is_default: is this the default form
-    order: order in the regional dex
-    weight: in hectograms
-    *species: the species of this pokemon
-    *sprites: sprites
-    *forms: all the forms the pokemon can take on
-    *game indices: index of the pokemon in each version
-    held_items: list of items the pokemon could be holding when encountered. (map files)
-    location_area_encounters: list of areas this pokemon can be found (map files)
-    *moves: all moves the pokemon can learn and how
-    past types: past types this pokeon may have had
-    *stats: the stats of this pokemon
-    *types: list o types the pokemon has
+        name(string): name
+        -is_hidden(bool): is it hidden
+        slot(int): 1st 2nd or 3rd ability(1:1st, 2:2nd, 3:hidden)
+    id(int): number of the pokemon
+    name(string): name
+    base experience(int): base experience yield(base gained when defeating the pkmn)
+    height(int): height in decimeters
+    is_default(bool): is this the default form. pkmn can have multiple forms
+    -order(int): order in the regional dex
+    weight(int): in hectograms
+    *species(species/..): the species of this pokemon
+    -*sprites(sprites/strings): sprites                 (were downloading the ones we need)
+    +*forms(forms/..): all the forms the pokemon can take on
+    -*game indices: index of the pokemon in each version
+    held_items(list[items]/string): list of items the pokemon could be holding when encountered. (map files)
+    _location_area_encounters: list of areas this pokemon can be found (map files)
+    *moves(list[move]/..): all moves the pokemon can learn and how
+        move(move/string): name of the move
+        +version_group_details(version/..)
+    -past types: past types this pokeon may have had
+    *stats(list[stat]/..): the stats of this pokemon
+        base_stat(int): base stat
+        effort(int): how much EV's this pokemon gives in the stat when killed
+        stat(stat/string): the name of the stat
+    *types(types): list o types the pokemon has
         slot: 1st/2nd
         type: the type
 
@@ -58,7 +69,7 @@ Pokemon::Colours:
     names: name in diff langs
     pokemon species: all the different species that are this colour
 
-Pokemon::Stats:
+Pokemon::Stats: (not pokemon's stats)
     id: id num (1-6) from hp-speed
     name: name of the stat
     game_index: same as id but (1hp, 2atk, 3def,4spd,5spatk,6spdef)
@@ -88,7 +99,7 @@ Pokemon::Types:
     *past_damage_relations:
     *game_indices: id-1?
     *generation: what generation the type was introduced in
-    *move_damage_classes: class of damage inflicted by this type, gen3-
+    *move_damage_classes: class of damage inflicted by this type, gen3 n below
     *names: names of this type in diff langs
     *pokemon: list of pokemon with this type
     *moves: moves of this type
@@ -117,3 +128,70 @@ Pokemon::Natures:
     *pokeathlon_stat_changes: list of pokeathlon stats this nature affects n how muhc
     *move_battle_style_preferences: battle styles and how likely the pkmn will use them in battle palace or battle tent
     *names: names in diff langs
+
+Pokemon::Location Areas:
+    list of location areas for a specific pokemon:
+        *location area: area found
+        *version details: list of encounters.
+
+Pokemon::Abilities:
+    id: id
+    name: name of ability
+    is_main_series: did the ability originate in the ds games
+    *generation: what generation
+    *names: names in diff langs
+    *effect entries: effects of the ability in diff langs
+    *effect changes: lisf of previous effects this ability had
+    *flavour_text_entries: flavour entries in diff langs
+    *pokemon: list of pokemon that have this ability
+
+Pokemon::Characteristics:
+    id: characteristic id
+    *descriptions: description in diff langs
+    *gene modulo: remainder of the highest stat/IV divided by 5
+    *highest stat: highest stat
+    *possible values: list of possible values that would result in a pokemon recieving this characteristic
+
+Pokemon::Egg Groups:
+    id: id
+    name: name of the group
+    *names: names in diff langs
+    *pokemon species: pokemon who are in this group
+
+Pokemon::Forms:
+    id: id of the form
+    name: name of the pokemon/form ("arceus-bug")
+    *names: names in diff langs
+    order: order based on the regional dex
+    form_order: the order of a species's forms
+    is_default: is it the default form
+    is_battle_only
+    is_mega: if its mega
+    form_name: name of the form ("bug")
+    *form_names: names of the forms in diff langs
+    *pokemon: the pokemon that can take on this form
+    *types: the types of this form
+    *sprites: the sprites for this form
+    *version_group: the version this form was introduced in
+
+Pokemon::Shape:
+    id: id of the shape
+    name: ball
+    *awesome_names: scientific names of the pokemon in different languages
+    *names: names in diff langs
+    *pokemon species: all the species of pokemon who have this shape
+
+Pokemon::Habitats:
+    id: id of the habitat
+    name: name of the habitat
+    *names: names in diff langs
+    pokemon_species: pkmn that can have this habitat
+
+Pokemon::Pokeathlon Stats:
+    id: of stat
+    name: of stat
+    names: diff langs
+    affecting natures: affecting natures
+        decrease/increase
+            max_change: ma amount of change to the stat
+            nature: nature

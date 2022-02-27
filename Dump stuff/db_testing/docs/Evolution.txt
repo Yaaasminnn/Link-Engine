@@ -1,0 +1,29 @@
+Evolution::Chains:
+    id(int): id of the pokemon. only includes the basic pokemon
+    baby_trigger_item(item/string): item required when breeding in order to hatch the baby pokemon instead of the basic one
+    *chain: what the baby/basic pokemon is and what they evolve to
+        is_baby(boolean): if the pokemon is a baby pokemon(pre-evolution)
+        species(species/string): the species of the evolved pokemon
+        evolution_details: conditions of the evolution
+            item(item/string): what item needed to be used
+            trigger(trigger): the event that triggers the evolution
+            gender(integer): required gender(1:female, 2:male)
+            held_item(Item/string): what item needs to be held
+            known move(move/string): what move needed to be known (fire punch)
+            known_move_type(type/string): what move type a pokemon should have(fire, ice)
+            location(location/string): where the pokemon must be located            *map related
+            min_level(int): the minimum level
+            min_happiness(int)
+            min_beauty(int)
+            min_affection(int)
+            needs_overworld rain(bool): if it needs the overworld to be raining or not
+            party_species(species/string): the pokemon species that must be in the user's party to evolve
+            party_type(type/string): what type at least 1 party pokemon must be to evolve the pokemon
+            relative_phys_stats(int): relation between attack and defence.
+                1 = atk>def
+                0= atk = def
+                -1 def>atk
+            time_of_day(string): what time of day(day/night)
+            trade_species(species/string): what u must trade this pokemon for to evolve(if null it dosent matter what)
+            turn_upside_down(bool): if the 3ds needs to be turned upside down or not
+        *evolves to(chainlink): what pokemon they evolve to and the recursed chain until it reaches the final evolution.

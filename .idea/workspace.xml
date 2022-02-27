@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="modified testing stuffs.py to better search directories&#10;&#10;also added a logs text file. might come in handy&#10;&#10;map metadata files are revamped&#10;-renamed variable names to be more intuitive&#10;-made a template meta file&#10;-made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)&#10;&#10;draws player at gate locations upon entering a new area instead of the middle&#10;-need to work on backdrop movement checking&#10;-otherwise the player was drawn at a distance from the gate&#10;&#10;added a dialogue system&#10;-plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)&#10;-made progress on audio, but linux audio drivers are problematic">
-      <change afterPath="$PROJECT_DIR$/Dump stuff/db_testing/db_docs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Pokemon-Link-Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Pokemon-Link-Engine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/db_docs.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/dump.json" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/dump.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/pokeapitesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/pokeapitesting.py" afterDir="false" />
@@ -45,7 +43,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -56,11 +54,11 @@
       <recent name="F:\Python Projects\Pokemon-Link-Engine\audio\voices" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Dump stuff/db_testing/docs" />
       <recent name="$PROJECT_DIR$/mechanics" />
       <recent name="$PROJECT_DIR$/utils/system" />
       <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/utils/map_maker" />
-      <recent name="$PROJECT_DIR$/users/loona/pokemon" />
     </key>
   </component>
   <component name="RunManager" selected="Python.pokeapitesting">
@@ -318,7 +316,10 @@
       <workItem from="1644721808669" duration="6507000" />
       <workItem from="1645308380123" duration="3394000" />
       <workItem from="1645473981494" duration="3000" />
-      <workItem from="1645474001465" duration="6471000" />
+      <workItem from="1645474001465" duration="6538000" />
+      <workItem from="1645842566317" duration="1197000" />
+      <workItem from="1645844646665" duration="3421000" />
+      <workItem from="1645942737397" duration="7824000" />
     </task>
     <task id="LOCAL-00001" summary="Can now switch between maps in a 2 way fashion. not 1 way.&#10;&#10;Player is drawn ,animated and collision logic is accounted for more logically now that we are using the current instance of the player&#10;&#10;Cooldown for switching between maps and the player does not switch when standing in a gate.&#10;&#10;Rewrote comments to make more sense&#10;&#10;Removed all tile-based movement for the player as tile-based movement will not be used for this project.&#10;&#10;draws hitboxes around gates as well&#10;&#10;moved keypress.py into mechanics&#10;&#10;created grey maps for extra testing and to reduce the risk of seizures due to the other maps being quite bright and flashy.">
       <created>1625191456360</created>
@@ -367,7 +368,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$speak.coverage" NAME="speak Coverage Results" MODIFIED="1639459668147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/audio" />
     <SUITE FILE_PATH="coverage/main_py$run.coverage" NAME="run Coverage Results" MODIFIED="1639507237971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$pokeapitesting.coverage" NAME="pokeapitesting Coverage Results" MODIFIED="1645479454681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Dump stuff/db_testing" />
+    <SUITE FILE_PATH="coverage/main_py$pokeapitesting.coverage" NAME="pokeapitesting Coverage Results" MODIFIED="1645951622388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Dump stuff/db_testing" />
     <SUITE FILE_PATH="coverage/main_py$participant_test.coverage" NAME="participant_test Coverage Results" MODIFIED="1642034349233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../learning/Bubble/SMS_APP" />
     <SUITE FILE_PATH="coverage/main_py$testing_stuffs.coverage" NAME="testing stuffs Coverage Results" MODIFIED="1644725167246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mechanics" />
   </component>
