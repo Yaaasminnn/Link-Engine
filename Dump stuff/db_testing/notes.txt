@@ -108,7 +108,7 @@ evolution, find the evolution chain in species and add it into the species data
     look through all pokemon in the chain and look for the one with the right species and then note down its next evolution details
     every evolution check we look throuh the pokedex entry of said poke and if its entries are satisfied.
 
-massive pokedex file or many entries of all the pokemon as seperate files.
+massive pokedex file or many entries of all the pokemon as seperate files
 
 todo:
     a lot of this database will be loaded in memory always, so test out the ram usage
