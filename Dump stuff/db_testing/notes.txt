@@ -9,9 +9,12 @@ REMOVE:
 RESEARCH:
     pokemon that have different forms and defaults. rotom, kyurem and castform. ditto?
     baby pokemon?
+        do we even need to keep track? check evolutions
+        cannot breed, and are hatched from eggs usually rather than encountered, parent pkmn usually hold an item to hatch the baby pkmn
     evolutions:
         trade based. karrablast(trade with specific pkmn[id:299]), machoke(any[id:27])
         gender based: kirlia([id:140])
+
 
 CONTENTS:
 BERRIES
@@ -68,7 +71,12 @@ Hierarchy:
     Pokemon:
         species
             shapes(included)
-        evolution
+            color(included)
+            habitat(included)
+            egg group(included)
+            growth rate(included)
+            evolution
+        weakness
     Moves
     Types
     Items:
@@ -109,7 +117,14 @@ evolution, find the evolution chain in species and add it into the species data
     every evolution check we look throuh the pokedex entry of said poke and if its entries are satisfied.
 
 massive pokedex file or many entries of all the pokemon as seperate files.
+    when referencing another pokemon(what it evolves into for example) dowe reference the name or the id?
 
+
+649 pokemon
+the final api call script should take about 11 mins to execute. since we shall delay a second between each pokemon.
+13-15 if we include the writes as well as any bottlenecks or lag from either end
+pokeapi call rules
+test the script for 1 pokemon and check the file size.
 todo:
     a lot of this database will be loaded in memory always, so test out the ram usage
     excludes: pokedex

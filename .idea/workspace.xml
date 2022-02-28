@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="cleanup after compiling thing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/docs/pokemon.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/docs/pokemon.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/dump.json" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/dump.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/pokeapitesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/pokeapitesting.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/time&#10;" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -315,7 +320,8 @@
       <workItem from="1645474001465" duration="6538000" />
       <workItem from="1645842566317" duration="1197000" />
       <workItem from="1645844646665" duration="3421000" />
-      <workItem from="1645942737397" duration="8600000" />
+      <workItem from="1645942737397" duration="8708000" />
+      <workItem from="1645987063881" duration="4663000" />
     </task>
     <task id="LOCAL-00001" summary="Can now switch between maps in a 2 way fashion. not 1 way.&#10;&#10;Player is drawn ,animated and collision logic is accounted for more logically now that we are using the current instance of the player&#10;&#10;Cooldown for switching between maps and the player does not switch when standing in a gate.&#10;&#10;Rewrote comments to make more sense&#10;&#10;Removed all tile-based movement for the player as tile-based movement will not be used for this project.&#10;&#10;draws hitboxes around gates as well&#10;&#10;moved keypress.py into mechanics&#10;&#10;created grey maps for extra testing and to reduce the risk of seizures due to the other maps being quite bright and flashy.">
       <created>1625191456360</created>
@@ -359,7 +365,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645952993525</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="cleanup after compiling thing">
+      <created>1645953043179</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1645953043179</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,7 +400,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$speak.coverage" NAME="speak Coverage Results" MODIFIED="1639459668147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/audio" />
     <SUITE FILE_PATH="coverage/main_py$run.coverage" NAME="run Coverage Results" MODIFIED="1639507237971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$pokeapitesting.coverage" NAME="pokeapitesting Coverage Results" MODIFIED="1645951622388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Dump stuff/db_testing" />
+    <SUITE FILE_PATH="coverage/main_py$pokeapitesting.coverage" NAME="pokeapitesting Coverage Results" MODIFIED="1645990496454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Dump stuff/db_testing" />
     <SUITE FILE_PATH="coverage/main_py$participant_test.coverage" NAME="participant_test Coverage Results" MODIFIED="1642034349233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../learning/Bubble/SMS_APP" />
     <SUITE FILE_PATH="coverage/main_py$testing_stuffs.coverage" NAME="testing stuffs Coverage Results" MODIFIED="1644725167246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mechanics" />
   </component>

@@ -6,7 +6,7 @@ from utils.json_utils import load_json, create_json, update_json
 id = 493
 
 def call(print_resp=False, id=id):
-    url = f"https://pokeapi.co/api/v2/pokemon-form/{id}/"
+    url = f"https://pokeapi.co/api/v2/pokemon-species/{id}/"
     response = requests.request("GET", url=url)
     data = json.loads(response.text)
     if print_resp:

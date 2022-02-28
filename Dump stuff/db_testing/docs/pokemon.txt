@@ -35,33 +35,35 @@ Pokemon::Pokemon:
         type: the type
 
 Pokemon::Species:
-        id: id number (remove)
-        name: name of this pokemon
-        order: slight diff order of the pokedex number
-        gender rate: chance of pokemon being female where gender rate/8 =percentage
-        capture rate: 0-255. how easy it is to capture
-        base_happiness: 0-255 happiness when caught with a normal pokeball. higher, happier
-        is_baby: whether the pokemon is a baby pokemon or not
-        is_legendary:
-        is_mythical:
-        hatch counter: (x+1)*255 is how many steps to take to hatch the egg normally. (range?)
-        has_gender_differences:
-        forms_switchable: whether or not this pokemon has forms and can switch between them
-        *growth rate: rate the pkmn gains levels
-        *pokedex numbers: all the dfferent numbers the pokemon has in different pokedexes
-        *egg groups: the egg groups this pokemon belongs to
-        *color: the colour this pokemon is
-        *shape: the shape
-        *evolves_from_species: what species the pokemon evolves from
-        *evolution chain: the evolution train
-        *habitat: the habitat this pokemon can be found in
-        *generation: what generation this pokemon was introduced in
-        *names: all the names this pokemon has in different languages
-        *pal_park_encounters: list of encounters with this pokemon in pal park
-        *flavour text entries: all the flavour text pokedex entries
-        *form descriptions: descriptions of forms this pokemon takes on
-        *genera: the genus of this pokemon in diff langs, the seed pokemon
-        *varieties: list of pokemon that exist in this species
+        -id: id number
+        -name: name of this pokemon
+        -order: slight diff order of the pokedex number
+        gender rate(int): chance of pokemon being female where gender rate/8 =percentage(where 1=100%)
+        capture rate(int): 0-255. how easy it is to capture
+        base_happiness(int): 0-255 happiness when caught with a normal pokeball. higher, happier
+        +is_baby(bool): whether the pokemon is a baby pokemon or not
+        is_legendary(bool):
+        is_mythical(bool):
+        +hatch counter(int): (x+1)*255 is how many steps to take to hatch the egg normally. (range?)
+        has_gender_differences(bool):
+        forms_switchable(bool): whether or not this pokemon has forms and can switch between them
+        *growth rate(growthrate/string): rate the pkmn gains levels
+        -*pokedex numbers: all the dfferent numbers the pokemon has in different pokedexes
+        *egg groups(list[egggroups]/list[str]): the egg groups this pokemon belongs to
+        *color(colour/string): the colour this pokemon is
+        *shape(shape/string): the shape
+        *evolves_from_species(species/string): what species the pokemon evolves from
+        +*evolution chain(evolution chain/): the evolution train
+        *habitat(habitat/string): the habitat this pokemon can be found in
+        -*generation: what generation this pokemon was introduced in
+        -*names: all the names this pokemon has in different languages
+        -*pal_park_encounters: list of encounters with this pokemon in pal park
+        *flavour text entries: all the flavour text pokedex entries in diff langs
+            keep the en one
+        +*form descriptions: descriptions of forms this pokemon takes on
+        -*genera: the genus of this pokemon in diff langs, the seed pokemon
+            keep the en one
+        +*varieties: list of pokemon that exist in this species
 
 Pokemon::Colours:
     id: colour int id. (black, blue, etc)
