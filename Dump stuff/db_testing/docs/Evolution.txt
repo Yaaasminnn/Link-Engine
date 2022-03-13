@@ -27,3 +27,18 @@ Evolution::Chains:
             trade_species(species/string): what u must trade this pokemon for to evolve(if null it dosent matter what)
             turn_upside_down(bool): if the 3ds needs to be turned upside down or not
         *evolves to(chainlink): what pokemon they evolve to and the recursed chain until it reaches the final evolution.
+
+Evolution::Triggers:
+    id(int): id of the type of evolution
+    name(string): the name of the evolution type
+        level up
+        trade
+        use item
+        shed(shedinja)
+        -
+        -
+        -
+        -
+        -
+        other
+    -*names: names of the evolution in diff langs

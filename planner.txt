@@ -49,3 +49,6 @@ player data:
 
 map design:
   map maker, forget about the dialogue. we can make the text based stuff manual, this is just graphical.
+
+other:
+    remove the keyboard module and use the pygame built in one.

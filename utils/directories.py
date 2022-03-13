@@ -14,7 +14,10 @@ def get_project_dir():
 
     problem: may not be foolproof. need a surefire way to get the project dir no matter where the file is located
     """
-    os.chdir(sys.path[1])
-    return sys.path[1]
+    os.system("pwd > project_dir.txt")
+    with open("project_dir.txt", "r") as f:
+        dir = f.read()
+    os.chdir(dir[:-1])
+    return dir
 
 def get_user_dir(user, game_dir): return f"./users/{user}"

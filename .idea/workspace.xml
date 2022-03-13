@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="cleanup after compiling thing">
+      <change afterPath="$PROJECT_DIR$/Dump stuff/db_testing/docs/Moves.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/audio devices.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/game.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/docs/pokemon.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/docs/pokemon.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/dump.json" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/dump.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/docs/Evolution.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/docs/Evolution.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dump stuff/db_testing/pokeapitesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dump stuff/db_testing/pokeapitesting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/time&#10;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/speak.py" beforeDir="false" afterPath="$PROJECT_DIR$/audio/speak.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/planner.txt" beforeDir="false" afterPath="$PROJECT_DIR$/planner.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/directories.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/directories.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +66,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.pokeapitesting">
-    <configuration name="dump" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="audio devices" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Pokemon-Link-Engine" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -71,12 +74,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Dump stuff" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/audio" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Dump stuff/dump.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/audio/audio devices.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -243,19 +246,19 @@
       <item itemvalue="Python.main1" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.run" />
-      <item itemvalue="Python.dump" />
       <item itemvalue="Python.speak" />
       <item itemvalue="Python.testing stuffs" />
       <item itemvalue="Python.participant_test" />
       <item itemvalue="Python.pokeapitesting" />
+      <item itemvalue="Python.audio devices" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.pokeapitesting" />
+        <item itemvalue="Python.speak" />
+        <item itemvalue="Python.audio devices" />
         <item itemvalue="Python.testing stuffs" />
         <item itemvalue="Python.participant_test" />
-        <item itemvalue="Python.speak" />
-        <item itemvalue="Python.dump" />
       </list>
     </recent_temporary>
   </component>
@@ -322,6 +325,11 @@
       <workItem from="1645844646665" duration="3421000" />
       <workItem from="1645942737397" duration="8708000" />
       <workItem from="1645987063881" duration="4663000" />
+      <workItem from="1646360994586" duration="48000" />
+      <workItem from="1646361157790" duration="107000" />
+      <workItem from="1646615855509" duration="610000" />
+      <workItem from="1646616510251" duration="1269000" />
+      <workItem from="1647136175661" duration="3846000" />
     </task>
     <task id="LOCAL-00001" summary="Can now switch between maps in a 2 way fashion. not 1 way.&#10;&#10;Player is drawn ,animated and collision logic is accounted for more logically now that we are using the current instance of the player&#10;&#10;Cooldown for switching between maps and the player does not switch when standing in a gate.&#10;&#10;Rewrote comments to make more sense&#10;&#10;Removed all tile-based movement for the player as tile-based movement will not be used for this project.&#10;&#10;draws hitboxes around gates as well&#10;&#10;moved keypress.py into mechanics&#10;&#10;created grey maps for extra testing and to reduce the risk of seizures due to the other maps being quite bright and flashy.">
       <created>1625191456360</created>
@@ -398,9 +406,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="cleanup after compiling thing" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/main_py$speak.coverage" NAME="speak Coverage Results" MODIFIED="1639459668147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/audio" />
-    <SUITE FILE_PATH="coverage/main_py$run.coverage" NAME="run Coverage Results" MODIFIED="1639507237971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$pokeapitesting.coverage" NAME="pokeapitesting Coverage Results" MODIFIED="1645990496454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Dump stuff/db_testing" />
+    <SUITE FILE_PATH="coverage/main_py$speak.coverage" NAME="speak Coverage Results" MODIFIED="1647155753807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/audio" />
+    <SUITE FILE_PATH="coverage/main_py$run.coverage" NAME="run Coverage Results" MODIFIED="1646361206634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$pokeapitesting.coverage" NAME="pokeapitesting Coverage Results" MODIFIED="1647156068028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Dump stuff/db_testing" />
+    <SUITE FILE_PATH="coverage/main_py$audio_devices.coverage" NAME="audio devices Coverage Results" MODIFIED="1646617379499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/audio" />
     <SUITE FILE_PATH="coverage/main_py$participant_test.coverage" NAME="participant_test Coverage Results" MODIFIED="1642034349233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../learning/Bubble/SMS_APP" />
     <SUITE FILE_PATH="coverage/main_py$testing_stuffs.coverage" NAME="testing stuffs Coverage Results" MODIFIED="1644725167246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mechanics" />
   </component>

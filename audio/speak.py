@@ -1,14 +1,23 @@
-import os; os.environ["SDL_AUDIODRIVER"] = "dsp"
+#import os; os.environ["SDL_AUDIODRIVER"] = "dsp"
 import pygame
-from pygame import mixer
+#from pygame import mixer
+import pygame._sdl2 as sdl2
 import time
 import sys
+#from playsound import playsound
+#import simpleaudio as sa
 #import pyaudio
-import wave
+#import wave
+
+pygame.init()
+is_capture = 0  # zero to request playback devices, non-zero to request recording devices
+num = sdl2.get_num_audio_devices(is_capture)
+names = [str(sdl2.get_audio_device_name(i, is_capture), encoding="utf-8") for i in range(num)]
+
 
 x,y = 1000,1000 #display sizes
 midx, midy = x/2,y/2
-pygame.init() #initializes pygame
+#pygame.init() #initializes pygame
 #pygame.mixer.init()
 clock = pygame.time.Clock() #sets the clock so we can set an fps
 window = pygame.display.set_mode((x,y)) #creates a window
@@ -77,11 +86,17 @@ message = "hey there buddy chum pal friend buddy pal chum bud friend fella bruth
 
 #MAIN GAME LOOP
 displayed = ""
-pygame.init()
+
+
+pygame.mixer.pre_init(devicename=names[0])
+pygame.mixer.init()
+
+#sound = sa.WaveObject.from_wave_file("./voices/sans.wav")
 pygame.mixer.music.load("./voices/sans.wav")
 pygame.mixer.music.set_volume(0.4)
-#mixer.music.play()
-while True:
+#pygame.mixer.music.play()
+i=70
+while i>0:
     exit_cond() #checks for exit conditions every frame
 
     #==================================================================================================================#
@@ -89,10 +104,11 @@ while True:
     displayed = add_text(displayed, message)
     displayed_text = font.render(displayed, True, (255,255,255))
     window.blit(displayed_text, (0,midy))
-    mixer.music.play()
+    pygame.mixer.music.play()
 
     #==================================================================================================================#
 
     pygame.display.flip() #updates display
     clock.tick(75) #sets the fps
     window.fill((0,0,0)) #fills the screen with black every frame to move to the next frame
+    i-=1
