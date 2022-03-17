@@ -18,4 +18,15 @@ Moves::Moves:
         ailment(ailment/string): the status ailment it will cause
         ailment chance(int): the chance of inflicting an ailment
         *category(category/string): the category of move
-
+        min_turns(int): min turn duration null if only lasts 1 turn
+        max_turns(int): max turn duration
+        min_hits(int): min amount of hits. multi hit attacks. null if only 1 hit
+        max_hits(int): max hits
+        drain(int): drain/recoil(negative) on the user. percentage of damage done. 0 if nothing
+        healing(int): in percent of its max hp. how much hp gained by the user
+        crit rate(int): crit rate bonus
+        flinch chance(int): likelihood of causing target to flinch
+        stat chance(int): likelihood of stat changes
+        *stat_change(list[int, stat/string]):
+            change(int): the amoutn of change
+            *stat(stat/string): the stat being affected
