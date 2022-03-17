@@ -125,6 +125,8 @@ the final api call script should take about 11 mins to execute. since we shall d
 13-15 if we include the writes as well as any bottlenecks or lag from either end
 pokeapi call rules
 test the script for 1 pokemon and check the file size.
+
+
 todo:
     a lot of this database will be loaded in memory always, so test out the ram usage
     excludes: pokedex

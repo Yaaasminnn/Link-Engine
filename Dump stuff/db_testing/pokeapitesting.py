@@ -3,10 +3,10 @@ import requests
 import json
 from utils.json_utils import load_json, create_json, update_json
 
-id = 0
+id = 100
 
 def call(print_resp=False, id=id):
-    url = f"https://pokeapi.co/api/v2/evolution-trigger/{id}/"
+    url = f"https://pokeapi.co/api/v2/move/{id}/"
     response = requests.request("GET", url=url)
     data = json.loads(response.text)
     if print_resp:
@@ -21,8 +21,8 @@ def list(print_resp=False):
         time.sleep(1)
 
 
-#call()
-
+call()
+"""
 for i in range(10,20):
-    call(print_resp=True, id=i)
-    time.sleep(1)
+    call(print_resp=False, id=i)
+    time.sleep(1)"""
