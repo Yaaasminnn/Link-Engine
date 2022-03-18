@@ -1,0 +1,13 @@
+{
+  "keybinds": {
+    "up": "Up",
+    "down": "Down",
+    "left": "Left",
+    "right": "Right",
+    "dash": "Shift",
+    "save": "s",
+    "exit": "Escape",
+    "debug menu": "F3",
+    "delete": "Delete"
+  }
+}

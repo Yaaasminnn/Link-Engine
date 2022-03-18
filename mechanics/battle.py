@@ -55,7 +55,7 @@ class Pokemon:
         """
         Moves.
         
-        This creates an array that will contain up to 4 moves. It then reads the moveset data in the pokemondata.json
+        This creates an array that will contain up to 4 moves. It then reads the moveset data in the pokedex.json
         upon reading it, it will read the move's level as well and if the pokemon's level is >= the move level, it will
         append it to the move array created. however, if there is already 4 moves, it will delete the first one and
         append the new move to the array. this way, as it levels up it learns new moves
@@ -78,7 +78,7 @@ class Pokemon:
                 pass
             move += 1
 
-        self.pkmn_type = pkmn_data[str(name)]["Types"] #shows the pokemon's type
+        self.pkmn_type = self.pkmn["Types"] #shows the pokemon's type
 
         if nickname is None: #if the pokemon has a nickname, refer to it by the nickname
             self.nickname = self.name
@@ -90,7 +90,7 @@ class Pokemon:
         """
         Loads the pokemon database for given wild pokemon
         """
-        with open("pokemondata.json", "r") as pkmn:
+        with open("pokedex.json", "r") as pkmn:
             data = json.load(pkmn)
         return data
 
@@ -128,28 +128,19 @@ class Pokemon:
                 "Careful",
                 "Quirky"
             ]
-            random_index = random.choice(natures)
+            chosen_index = random.choice(natures)
+            nature = data[chosen_index]
 
             nature_data = []
-            nature_name = data[random_index]["Name"]
+            nature_name = nature["Name"]
             nature_data.append(nature_name)
 
             nature_stats = []
-            nature_atk_mod = data[random_index]["Stat Mods"]["Attack Mod"]
-            nature_stats.append(nature_atk_mod) #index 0
-
-            nature_def_mod = data[random_index]["Stat Mods"]["Defence Mod"]
-            nature_stats.append(nature_def_mod) #index 1
-
-            nature_sp_atk_mod = data[random_index]["Stat Mods"]["Special Attack Mod"]
-            nature_stats.append(nature_sp_atk_mod) #index 2
-
-            nature_sp_def_mod = data[random_index]["Stat Mods"]["Special Defence Mod"]
-            nature_stats.append(nature_sp_def_mod) #index 3
-
-            nature_speed_mod = data[random_index]["Stat Mods"]["Speed Mod"]
-            nature_stats.append(nature_speed_mod) #index 4
-
+            nature_atk_mod = nature["Stat Mods"]["Attack Mod"]; nature_stats.append(nature_atk_mod) #index 0
+            nature_def_mod = nature["Stat Mods"]["Defence Mod"]; nature_stats.append(nature_def_mod) #index 1
+            nature_sp_atk_mod = nature["Stat Mods"]["Special Attack Mod"]; nature_stats.append(nature_sp_atk_mod) #index 2
+            nature_sp_def_mod = nature["Stat Mods"]["Special Defence Mod"]; nature_stats.append(nature_sp_def_mod) #index 3
+            nature_speed_mod = nature["Stat Mods"]["Speed Mod"]; nature_stats.append(nature_speed_mod) #index 4
             nature_data.append(nature_stats)
         return nature_data
 
@@ -163,19 +154,12 @@ class Pokemon:
         """
         EV =[]
 
-        EV_hp = 0 #index 0
-        EV.append(EV_hp)
-        EV_atk = 0 #index 1
-        EV.append(EV_atk)
-        EV_def = 0 #index 2
-        EV.append(EV_def)
-        EV_sp_atk = 0 #index 3
-        EV.append(EV_sp_atk)
-        EV_sp_def = 0 #index 4
-        EV.append(EV_sp_def)
-        EV_speed = 0 #index 5
-        EV.append(EV_speed)
-
+        EV_hp = 0; EV.append(EV_hp) # index 0
+        EV_atk = 0; EV.append(EV_atk) #index 1
+        EV_def = 0; EV.append(EV_def) #index 2
+        EV_sp_atk = 0; EV.append(EV_sp_atk) #index 3
+        EV_sp_def = 0; EV.append(EV_sp_def) #index 4
+        EV_speed = 0; EV.append(EV_speed) #index 5
         return EV
 
     @staticmethod #Creates a list of IV's for the generated pokemon
@@ -209,6 +193,8 @@ class Pokemon:
 
         assigns the pokemon a unique id, then determines if it will be added to the party. if the party is already full,
         it will place it in the pc json file.
+
+        maybe this shouldnt be part of this class since the class generates a pokemon
         """
         pc_pkmn = Load_Pokemon.load_pc()
         party_pkmn = Load_Pokemon.load_party()

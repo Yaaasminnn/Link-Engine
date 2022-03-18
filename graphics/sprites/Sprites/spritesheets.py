@@ -1,5 +1,6 @@
 import pygame
 import json
+from utils.json_utils import load_json, update_json
 
 class Spritesheet:
     """
@@ -24,8 +25,7 @@ class Spritesheet:
         self.dot = filename.rfind(".")
         ext = filename[self.dot+1:]
         self.meta_data = self.filename.replace(ext, "json")#replaces the png to json
-        with open(self.meta_data) as f: #loads the json
-            self.data = json.load(f)
+        self.data = load_json(self.meta_data)
 
 
     def get_sprite(self, x, y, width, height):

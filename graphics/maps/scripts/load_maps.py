@@ -2,6 +2,67 @@ import json
 import time
 import os
 from graphics.sprites.Sprites.Sprites import get_sprite_from_group
+from utils.json_utils import load_json, update_json
+import pygame
+from graphics.sprites.Sprites.Sprites import Static_Sprite, Animated_Sprite
+from utils.system.sys_info import mid_x, mid_y
+
+# Sprite Groups
+player_group = pygame.sprite.Group()  # player sprite and player stuff
+background_group = pygame.sprite.Group()  # background group
+obstacle_group = pygame.sprite.Group()  # obstacle groups
+npc_group = pygame.sprite.Group()  # npc and moving obstacle group
+passthrough_group = pygame.sprite.Group()  # all tiles that can be passed through
+gate_group = pygame.sprite.Group()  # gates group
+
+class Map:
+    """
+    Data class for map data.
+
+    todo:
+        Wont be used yet. doing so needs a handful of changes to how maps are generated, switched and deleted.
+        needs to be object-oriented. also, all imports of the sprite groups would need to import the instance of this
+        dataclass similar to what user did. also, background_group and backdrop need to be configured.
+    """
+
+    def __init__(self, name, gate_id=None, bg_coords=(mid_x,mid_y), player_coords = (mid_x,mid_y)):
+
+        #Kills all the current sprite groups
+        global npc_group, obstacle_group, player_group, gate_group, background_group
+        npc_group = kill_group(npc_group)
+        obstacle_group = kill_group(obstacle_group)
+        gate_group = kill_group(gate_group)
+        player_group = kill_group(player_group)
+        background_group = kill_group(background_group)
+
+        self.name = name
+        self.data = load_map_data(self.name)
+        self.NPCs = self.data["NPC's"]
+        self.obstacles = self.data["Obstacles"]
+        self.gates = self.data["gates"]
+        self.backdrop_x, self.backdrop_y = bg_coords #can change this, but has a default value of (mid_x,mid_y)
+        self.player_coords = player_coords #can change this, but has a default value of (mid_x,mid_y)
+
+        if gate_id is not None:
+            self.gate = get_gate_from_group(self.data, gate_id)
+            self.backdrop_x, self.backdrop_y = self.gate["bg coords"]["x"], self.gate["bg coords"]["y"]
+            self.player_coords = (self.gate["coords"]["x"]+self.backdrop_x, self.gate["coords"]["y"]+self.backdrop_y)
+
+
+        #GATES  || loads all gates in
+        self.gate_group = load_tiles((self.backdrop_x, self.backdrop_y), sprite_group=gate_group, tiles=self.gates, id=True)
+
+        #PLAYER   || loads the player in
+        self.player_group = load_tiles(self.player_coords, player_group, group_animated=True, is_player=True)
+
+        #BACKDROP   || loads in the backdrop based on pre-set coordinates
+        self.backdrop = Static_Sprite(self.backdrop_x, self.backdrop_y, self.data["image"])
+        background_group.add(self.backdrop)
+
+        self.npc_group = load_tiles((self.backdrop_x, self.backdrop_y), npc_group, self.NPCs, group_animated=True)
+
+        self.obstacle_group = load_tiles((self.backdrop_x, self.backdrop_y), obstacle_group, self.obstacles)
+
 
 def load_map_data(map: str):
     """
@@ -31,8 +92,7 @@ def load_map_data(map: str):
     if ".json" not in map: # adds in ".json" if not already in map
         map +=".json"
     path+= map # adds on the parent directory
-    with open(f"{path}", "r") as map_data: #opens the folder
-        map_data=json.load(map_data)
+    map_data = load_json(path)
     return map_data
 
 def get_meta_files():
@@ -44,6 +104,9 @@ def get_meta_files():
     Example:
         get_meta_files():
         >>> return ["map1 meta.json", "map2 meta.json", "map3 meta.json"]
+
+    todo:
+        replace this with a generalized "search for all files of a type in a dir"
 
     """
     path = os.getcwd()
@@ -104,7 +167,7 @@ def load_tiles(backdrop_coords, sprite_group, tiles = None, group_animated = Fal
         """
             todo:load in players with an id
         """
-        from main import mid_x, mid_y
+        from utils.system.sys_info import mid_x, mid_y
         new_tile = Animated_Sprite(backdrop_coords[0], backdrop_coords[1], "graphics/sprites/overworld/player movement.png")
         sprite_group.add(new_tile)
         return sprite_group
@@ -166,8 +229,8 @@ def set_map(name, id):
         maybe include backdrop groups as load_tiles()???
 
     """
-    from main import npc_group, obstacle_group, background_group, player_group, gate_group
-    from graphics.sprites.Sprites.Sprites import Static_Sprite, Animated_Sprite
+    global gate_group, player_group, background_group, obstacle_group, npc_group
+    from graphics.sprites.Sprites.Sprites import Static_Sprite
 
     map_data = [] #array that we will return
     map = load_map_data(name)
@@ -209,7 +272,9 @@ def link_gates(id):
         this returns the name of the map, idk if it will load in the new map by the proper id. might need to return
         both id and map name and then load in according to both respectively.
     """
-    from main import name #gets the name of the current map
+    from main import current_map #gets the name of the current map
+    name = current_map.name
+    print(name)
     meta_files = get_meta_files() #loads in all the meta data files
     for file in meta_files:
         map = load_map_data(file)
@@ -219,7 +284,7 @@ def link_gates(id):
             for gate in gates:
                 gate = gates[gate]
                 gate_id = gate["id"] #for all the gates in meta data, look for the one who's id = the id we want
-                if gate_id == id: name = map_name; return map_name
+                if gate_id == id: return map_name
 
 def kill_group(group):
     """
@@ -252,7 +317,7 @@ def is_at_gate(now, init):
     """
     Checks if the player is at a gate and loads in a new map at the corresponding gate.
 
-    Checks if the player is at the given map. it will ignore if the player is currently standing still in said gate or
+    Checks if the player is at the given gate. it will ignore if the player is currently standing still in said gate or
     if the player recently entered through the gates. once the player has entered the gate, it will kill all sprite
     instances in the given group using kill_group(sprite_group). then links the current gate with the corresponding gate
     using link_gates(id) and then use the returned map name to create the new map using set_map(name).
@@ -271,9 +336,9 @@ def is_at_gate(now, init):
         make it check for all gates in gate group
         load maps based on id's. confirm this
     """
-
-    from main import \
-        (col_tol,background_group, obstacle_group, npc_group, gate_group, player_group, map, name)
+    global obstacle_group, npc_group, player_group, gate_group, background_group
+    from main import conf, current_map
+    col_tol = conf.col_tol
 
     player = get_sprite_from_group(player_group)
     #print(player.last_posx, player.pos_x, player.last_posy, player.pos_y)
@@ -286,18 +351,20 @@ def is_at_gate(now, init):
         if (coords_diff[0] <=col_tol or coords_diff[1] <=col_tol) and (coords_diff[2]<=col_tol or coords_diff[3]<=col_tol):
 
             #kills all instances in all groups
-            npc_group = kill_group(npc_group)
+            """npc_group = kill_group(npc_group)
             obstacle_group = kill_group(obstacle_group)
             gate_group = kill_group(gate_group)
             player_group = kill_group(player_group)
-            background_group = kill_group(background_group)
+            background_group = kill_group(background_group)"""
 
             #pairs the new maps by their id's
-            new_map = link_gates(gate.id)
-            #print(new_map)
+            new_map_name = link_gates(gate.id)
+            #print(new_map_name)
 
             #sets the name value to the new map name
-            name = new_map
+            #name = new_map_name
             #loads in the new map using that name
-            map = set_map(new_map, gate.id)
-            return name #return the new name so we can switch again later
+            #map = set_map(new_map_name, gate.id)
+            del current_map
+            current_map = Map(new_map_name, gate_id=gate.id)
+            return current_map #return the new name so we can switch again later

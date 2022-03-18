@@ -1,0 +1,133 @@
+REMOVE:
+    order(unless we gon use a regional/national dex)
+    game indices(except gen 5)
+    held items
+    location area encounters
+    past types
+    sprites(except animated gen 5 and default)
+
+RESEARCH:
+    pokemon that have different forms and defaults. rotom, kyurem and castform. ditto?
+    baby pokemon?
+        do we even need to keep track? check evolutions
+        cannot breed, and are hatched from eggs usually rather than encountered, parent pkmn usually hold an item to hatch the baby pkmn
+    evolutions:
+        trade based. karrablast(trade with specific pkmn[id:299]), machoke(any[id:27])
+        gender based: kirlia([id:140])
+
+
+CONTENTS:
+BERRIES
+    BERRIES
+    BERRY FIRMNESS
+    BERRY FLAVOURS
+ENCOUNTERS
+    METHODS
+    CONDITIONS
+    CONDITION VALUES
+EVOLUTION
+    CHAINS
+    TRIGGERS
+ITEMS
+    ITEM
+    ATTRIBUTES
+    CATEGORIES
+    FLING EFFECTS
+    POCKETS
+LOCATIONS? (FOR REFERENCE FOR OUR OWN DB STRUCTURE?)
+    AREAS
+    PAL PARK AREAS
+    REGIONS
+MACHINES
+    MACHINES
+MOVES
+    MOVES
+    AILMENTS
+    BATTLE STYLES
+    CATEGORIES
+    DAMAGE CLASSES
+    LEARN METHODS
+    TARGETS
+*POKEMON
+   *ABILITIES
+   *CHARACTERISTICS
+   *EGG GROUPS
+   *GENDERS
+   *GROWTH RATES
+   *NATURES
+   *POKEATHLON STATS
+   *POKEMON
+   *PKMN LOCATION AREAS
+   *PKMN COLOURS
+   *PKMN FORMS
+   *PKMN HABITATS
+   *PKMN SHAPES
+   *PKMN SPECIES
+   *STATS
+   *TYPES
+
+
+Hierarchy:
+    Pokemon:
+        species
+            shapes(included)
+            color(included)
+            habitat(included)
+            egg group(included)
+            growth rate(included)
+            evolution
+        weakness
+    Moves
+    Types
+    Items:
+        berries
+    maps:
+        location area encounters
+            items
+
+pokemon weaknesses are calculated and manually added to the db
+no calculations, just lookup tables.
+research this more
+
+encounters is in metadata
+each pokemon, with their encounter
+list of encounters. can have encounters with the same pkmn
+
+research characteristics.
+    highest stat/5 and if the remainder is a certain value give the pokemon that stat.
+    remove possible values
+
+research forms
+    id's?
+    forms are listed on the pokemon resource not species
+
+for things that have id's we can list them in that order.
+and remove that id resource.
+
+work on all the mechanics and make forms the last part
+
+habitats:
+    included in map meta? sure. but its just an entry
+    we still manually assign the pokemon there ourselves
+
+dont include pokeathlon stats
+
+evolution, find the evolution chain in species and add it into the species data
+    look through all pokemon in the chain and look for the one with the right species and then note down its next evolution details
+    every evolution check we look throuh the pokedex entry of said poke and if its entries are satisfied.
+
+massive pokedex file or many entries of all the pokemon as seperate files.
+    when referencing another pokemon(what it evolves into for example) dowe reference the name or the id?
+
+
+649 pokemon
+the final api call script should take about 11 mins to execute. since we shall delay a second between each pokemon.
+13-15 if we include the writes as well as any bottlenecks or lag from either end
+pokeapi call rules
+test the script for 1 pokemon and check the file size.
+
+
+todo:
+    a lot of this database will be loaded in memory always, so test out the ram usage
+    excludes: pokedex
+    make sure to only load it in when necessary

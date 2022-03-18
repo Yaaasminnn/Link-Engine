@@ -1,0 +1,90 @@
+setup a file in utils called globvars.json or somn and its used to store global vars
+this way we dont call upon all of main when we done need to. have all files just load in data from globvars instead
+of main. these globvars are generated on start and can be modified. this may reduce ram usage
+
+LE pokemon statistics:
+total dmg dealt/taken
+total battles
+total distance walked
+
+level up:
+increment level
+look at pokedex data to see if it learns new moves/evolves
+
+save data in json. everything is in the map files but is toggled to true/false whether we use it or nah
+
+make a new pokemon type called "???" with properties:
+    no resistances or super effectives mutually, no immunities at all
+
+
+different difficulties with diff AI: (per user)
+easy
+    less thorough algo
+    also used by wild pokemon
+normal
+    non-AI conventional Algorithm
+    normal trainer
+hard
+    trained ML/NN
+    used by significant battles
+experimental
+    ML/neural networks that learn as u fight
+    only used in the post game battle tower thing(marathon)
+
+also: regardless of difficulty(except easy), important battles will have slightly smarter ai
+
+
+move npc's around on command(so we can make cutscenes)
+
+if you have indexes in an array that dont really have names, just use an array
+refactor that later?
+consider refactoring: Types
+
+Todo:
+   types and anything else species are just loaded from the json
+  hatching function
+    generate a pokemon
+    or, evolve an egg to a pokemon
+    uses a similar exp levelling system. starts at level 0 and increments.
+    gains exp when u walk
+
+
+properties are dependant on attributes and are changed. anything dependant on
+an attribute should be a property if it must be updated in real time
+
+  level -> property? (based on EXP, think of this later)
+  current_hp -> property (based on base_stats)
+  name -> property (based on species but only if nickname is none)
+  EV -> property (based on each EV?)
+
+on level up: check moves to learn
+on evolution: check moves to learn
+
+make a window manager of sorts
+
+
+stat conds:
+  (PERSISTENT. DEFINED IN POKEMON CLASS AND CAN EXIST OUTSIDE OF BATTLE)
+  para
+  burn
+  freeze
+  poisoned
+  sleeping
+  fainted
+
+  * confused
+  * infatuated
+  * Trapped
+  * Cursed
+  * temp. defined only in the battle class and can stack ontop of persistent conds
+
+
+
+
+
+some kind of defining language we set in a file.
+can be used for conditions for many things
+cutscenes, evolutions,
+that mc guy's vid
+
+todo.txt file of everything

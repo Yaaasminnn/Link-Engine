@@ -1,0 +1,11 @@
+{"first_page_uri": "/2010-04-01/Accounts/ACe085d3604a9b094e5e55690c32572a15/Calls.json?Url=http%3A%2F%2Fdemo.twilio.com%2Fdocs%2Fvoice.xml&To=+16473264044&From=+14159806820&PageSize=50&Page=0",
+  "end": 0,
+  "calls": [
+  {
+    "date_updated": "Sun, 02 Jan 2022 19:29:00 +0000", "price_unit": "USD", "parent_call_sid": null, "caller_name": "", "duration": "12", "from": "+14159806820", "to": "+16473264044", "annotation": null, "answered_by": null, "sid": "CA8d980448aafb80c281e45c97b405ab91", "queue_time": "0", "price": "-0.01300", "api_version": "2010-04-01", "status": "completed", "direction": "outbound-api", "start_time": "Sun, 02 Jan 2022 19:28:48 +0000", "date_created": "Sun, 02 Jan 2022 19:28:34 +0000", "from_formatted": "(415) 980-6820", "group_sid": null, "trunk_sid": "", "forwarded_from": null, "uri": "/2010-04-01/Accounts/ACe085d3604a9b094e5e55690c32572a15/Calls/CA8d980448aafb80c281e45c97b405ab91.json", "account_sid": "ACe085d3604a9b094e5e55690c32572a15", "end_time": "Sun, 02 Jan 2022 19:29:00 +0000", "to_formatted": "(647) 326-4044", "phone_number_sid": "PN77f35435747cab2231e8d44414177b4a",
+    "subresource_uris": {
+      "feedback": "/2010-04-01/Accounts/ACe085d3604a9b094e5e55690c32572a15/Calls/CA8d980448aafb80c281e45c97b405ab91/Feedback.json", "notifications": "/2010-04-01/Accounts/ACe085d3604a9b094e5e55690c32572a15/Calls/CA8d980448aafb80c281e45c97b405ab91/Notifications.json", "recordings": "/2010-04-01/Accounts/ACe085d3604a9b094e5e55690c32572a15/Calls/CA8d980448aafb80c281e45c97b405ab91/Recordings.json", "payments": "/2010-04-01/Accounts/ACe085d3604a9b094e5e55690c32572a15/Calls/CA8d980448aafb80c281e45c97b405ab91/Payments.json", "siprec": "/2010-04-01/Accounts/ACe085d3604a9b094e5e55690c32572a15/Calls/CA8d980448aafb80c281e45c97b405ab91/Siprec.json", "events": "/2010-04-01/Accounts/ACe085d3604a9b094e5e55690c32572a15/Calls/CA8d980448aafb80c281e45c97b405ab91/Events.json", "feedback_summaries": "/2010-04-01/Accounts/ACe085d3604a9b094e5e55690c32572a15/Calls/FeedbackSummary.json"
+  }
+  }
+  ],
+  "previous_page_uri": null, "uri": "/2010-04-01/Accounts/ACe085d3604a9b094e5e55690c32572a15/Calls.json?Url=http%3A%2F%2Fdemo.twilio.com%2Fdocs%2Fvoice.xml&To=+16473264044&From=+14159806820&PageSize=50&Page=0", "page_size": 50, "start": 0, "next_page_uri": null, "page": 0}

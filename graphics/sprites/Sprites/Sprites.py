@@ -4,6 +4,9 @@ from random import randint
 import keyboard
 import sys
 from graphics.sprites.Sprites.spritesheets import Spritesheet
+from utils.monitor import memory_info
+from utils.system.sys_info import sc_h, sc_w
+from utils.pygame_utils import draw_hitboxes
 
 def move(x, y, is_player):
     """
@@ -28,7 +31,9 @@ def move(x, y, is_player):
         >>> obstacle_group.update(coords[0], coords[1], True)
 
     """
-    from main import player_group, background_group, npc_group, animate, gate_group, obstacle_group
+    from main import conf
+    from graphics.maps.scripts.load_maps import player_group, background_group, npc_group, gate_group, obstacle_group
+    animate = conf.animate
 
     player = get_sprite_from_group(player_group) #gets the instance of the player
 
@@ -149,7 +154,6 @@ class Static_Sprite(pygame.sprite.Sprite):
                         at the same positions. if not, update the x and y positions of the screen. then animates the
                         player walking and finally sets the image at the new given positions
         """
-        from main import sc_h, sc_w
 
         # keeps it from hitting the edges
         if (self.rect.left <= 0) and input_x < 0 and not is_obstacle: self.pos_x = self.pos_x  # if it hits the edge of the screen, it stays on screen
@@ -235,7 +239,7 @@ class Animated_Sprite(pygame.sprite.Sprite):
                         itself. finally, it sets the image at the new given coordinates.
 
         """
-        from main import background_group
+        from graphics.maps.scripts.load_maps import background_group
 
         backdrop = get_sprite_from_group(background_group) # gets our instance of the backdrop
 
@@ -270,7 +274,8 @@ class Animated_Sprite(pygame.sprite.Sprite):
             also does not properly switch directions.
 
         """
-        from main import base_speed, counter_limit
+        from main import conf, counter_limit
+        base_speed = conf.base_speed
 
         # incrementaly increases the counter which is used for walking animations
         self.counter += 1
@@ -406,7 +411,10 @@ class Animated_Sprite(pygame.sprite.Sprite):
             todo:
                 make sure npc's dont also walk off the screen borders
         """
-        from main import base_speed, counter_limit, player_group, npc_group, obstacle_group, sc_h, sc_w
+        from main import conf
+        from graphics.maps.scripts.load_maps import player_group, npc_group, obstacle_group
+        from utils.system.sys_info import sc_h, sc_w
+        base_speed = conf.base_speed
         delta = 0.25  # how long we walk for
         now = time.time()  # current time
 
@@ -449,7 +457,7 @@ class Animated_Sprite(pygame.sprite.Sprite):
         the player's inputs are inverted on the edges, independantly_moving = False normally and when it is set to true,
         it looks to see if the sprite is moving in the opposite direction to set it to 0.
 
-        by default collided = 0 and collision_tol = 2(from the config file). collision_tol is the closest sprites
+        by default collided = 0 and col_tol = 2(from the config file). col_tol is the closest sprites
         can be before being considered collided and collided being set to 1.
         if the given sprite is colliding with another, it will set the current inputs to 0 and return them.
 
@@ -460,30 +468,30 @@ class Animated_Sprite(pygame.sprite.Sprite):
             not collided, x=base_speed, y=0     ||self is not coliding with the wall, return x/y unchanged
             :return [1,0]
         """
-        from main import col_tol
-        collision_tol = col_tol #how close the sprites can get before colliding
+        from main import conf
+        col_tol = conf.col_tol #how close the sprites can get before colliding
 
         #checks if a sprite is colliding with any obstacles
         for sprite in group:
             collided = pygame.sprite.collide_rect(self, sprite); rect = sprite.rect
             if collided==1:
                 left = rect.left; right = rect.right; top = rect.top; bottom = rect.bottom
-                if (abs(self.rect.left-right)<=collision_tol):
+                if (abs(self.rect.left-right)<=col_tol):
                     if independenty_moving:
                         if x < 0: x = 0
                     else:
                         if x > 0: x = 0
-                if (abs(self.rect.right-left)<=collision_tol):
+                if (abs(self.rect.right-left)<=col_tol):
                     if independenty_moving:
                         if x > 0: x = 0
                     else:
                         if x < 0: x = 0
-                if (abs(self.rect.top-bottom)<=collision_tol):
+                if (abs(self.rect.top-bottom)<=col_tol):
                     if independenty_moving:
                         if y < 0: y = 0
                     else:
                         if y > 0: y = 0
-                if (abs(self.rect.bottom-top)<=collision_tol):
+                if (abs(self.rect.bottom-top)<=col_tol):
                     if independenty_moving:
                         if y > 0: y = 0
                     else:
@@ -525,7 +533,11 @@ class Window:
             player.pos_x == 40 and y==+/-base_speed    ||offset on the x axis, but is moving on the y axis, screen moves
             >>> update_all(x,y)
         """
-        from main import background_group, player_group, mid_x, mid_y, sc_h, sc_w, base_speed
+        from utils.system.sys_info import sc_h,sc_w, mid_y, mid_x
+        from main import conf
+        from graphics.maps.scripts.load_maps import background_group, player_group
+
+        base_speed = conf.base_speed
 
         player = get_sprite_from_group(player_group) #gets the current player instance
         backdrop = get_sprite_from_group(background_group) #gets the current backdrop instance
@@ -581,7 +593,8 @@ class Window:
         Window.FPS_limit(FPs) limits to a maximum fps
         window.fill(colour) at the end of each frame, paint a black image that gets replaced when the new frame is drawn
         """
-        from main import FPS, window
+        from main import window
+        from utils.system.sys_info import FPS
         Window.movement(x,y)
         pygame.display.flip()
         Window.FPS_limit(FPS)
@@ -598,7 +611,8 @@ class Window:
             make it exit if holding enter for a period of time.
         """
 
-        from main import exit
+        from main import conf
+        exit = conf.exit
         for event in pygame.event.get():
             if event.type == pygame.QUIT or keyboard.is_pressed(exit):
                 pygame.quit()
@@ -611,7 +625,9 @@ class Window:
 
         Also currently draws hitboxes
         """
-        from main import draw_hud, background_group, obstacle_group, player_group, npc_group, window,gate_group
+        from main import conf, window
+        from graphics.maps.scripts.load_maps import background_group, obstacle_group, npc_group, gate_group, player_group
+        draw_hud = conf.draw_hud
         background_group.draw(window)
         obstacle_group.draw(window)
         player_group.draw(window)
@@ -620,6 +636,7 @@ class Window:
         if draw_hud ==1:
             Window.show_FPS()
             Window.draw_hitboxes()
+            Window.show_memory()
 
     @staticmethod
     def get_inputs():
@@ -636,7 +653,10 @@ class Window:
             No keys pressed   ||No keys were pressed. return x,y = 0,0
             :return x=0,y=0
         """
-        from main import base_speed, run_speed, up, down, right, left, dash, FPS, TARGET_FPS
+        from main import conf
+        from utils.system.sys_info import FPS, TARGET_FPS
+        base_speed = conf.base_speed; run_speed = conf.run_speed
+        up=conf.up; down=conf.down; right=conf.right; left=conf.left; dash=conf.dash;
         win_active = pygame.display.get_active()
         x,y = 0,0 #checks if an input is given
         inputs = []
@@ -678,61 +698,29 @@ class Window:
         todo:
             add a delay onto keypresses in general
         """
-        from main import debug, draw_hud
+        from main import conf
+        debug = conf.debug; draw_hud = conf.draw_hud
         if debug.toggle():
-            if draw_hud ==1: draw_hud =0
-            elif draw_hud ==0: draw_hud =1
-        return draw_hud
+            if conf.draw_hud ==1: conf.draw_hud =0
+            elif conf.draw_hud ==0: conf.draw_hud =1
+        return conf.draw_hud
 
     @staticmethod
     def draw_hitboxes():
         """
         draws hitboxes around each sprite in each group
+
+        todo:
+            make this cleaner by adding in a function that creates hitboxes
         """
-        from main import hitbox_clr, obstacle_group, player_group, npc_group, window, gate_group
-        for sprite in obstacle_group:  # draws a red hit box around each obstacle
-            rect =sprite.rect
-            linetop = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
-                                       (rect.right, rect.top), width=2)
-            lineleft = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
-                                        (rect.left, rect.bottom), width=2)
-            lineright = pygame.draw.line(window, hitbox_clr, (rect.right, rect.top),
-                                         (rect.right, rect.bottom), width=2)
-            linebottom = pygame.draw.line(window, hitbox_clr, (rect.left, rect.bottom),
-                                          (rect.right, rect.bottom), width=2)
+        from main import conf, window
+        from graphics.maps.scripts.load_maps import obstacle_group, npc_group, player_group, gate_group
+        hitbox_clr = conf.hitbox_colour
 
-        for sprite in player_group: #draws a hitbox for the player
-            rect = sprite.rect
-            linetop = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
-                                       (rect.right, rect.top), width=2)
-            lineleft = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
-                                        (rect.left, rect.bottom), width=2)
-            lineright = pygame.draw.line(window, hitbox_clr, (rect.right, rect.top),
-                                         (rect.right, rect.bottom), width=2)
-            linebottom = pygame.draw.line(window, hitbox_clr, (rect.left, rect.bottom),
-                                          (rect.right, rect.bottom), width=2)
-
-        for sprite in npc_group:
-            rect = sprite.rect
-            linetop = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
-                                       (rect.right, rect.top), width=2)
-            lineleft = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
-                                        (rect.left, rect.bottom), width=2)
-            lineright = pygame.draw.line(window, hitbox_clr, (rect.right, rect.top),
-                                         (rect.right, rect.bottom), width=2)
-            linebottom = pygame.draw.line(window, hitbox_clr, (rect.left, rect.bottom),
-                                          (rect.right, rect.bottom), width=2)
-
-        for sprite in gate_group:
-            rect = sprite.rect
-            linetop = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
-                                       (rect.right, rect.top), width=2)
-            lineleft = pygame.draw.line(window, hitbox_clr, (rect.left, rect.top),
-                                        (rect.left, rect.bottom), width=2)
-            lineright = pygame.draw.line(window, hitbox_clr, (rect.right, rect.top),
-                                         (rect.right, rect.bottom), width=2)
-            linebottom = pygame.draw.line(window, hitbox_clr, (rect.left, rect.bottom),
-                                          (rect.right, rect.bottom), width=2)
+        draw_hitboxes(obstacle_group, window, colour=hitbox_clr) #draws hitboxes for all sprites in obstacle_group()
+        draw_hitboxes(player_group, window, colour=hitbox_clr) #draws hitboxes for the player
+        draw_hitboxes(npc_group, window, colour=hitbox_clr) #draws all hitboxes for all sprites in npc_group()
+        draw_hitboxes(gate_group, window, colour=hitbox_clr) #draws hitboxes for all gates
 
     @staticmethod
     def FPS_limit(FPS):
@@ -746,7 +734,8 @@ class Window:
             check monitor's vsync and use that as TARGET_FPS.
             rewatch the video on fps independence
         """
-        from main import prev_time, clock
+        from main import prev_time
+        from utils.pygame_utils import clock
         clock.tick(FPS)
         now = time.time()
         dt = now - prev_time
@@ -757,7 +746,16 @@ class Window:
         """
         Shows the current fps.
         """
-        from main import clock, window, text_x, text_y, font
+        from main import window, text_x, text_y
+        from utils.pygame_utils import clock, Fonts
         current_fps = int(clock.get_fps())
-        current_fps = font.render(f"FPS: {current_fps}", True, (255,255,255))
+        current_fps = Fonts.dp_32.render(f"FPS: {current_fps}", True, (255,255,255))
         window.blit(current_fps, (text_x,text_y))
+
+    @staticmethod
+    def show_memory():
+        from main import pid, window, text_x, text_y
+        from utils.pygame_utils import Fonts
+        mem_usage = memory_info(pid)
+        mem_usage = Fonts.dp_32.render(f"Memory Usage: {mem_usage} Mib", True, (255,255,255))
+        window.blit(mem_usage,(text_x, text_y+20))

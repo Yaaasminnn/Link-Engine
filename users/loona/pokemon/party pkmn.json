@@ -1,0 +1,45 @@
+{
+    "83895": {
+        "ID": 83895,
+        "Nickname": "test",
+        "Species": "Bulbasaur",
+        "Level": 5,
+        "Nature": "Quirky",
+        "Gender": "male",
+        "EV's": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "IV's": [
+            7,
+            25,
+            18,
+            2,
+            3,
+            7
+        ],
+        "Friendship": 0,
+        "Stats": [
+            19,
+            11,
+            10,
+            11,
+            11,
+            9
+        ],
+        "Item": null,
+        "OT": null,
+        "Shiny": null,
+        "Pokerus": null,
+        "Catch Location": null,
+        "Date Caught": null,
+        "Moves": [
+            "Tackle",
+            "Growl"
+        ]
+    }
+}

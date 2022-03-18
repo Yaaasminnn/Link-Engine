@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="modified testing stuffs.py to better search directories&#10;&#10;also added a logs text file. might come in handy&#10;&#10;map metadata files are revamped&#10;-renamed variable names to be more intuitive&#10;-made a template meta file&#10;-made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)&#10;&#10;draws player at gate locations upon entering a new area instead of the middle&#10;-need to work on backdrop movement checking&#10;-otherwise the player was drawn at a distance from the gate&#10;&#10;added a dialogue system&#10;-plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)&#10;-made progress on audio, but linux audio drivers are problematic" />
+    <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="cleanup after compiling thing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.bat" beforeDir="false" afterPath="$PROJECT_DIR$/game.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/directories.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/directories.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +21,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Dump stuff/db_testing/notes.txt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dump stuff/db_testing/pokeapitesting.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dump stuff/db_testing/dump.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Dump stuff/db_testing/pokeapi.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1uh1FtpIGBFImf99ZGJu996ENrS" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -26,45 +39,27 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Games n stuff/Productivity/Projects/Programming/testing stuff, concepts n other/python stuff/mahdi.py" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/users/loona" />
+      <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/audio/dialogue/textboxes" />
       <recent name="$PROJECT_DIR$/graphics/sprites/textures/textboxes" />
       <recent name="F:\Python Projects\Pokemon-Link-Engine\audio\voices" />
-      <recent name="$PROJECT_DIR$/graphics/maps" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/audio/dialogue" />
-      <recent name="$PROJECT_DIR$/audio" />
-      <recent name="F:\Python Projects\Pokemon-Link-Engine\audio\voices" />
+      <recent name="$PROJECT_DIR$/Dump stuff/db_testing/docs" />
       <recent name="$PROJECT_DIR$/mechanics" />
+      <recent name="$PROJECT_DIR$/utils/system" />
+      <recent name="$PROJECT_DIR$/utils" />
+      <recent name="$PROJECT_DIR$/utils/map_maker" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
-    <configuration name="dialogue_sys" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Pokemon-Link-Engine" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/audio" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/audio/dialogue_sys.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python">
       <module name="Pokemon-Link-Engine" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -72,32 +67,12 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main1" type="PythonConfigurationType" factoryName="Python">
-      <module name="Pokemon-Link-Engine" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\Abdurrahman Khan\AppData\Local\Microsoft\WindowsApps\python3.8.exe" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv_unix/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -107,104 +82,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="run" type="PythonConfigurationType" factoryName="Python">
-      <module name="Pokemon-Link-Engine" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python3.9" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="speak" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Pokemon-Link-Engine" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/audio" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/audio/speak.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="testing stuffs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Pokemon-Link-Engine" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Dump stuff" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Dump stuff/testing stuffs.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Doctests in Sprites" type="tests" factoryName="Doctests" temporary="true" nameIsGenerated="true">
-      <module name="Pokemon-Link-Engine" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/graphics/sprites/Sprites" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graphics/sprites/Sprites/Sprites.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Python.main1" />
-      <item itemvalue="Python.main" />
-      <item itemvalue="Python.run" />
-      <item itemvalue="Python.dialogue_sys" />
-      <item itemvalue="Python.speak" />
-      <item itemvalue="Python.testing stuffs" />
-      <item itemvalue="Python tests.Doctests in Sprites" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.dialogue_sys" />
-        <item itemvalue="Python.testing stuffs" />
-        <item itemvalue="Python.speak" />
-        <item itemvalue="Python tests.Doctests in Sprites" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -214,6 +91,68 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1625102906605</updated>
+      <workItem from="1634149251496" duration="409000" />
+      <workItem from="1634150150364" duration="564000" />
+      <workItem from="1634264047551" duration="11000" />
+      <workItem from="1634336585770" duration="1328000" />
+      <workItem from="1634405434829" duration="3593000" />
+      <workItem from="1634416999277" duration="8371000" />
+      <workItem from="1634529487697" duration="465000" />
+      <workItem from="1634529992451" duration="131000" />
+      <workItem from="1634530132240" duration="19000" />
+      <workItem from="1634530667719" duration="17000" />
+      <workItem from="1634531380752" duration="102000" />
+      <workItem from="1634531500378" duration="4000" />
+      <workItem from="1634531918100" duration="11000" />
+      <workItem from="1634531946346" duration="8000" />
+      <workItem from="1634531968587" duration="11000" />
+      <workItem from="1635207965798" duration="19000" />
+      <workItem from="1635208007775" duration="6000" />
+      <workItem from="1635208955488" duration="219000" />
+      <workItem from="1635209188904" duration="2000" />
+      <workItem from="1635209365701" duration="468000" />
+      <workItem from="1636219596912" duration="9000" />
+      <workItem from="1636219621269" duration="667000" />
+      <workItem from="1636348484331" duration="39000" />
+      <workItem from="1636875228831" duration="57000" />
+      <workItem from="1637176632760" duration="10788000" />
+      <workItem from="1637246334451" duration="177000" />
+      <workItem from="1638158503007" duration="10963000" />
+      <workItem from="1638259279870" duration="31000" />
+      <workItem from="1638260364819" duration="782000" />
+      <workItem from="1638340755812" duration="4532000" />
+      <workItem from="1639459016989" duration="10032000" />
+      <workItem from="1639505347436" duration="11109000" />
+      <workItem from="1639548904876" duration="717000" />
+      <workItem from="1639707523968" duration="1573000" />
+      <workItem from="1640473605592" duration="11429000" />
+      <workItem from="1640494070399" duration="1102000" />
+      <workItem from="1641156433815" duration="5000" />
+      <workItem from="1641156456120" duration="517000" />
+      <workItem from="1641413661101" duration="828000" />
+      <workItem from="1641528998624" duration="683000" />
+      <workItem from="1642034295434" duration="684000" />
+      <workItem from="1642314462304" duration="3000" />
+      <workItem from="1642905391473" duration="8000" />
+      <workItem from="1642905411622" duration="3000" />
+      <workItem from="1642905430962" duration="107000" />
+      <workItem from="1642905621843" duration="19000" />
+      <workItem from="1644654326265" duration="636000" />
+      <workItem from="1644721808669" duration="6507000" />
+      <workItem from="1645308380123" duration="3394000" />
+      <workItem from="1645473981494" duration="3000" />
+      <workItem from="1645474001465" duration="6538000" />
+      <workItem from="1645842566317" duration="1197000" />
+      <workItem from="1645844646665" duration="3421000" />
+      <workItem from="1645942737397" duration="8708000" />
+      <workItem from="1645987063881" duration="4663000" />
+      <workItem from="1646360994586" duration="48000" />
+      <workItem from="1646361157790" duration="107000" />
+      <workItem from="1646615855509" duration="610000" />
+      <workItem from="1646616510251" duration="1269000" />
+      <workItem from="1647136175661" duration="3846000" />
+      <workItem from="1647496439430" duration="4032000" />
+      <workItem from="1647559528411" duration="2045000" />
     </task>
     <task id="LOCAL-00001" summary="Can now switch between maps in a 2 way fashion. not 1 way.&#10;&#10;Player is drawn ,animated and collision logic is accounted for more logically now that we are using the current instance of the player&#10;&#10;Cooldown for switching between maps and the player does not switch when standing in a gate.&#10;&#10;Rewrote comments to make more sense&#10;&#10;Removed all tile-based movement for the player as tile-based movement will not be used for this project.&#10;&#10;draws hitboxes around gates as well&#10;&#10;moved keypress.py into mechanics&#10;&#10;created grey maps for extra testing and to reduce the risk of seizures due to the other maps being quite bright and flashy.">
       <created>1625191456360</created>
@@ -236,8 +175,39 @@
       <option name="project" value="LOCAL" />
       <updated>1628122430483</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="worked on db">
+      <created>1645952501065</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1645952501065</updated>
+    </task>
+    <task id="LOCAL-00005" summary="worked on db">
+      <created>1645952519936</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1645952519936</updated>
+    </task>
+    <task id="LOCAL-00006" summary="cleanup after compiling thing">
+      <created>1645952993525</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1645952993525</updated>
+    </task>
+    <task id="LOCAL-00007" summary="cleanup after compiling thing">
+      <created>1645953043179</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1645953043179</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -249,12 +219,22 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Can now switch between maps in a 2 way fashion. not 1 way.&#10;&#10;Player is drawn ,animated and collision logic is accounted for more logically now that we are using the current instance of the player&#10;&#10;Cooldown for switching between maps and the player does not switch when standing in a gate.&#10;&#10;Rewrote comments to make more sense&#10;&#10;Removed all tile-based movement for the player as tile-based movement will not be used for this project.&#10;&#10;draws hitboxes around gates as well&#10;&#10;moved keypress.py into mechanics&#10;&#10;created grey maps for extra testing and to reduce the risk of seizures due to the other maps being quite bright and flashy." />
     <MESSAGE value="modified testing stuffs.py to better search directories&#10;&#10;also added a logs text file. might come in handy" />
     <MESSAGE value="modified testing stuffs.py to better search directories&#10;&#10;also added a logs text file. might come in handy&#10;&#10;map metadata files are revamped&#10;-renamed variable names to be more intuitive&#10;-made a template meta file&#10;-made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)&#10;&#10;draws player at gate locations upon entering a new area instead of the middle&#10;-need to work on backdrop movement checking&#10;-otherwise the player was drawn at a distance from the gate&#10;&#10;added a dialogue system&#10;-plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)&#10;-made progress on audio, but linux audio drivers are problematic" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified testing stuffs.py to better search directories&#10;&#10;also added a logs text file. might come in handy&#10;&#10;map metadata files are revamped&#10;-renamed variable names to be more intuitive&#10;-made a template meta file&#10;-made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)&#10;&#10;draws player at gate locations upon entering a new area instead of the middle&#10;-need to work on backdrop movement checking&#10;-otherwise the player was drawn at a distance from the gate&#10;&#10;added a dialogue system&#10;-plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)&#10;-made progress on audio, but linux audio drivers are problematic" />
+    <MESSAGE value="worked on db" />
+    <MESSAGE value="cleanup after compiling thing" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup after compiling thing" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/main_py$speak.coverage" NAME="speak Coverage Results" MODIFIED="1647155753807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/audio" />
+    <SUITE FILE_PATH="coverage/main_py$run.coverage" NAME="run Coverage Results" MODIFIED="1646361206634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$pokeapitesting.coverage" NAME="pokeapitesting Coverage Results" MODIFIED="1647498594751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Dump stuff/db_testing" />
+    <SUITE FILE_PATH="coverage/main_py$audio_devices.coverage" NAME="audio devices Coverage Results" MODIFIED="1646617379499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/audio" />
+    <SUITE FILE_PATH="coverage/main_py$participant_test.coverage" NAME="participant_test Coverage Results" MODIFIED="1642034349233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../learning/Bubble/SMS_APP" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1647564655427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$testing_stuffs.coverage" NAME="testing stuffs Coverage Results" MODIFIED="1644725167246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mechanics" />
   </component>
 </project>

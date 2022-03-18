@@ -1,0 +1,41 @@
+{
+  "//base speed": "set to an integer value above 0. dont go over 8 tho.",
+  "base speed": 4,
+
+  "hitbox colours": {
+    "red": 0,
+    "green": 0,
+    "blue": 255
+  },
+
+  "draw HUD": 1,
+
+  "keybinds": {
+    "up": "Up",
+    "down": "Down",
+    "left": "Left",
+    "right": "Right",
+    "dash": "Shift",
+    "select": "a",
+    "cancel": "b",
+    "menu": "x",
+    "registered item": "y",
+    "exit": "Escape",
+    "debug menu": "F3",
+    "macros": {
+      "1": "q",
+      "2": "w",
+      "3": "e",
+      "4": "r"
+    }
+  },
+  "text speed": 1,
+
+  "fullscreen": 1,
+
+  "animate": 1,
+
+  "background image": "firewatch2.jpg",
+
+  "textbox choice": 3
+}

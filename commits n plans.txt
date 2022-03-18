@@ -1,12 +1,72 @@
-map metadata files are revamped
--renamed variable names to be more intuitive
--made a template meta file
--made a full template meta map layout (issue: backdrop edge detection makes the fps drop hard)
+DIALOGUE:
+    achieved:
+    -nuthin
 
-draws player at gate locations upon entering a new area instead of the middle
--need to work on backdrop movement checking
--otherwise the player was drawn at a distance from the gate
+    to-do:
+    -allow custom text font, size and colours
+    -linux drivers needa be fixed so i can work on sound and audio
 
-added a dialogue system
--plan to allow textboxes can be customized with an added json and external files(png for textbox, font and colour)
--made progress on audio, but linux audio drivers are problematic
+MOVEMENT:
+    achieved:
+    -nuthin
+
+    to-do:
+    -player can still move off-screen if not centered. fix this. work on backdrop movement checking
+    -player can be loaded into a map in any position(only when not changing maps. but allow the modularity of possibility of such)
+
+ORGANIZATION:
+    achieved:
+    -reworked map switching and generation and the map dataclass. maps now are loaded as dataclass instances and switching revolves around replacing the old instance with a new one
+
+    to-do:
+    -maybe give certain scripts and variables default values but can be modified if you create aconfig file?
+    -give HUD elements(fps, mem usage etc) fixed positions that can be modified by a config file
+
+FONTS:
+    achieved:
+    -nuthin
+
+    to-do:
+    -add more fonts
+    -allow custom fonts
+
+MENU'S:
+    achieved:
+    -nuthin
+
+    to-do:
+    -actually implement different menu's. will do it after im done organizing and decentralizing main
+
+MAP MAKER:
+    achieved:
+    -now has several HUD elements such as keypresses, tile type and mouse cursor position
+    -can add in sprites of certain tile types with properties reflecting that tile type
+
+    to-do:
+    -ability to select, delete and change properties of each tile
+    -read/write these changes to a json file to use as a map metadata file
+    -cooldown on placing sprites
+    -uses a file explorer to get the backdrop
+    -add in dialogue
+    -tile functionality?
+    -maybe make this more decentralized?
+
+OTHER ISSUES/SOLUTIONS
+    compiling:
+        -problem:
+            -how to compile main.py?
+            -most compilers dont work or triggers many anti-virus software
+        -solutions:
+            -have a c/c++ or java file run main.py
+                pros:
+                    -the application is technically compiled
+                cons:
+                    -this would require the game to install python and several libraries. not ideal and requires internet
+
+            -find a better python compiler
+
+    save data:
+        -problem:
+            -how do i save data and progress especially if its not autosaved
+        -solution:
+            -have a save_data.json for each save file. (research more)
