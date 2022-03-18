@@ -29,7 +29,7 @@ colour = (255,255,255)
 x1,y1 = 100, 850
 x2,y2 = 100,900
 font_size = 32
-font = pygame.font.Font(pygame.font.get_default_font(),font_size)
+font = pygame.font.Font(pygame.font.get_default_font(),font_size) # make this use a game font instead.
 
 def exit_cond():
     """
