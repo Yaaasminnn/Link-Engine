@@ -1,6 +1,6 @@
 dist/
 build/
-venv_unix/
+venv_unix/*
 venv_win/
 *.pyc
 main
