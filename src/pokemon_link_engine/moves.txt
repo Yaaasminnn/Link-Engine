@@ -1,0 +1,84 @@
+// each move's data structure
+power: int
+accuracy: int
+class: string
+type: string
+target: string (self, target, aoe)
+list of calls[
+  { //main reason we group effects together is if they have the same chance of happening
+    chance: int, //assuming the move hits, what are the chances additional effects happen?
+    effects:[ // what are those effects?
+      "tar:dmg", //performs the attack against a target
+      "tar:hp_int -100", //removes 100 hp
+      "self:hp_perc -10" //removes 10% of their hp
+      "tar:status:burn" //burns
+      "aoe:dmg" //AOE attack opponents
+      "tar:stat_mod:attack -1" //lowers the target's attack by 1 stage
+    ]
+  }
+]
+
+targets:
+  // are there any moves that affect self and opponents?
+  tar: the given target, can be any pokemon except self
+  aoe: all targets except self
+  self: the user
+  allies: affects the allies and self.
+
+process:
+  status:
+    burn
+    freeze
+    paralyzed
+    poisoned
+    sleeping
+    confused
+    cursed
+    etc
+    
+  weather:
+    sunny
+    rain
+    fog
+    clear
+    etc
+
+  fswitch: (force switch)
+
+  dmg: (executes the move normally)
+
+  stat_mod:
+    all the stats
+
+  hp_int
+
+  hp_perc
+
+  
+
+string params:
+  target:process(dmg, status etc):durations(int turns):delay(how many turns until the effect):value(int, meant for damage etc)
+
+
+QUEUE:----------------
+after all pokemon choose their actions, we add all pokemon into the queue. we cycle through each effect in the call list and add their effects into their queue entry. the queue is sorted by order.
+then the queue is executed synchronusly in order. applying all effects(status aff/stat mods/fainting, switching)
+
+we have a turn where we select our action. the action will have a priority and a list of calls. each call will have an effect.
+each pokemon has a speed and it's action has a priority. the pokemon's order is based on the priority and/or speed
+
+compute as much random and math as you can on execution, not beforehand
+
+queue = [
+  {
+    id: int //id of the pokemon
+    order: int //order based off priority and/or speed
+    action: {
+      action_type: "type(switch, item, move, run):name(pkmn id switched to, item switched to, move used, null if running)"
+      target: int(id of the pokemon attacked) //null if all effects are aoe or self.
+      calls: {} // the calls
+    }
+  }
+]
+
+
