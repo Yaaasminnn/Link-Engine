@@ -1,12 +1,12 @@
 import time
 import requests
 import json
-from src.pokemon_link_engine.utils import update_json
+from utils.json_utils import update_json
 
-id = 100
+id = 521
 
 def call(print_resp=False, id=id):
-    url = f"https://pokeapi.co/api/v2/move/{id}/"
+    url = f"https://pokeapi.co/api/v2/pokemon/{id}/"
     response = requests.request("GET", url=url)
     data = json.loads(response.text)
     if print_resp:
@@ -21,8 +21,27 @@ def list(print_resp=False):
         time.sleep(1)
 
 
+def create_pokemon(id:int):
+    """
+    Pokemon database object:
+    {
+        abilities:[ // list of abilities
+            {
+                name: ""
+                slot: int // 1st, 2nd or 3rd(hidden) ability
+            }
+        ]
+        id: int // id of the pokemon
+        name: "" // name of the pokemon
+        base_experience: int // base experience gained when beating the pokemon in battle
+        height: int // height in decimeters
+        is_default: bool // if this is the default form
+        weight: int // weight in hectograms
+        sprites: {
+                split off after the 8th slash and then replace remaining slashes in the substrings to underscores?
+        }
+    }
+    """
+    pass
+
 call()
-"""
-for i in range(10,20):
-    call(print_resp=False, id=i)
-    time.sleep(1)"""

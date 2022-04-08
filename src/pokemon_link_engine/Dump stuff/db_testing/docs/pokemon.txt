@@ -17,7 +17,7 @@ Pokemon::Pokemon:
     -order(int): order in the regional dex
     weight(int): in hectograms
     *species(species/..): the species of this pokemon
-    -*sprites(sprites/strings): sprites                 (were downloading the ones we need)
+    *sprites(sprites/strings): sprites                 (were downloading the ones we need)
     +*forms(forms/..): all the forms the pokemon can take on
     -*game indices: index of the pokemon in each version
     held_items(list[items]/string): list of items the pokemon could be holding when encountered. (map files)
