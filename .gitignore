@@ -1,8 +1,7 @@
 dist/
 build/
-venv_unix/
-venv_win/
-src/venv/
+venv/
+src/pokemon_link_engine/venv/
 *.pyc
 main
 main.exe

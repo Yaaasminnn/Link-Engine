@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="cleanup after compiling thing" />
+    <list default="true" id="7fc9bcbc-2115-438c-ace3-10f1d3803031" name="Default Changelist" comment="cleanup after compiling thing">
+      <change beforePath="$PROJECT_DIR$/.idea/Pokemon-Link-Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Pokemon-Link-Engine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,13 +61,13 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv_unix/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/pokemon_link_engine" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/pokemon_link_engine/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -148,6 +152,7 @@
       <workItem from="1647712546737" duration="1258000" />
       <workItem from="1648077749712" duration="1323000" />
       <workItem from="1648607552949" duration="18000" />
+      <workItem from="1649409761825" duration="274000" />
     </task>
     <task id="LOCAL-00001" summary="Can now switch between maps in a 2 way fashion. not 1 way.&#10;&#10;Player is drawn ,animated and collision logic is accounted for more logically now that we are using the current instance of the player&#10;&#10;Cooldown for switching between maps and the player does not switch when standing in a gate.&#10;&#10;Rewrote comments to make more sense&#10;&#10;Removed all tile-based movement for the player as tile-based movement will not be used for this project.&#10;&#10;draws hitboxes around gates as well&#10;&#10;moved keypress.py into mechanics&#10;&#10;created grey maps for extra testing and to reduce the risk of seizures due to the other maps being quite bright and flashy.">
       <created>1625191456360</created>
@@ -225,11 +230,11 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$speak.coverage" NAME="speak Coverage Results" MODIFIED="1647155753807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/audio" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1649410002447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/pokemon_link_engine" />
     <SUITE FILE_PATH="coverage/main_py$run.coverage" NAME="run Coverage Results" MODIFIED="1646361206634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$testing_stuffs.coverage" NAME="testing stuffs Coverage Results" MODIFIED="1644725167246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mechanics" />
     <SUITE FILE_PATH="coverage/main_py$pokeapitesting.coverage" NAME="pokeapitesting Coverage Results" MODIFIED="1647498594751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Dump stuff/db_testing" />
     <SUITE FILE_PATH="coverage/main_py$audio_devices.coverage" NAME="audio devices Coverage Results" MODIFIED="1646617379499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/audio" />
     <SUITE FILE_PATH="coverage/main_py$participant_test.coverage" NAME="participant_test Coverage Results" MODIFIED="1642034349233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../learning/Bubble/SMS_APP" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1647564655427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$testing_stuffs.coverage" NAME="testing stuffs Coverage Results" MODIFIED="1644725167246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mechanics" />
   </component>
 </project>
