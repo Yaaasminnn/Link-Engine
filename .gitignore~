@@ -1,9 +1,0 @@
-dist/
-build/
-venv_unix/*
-venv_win/
-*.pyc
-main
-main.exe
-.python-version
-main.spec
