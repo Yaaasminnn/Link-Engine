@@ -74,19 +74,19 @@ Pokemon::Colours:
 Pokemon::Stats: (not pokemon's stats)
     id: id num (1-6) from hp-speed
     name: name of the stat
-    game_index: same as id but (1hp, 2atk, 3def,4spd,5spatk,6spdef)
-    is_battle_only: does the stat only exist in battle? always seems to be false
-    *affecting moves: all the moves that affect this stat
+    -game_index: same as id but (1hp, 2atk, 3def,4spd,5spatk,6spdef)
+    -is_battle_only: does the stat only exist in battle? always seems to be false
+    -*affecting moves: all the moves that affect this stat
         increase: moves that increase
             change
             move
         decrease: vice versa
-    *affecting natures: same but natures
+    -*affecting natures: same but natures
         increase:
         decrease:
     *characteristics: list of characteristics on a pkmn when its highest stat is this stat
-    *move_damage_class: physical or special? speed n hp are null
-    *names: names of this pokemon in diff langs
+    -*move_damage_class: physical or special? speed n hp are null
+    -*names: names of this pokemon in diff langs
 
 Pokemon::Types:
     id: the id of this type(1-18)
@@ -106,7 +106,7 @@ Pokemon::Types:
     *pokemon: list of pokemon with this type
     *moves: moves of this type
 
-Pokemon::Genders:
+-Pokemon::Genders:
     id: 1/2 female/male
     name: name of the gender
     *pkmn_species_details: list of species that can have this gender and how likely
@@ -163,15 +163,15 @@ Pokemon::Egg Groups:
 Pokemon::Forms:
     id: id of the form
     name: name of the pokemon/form ("arceus-bug")
-    *names: names in diff langs
+    -*names: names in diff langs
     order: order based on the regional dex
     form_order: the order of a species's forms
     is_default: is it the default form
     is_battle_only
     is_mega: if its mega
     form_name: name of the form ("bug")
-    *form_names: names of the forms in diff langs
-    *pokemon: the pokemon that can take on this form
+    -*form_names: names of the forms in diff langs
+    -*pokemon: the pokemon that can take on this form
     *types: the types of this form
     *sprites: the sprites for this form
     *version_group: the version this form was introduced in
@@ -189,7 +189,7 @@ Pokemon::Habitats:
     *names: names in diff langs
     pokemon_species: pkmn that can have this habitat
 
-Pokemon::Pokeathlon Stats:
+-Pokemon::Pokeathlon Stats:
     id: of stat
     name: of stat
     names: diff langs

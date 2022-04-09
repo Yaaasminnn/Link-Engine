@@ -131,3 +131,43 @@ todo:
     a lot of this database will be loaded in memory always, so test out the ram usage
     excludes: pokedex
     make sure to only load it in when necessary
+
+
+
+
+
+
+
+============================
+
+issues:
+
+  birth moves?
+    how to confirm parents?
+    manual?
+
+  mega goes into varieties?
+
+
+-1 gender rate: genderless
+
+
+
+manual:
+  if egg move, we can make a log file that logs which pokemon and what moves to add.
+  if machine,
+    when using a machine, keep the machine move name and compare to the pokemon in question. if the move can be learned and by machine, learn it.
+  script to modify the database?
+
+
+
+
+global poke vars:
+  id
+  species
+  varieties
+    forms
+
+characteristics?
+
+formed pokemon

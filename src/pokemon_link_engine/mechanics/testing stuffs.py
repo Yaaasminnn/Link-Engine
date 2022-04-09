@@ -2,7 +2,7 @@ from utils.json_utils import load_json, update_json
 from exp_formulas import *
 import random
 #from main import user, user_home, game_dir
-from src.pokemon_link_engine.utils import get_project_dir
+from utils.directories import get_project_dir
 get_project_dir()
 user_home = "./users/loona"
 
@@ -228,6 +228,7 @@ class Pokemon:
         todo:
             natures, moves, ev's and iv's may need to be un-selfed or have a value it returns somehow. prob not
             work on shinies/pokerus
+            variable that holds what form the pokemon is so we know what stats or sprites to use
         """
 
         pkmn_db = load_json("mechanics/pokedex.json") #loads in all the pokemon in the database
