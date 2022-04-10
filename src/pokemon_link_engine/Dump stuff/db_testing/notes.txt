@@ -170,4 +170,19 @@ global poke vars:
 
 characteristics?
 
+lookup table of all pokemon to their pokedex number. makes it easy for references using either name or number
+name->number
+ideally though, we want everything stored as number.
+
+nincada evolution?
+
 formed pokemon
+    environment (burmy)
+    weather (cherrim, castform)
+    item holding (arceus, genesect, giratina)
+    togglable, by item   (deoxys and rotom, shaymin)
+    item holding + in battle (kyogre and groudon)
+    item holding + in battle + user choice (megas)
+    shaymin*
+        time of day
+        status effect

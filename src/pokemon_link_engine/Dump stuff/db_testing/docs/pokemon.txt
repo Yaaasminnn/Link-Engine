@@ -38,10 +38,10 @@ Pokemon::Species:
         -id: id number
         -name: name of this pokemon
         -order: slight diff order of the pokedex number
-        gender rate(int): chance of pokemon being female where gender rate/8 =percentage(where 1=100%)
+        gender rate(int): chance of pokemon being female where gender rate/8 =likelyhood(decimal)
         capture rate(int): 0-255. how easy it is to capture
         base_happiness(int): 0-255 happiness when caught with a normal pokeball. higher, happier
-        +is_baby(bool): whether the pokemon is a baby pokemon or not
+        is_baby(bool): whether the pokemon is a baby pokemon or not. baby pokemon cant breed
         is_legendary(bool):
         is_mythical(bool):
         +hatch counter(int): (x+1)*255 is how many steps to take to hatch the egg normally. (range?)
@@ -60,8 +60,8 @@ Pokemon::Species:
         -*pal_park_encounters: list of encounters with this pokemon in pal park
         *flavour text entries: all the flavour text pokedex entries in diff langs
             keep the en one
-        +*form descriptions: descriptions of forms this pokemon takes on
-        -*genera: the genus of this pokemon in diff langs, the seed pokemon
+        -*form descriptions: descriptions of forms this pokemon takes on
+        *genera: the genus of this pokemon in diff langs, the seed pokemon
             keep the en one
         +*varieties: list of pokemon that exist in this species
 

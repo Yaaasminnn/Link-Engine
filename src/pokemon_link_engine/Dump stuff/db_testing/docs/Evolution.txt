@@ -1,3 +1,21 @@
+Evolution conditions:
+    level gain
+        high friendship
+        holding an item
+        time of day
+        knowing a specific move
+        knowing a specific move type
+        location (change to a stone?)
+        gender
+        certain spceies in party
+        certain type in perty
+        weather in overworld?
+    exposure to an item
+    trade
+        trade with a pokemon
+        trade with an item
+
+
 Evolution::Chains:
     id(int): id of the pokemon. only includes the basic pokemon
     baby_trigger_item(item/string): item required when breeding in order to hatch the baby pokemon instead of the basic one

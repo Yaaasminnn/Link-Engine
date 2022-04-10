@@ -3,10 +3,10 @@ import requests
 import json
 from utils.json_utils import update_json
 
-id = 10041
+id = 1
 
 def call(print_resp=False, id=id):
-    url = f"https://pokeapi.co/api/v2/pokemon-form/{id}/"
+    url = f"https://pokeapi.co/api/v2/pokemon-species/{id}/"
     response = requests.request("GET", url=url)
     data = json.loads(response.text)
     if print_resp:
@@ -71,7 +71,26 @@ def create_pokemon(id:int):
             }
         ]
         species:{ // globally shared for all pokemon
-            .
+            gender rate: int // chance of being female in decimal. (rate/8)*100 = female precentage
+            capture rate: int // how easy it is to capture 0-255
+            base_happiness: int // 0-255. base happiness when caught with a normal pokemon
+            is_baby: bool // is_baby. baby pokemon cannot breed
+            is_legendary: bool
+            is_mythical: bool
+            hatch_counter: int // dont understand this
+            has_gender_differences: bool // has gender differences. useful for determining what sprites
+            forms_switchable: bool // can the pokemon switch between its forms?
+            growth rate: "" // the growth rate
+            egg groups:[ // list of all egg groups
+                ""
+            ]
+            color: "" // what colour this pokemon is. make it colour hehe
+            shape: "" // shape of the pokemon
+            habitat: "" // habitat this pokemon can be found in
+            flavour text entries: "" // the pokedex info stuff. get only one from b2w2
+            genera: "" // just keep the english one
+            evolves_from_species: "" // name of the pokemon it evolves from
+            evolution_chain
         }
     }
 
@@ -83,6 +102,10 @@ def create_pokemon(id:int):
             if is default, we dont add to the name
             if its form[name] == variety[name]: dont add
     }
+
+    species[varieties] will help us find all varieties of a pokemon
+    we can use species when on the base pokemon
+    forms data are added to each variety
     """
     pass
 
