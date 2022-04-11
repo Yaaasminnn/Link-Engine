@@ -1,4 +1,5 @@
 import keyboard
+import pygame
 
 class Key:
     """

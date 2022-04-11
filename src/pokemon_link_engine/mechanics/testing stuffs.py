@@ -250,6 +250,8 @@ class Pokemon:
         self.Moves = Pokemon.Moves(self.species["Moveset"], moves, self.level) # maybe set moves to ID's as well
         self.item = item
         self.catch_location = catch_location
+        self.form = None
+        self.variety = None
 
         # id, friendship, og Trainer(OT) and the date caught. none are applicable to wild pokemon
         self.id = id

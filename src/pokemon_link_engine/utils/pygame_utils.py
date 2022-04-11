@@ -4,6 +4,7 @@ All pygame utilities that will be used by multiple programs
 import time
 import pygame, sys, keyboard
 from utils.directories import get_project_dir
+from utils.monitor import memory_info
 
 get_project_dir()
 pygame.init()
@@ -237,7 +238,7 @@ def exit_conditions(exit=None):
     """
     for event in pygame.event.get():
         if exit is not None:
-            if event.type == pygame.QUIT or keyboard.is_pressed(exit):
+            if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
                 pygame.quit()
                 sys.exit()
         if exit is None:
