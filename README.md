@@ -4,6 +4,9 @@
  for the most part similar to the pokemon games but "better".
  For now, this code will be used to make a game engine, as the name implies. Once that is completed, an actual game with a plot and quests can be worked on.
  
+ # Status:
+ On hold until further notice. This project was too large scale and I was not experienced enough. I will remake this project sometime later.
+ 
  ## Aspects of the game to work on
  1. Database
  - this includes all pokemon, moves, abilities etc
